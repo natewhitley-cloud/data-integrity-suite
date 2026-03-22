@@ -24,13 +24,24 @@
   </ul>
   <p>We do not request write access to your themes. We do not modify any theme files.</p>
 
+  <h3>Permission Audit feature (optional)</h3>
+  <p>If you activate the Permission Audit feature, the App requests an additional <code>read_apps</code> scope through Shopify's consent flow. This scope allows us to access:</p>
+  <ul>
+    <li><strong>Installed app information</strong> — App name, handle, description, and installation date for apps currently installed on your store.</li>
+    <li><strong>Permission snapshots</strong> — The API access scopes granted to each installed app, captured at the time of each audit run.</li>
+  </ul>
+  <p>This data is used to identify apps with excessive permissions, detect permission changes over time, and generate a risk score for each installed app. You must explicitly grant the <code>read_apps</code> scope before this feature collects any data. The scope can be revoked at any time through your Shopify admin.</p>
+
   <h3>Data collected through Shopify session</h3>
   <p>Shopify provides the following data as part of the standard app authentication process:</p>
   <ul>
     <li>Shop domain</li>
-    <li>Staff member name and email (for the user who installed the App)</li>
-    <li>Session and authentication tokens</li>
+    <li>Staff member name, email address, and user ID</li>
+    <li>Account role (store owner or collaborator) and email verification status</li>
+    <li>Locale preference</li>
+    <li>Session tokens, access tokens, and refresh tokens</li>
   </ul>
+  <p>This session data is managed by Shopify's official session storage library and is required for the App to function within the Shopify Admin.</p>
 
   <h3>Data we do NOT collect</h3>
   <ul>
