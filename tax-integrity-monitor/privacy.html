@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Tax Integrity Monitor</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="app-name">Tax Integrity Monitor — Shopify Tax Discrepancy Scanner</p>
+  <p class="effective-date">Effective date: April 1, 2026</p>
+
+  <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of Tax Integrity Monitor ("the App") collects, uses, stores, and protects information when you install and use the App through the Shopify platform.</p>
+
+  <h2>1. Information We Collect</h2>
+
+  <h3>Data from Shopify APIs</h3>
+  <p>When you install the App, we access the following through the Shopify Admin API:</p>
+  <ul>
+    <li><strong>Order data</strong> (<code>read_orders</code> scope) — Order names, IDs, tax line amounts, tax line rates, tax line titles (jurisdiction names), refund amounts, refund tax details, financial status, and currency. We access order data in <strong>read-only mode</strong> to scan for tax discrepancies caused by partial refunds, undercollection, and collection in unregistered jurisdictions.</li>
+    <li><strong>Full order history</strong> (<code>read_all_orders</code> scope, if approved) — Same data as above but beyond the standard 60-day window. This protected scope requires separate approval from Shopify's Partner team and enables historical tax audits.</li>
+  </ul>
+  <p>Access to full order history requires that Shopify has approved the <code>read_all_orders</code> protected scope for the App and that you have installed the App with this scope enabled. You may revoke this access at any time by reinstalling the App without granting the scope. The standard <code>read_orders</code> scope (60-day window) remains active regardless.</p>
+  <p>We do not request write access to your orders. We do not modify any order, refund, or financial data.</p>
+
+  <h3>Data collected through Shopify session</h3>
+  <p>Shopify provides the following data as part of the standard app authentication process:</p>
+  <ul>
+    <li>Shop domain</li>
+    <li>Staff member name, email address, and user ID</li>
+    <li>Account role (store owner or collaborator) and email verification status</li>
+    <li>Locale preference</li>
+    <li>Session tokens, access tokens, and refresh tokens</li>
+  </ul>
+  <p>This session data is managed by Shopify's official session storage library and is required for the App to function within the Shopify Admin.</p>
+
+  <h3>Merchant-provided configuration</h3>
+  <ul>
+    <li><strong>Nexus states</strong> — US states where you have declared sales tax registration. You provide this information voluntarily through the App's settings to enable unregistered collection detection.</li>
+    <li><strong>Monitoring preferences</strong> — Scan frequency and notification settings.</li>
+  </ul>
+
+  <h3>Data we do NOT collect</h3>
+  <ul>
+    <li>Customer or shopper personal information (names, addresses, emails, phone numbers)</li>
+    <li>Payment card or banking information</li>
+    <li>Product catalog or inventory data</li>
+    <li>Theme or storefront code</li>
+    <li>Analytics or visitor behavior data</li>
+    <li>Marketing or advertising data</li>
+  </ul>
+  <p>We do not use AI or machine learning to process your data.</p>
+
+  <h2>2. How We Use Your Information</h2>
+  <p>We use the data we collect solely to provide and improve the App's services:</p>
+  <ul>
+    <li><strong>Tax discrepancy scanning</strong> — We analyze order and refund data to detect tax overpayment from partial refunds, undercollection relative to known state base rates, and accidental tax collection in states where you are not registered.</li>
+    <li><strong>Scan results</strong> — We store findings (order ID, order name, finding type, jurisdiction, expected tax, actual tax, discrepancy amount, and severity) so you can review results in the App's dashboard.</li>
+    <li><strong>Subscription management</strong> — We store your current billing plan to gate features appropriately.</li>
+    <li><strong>App functionality</strong> — We use your shop domain and session data to authenticate requests and deliver the App within the Shopify Admin.</li>
+  </ul>
+  <p>For the purposes of applicable data protection laws, you (the merchant) are the data controller for the order and business data you make available through the App. Alpenglow Software LLC acts as a data processor, processing this data solely on your behalf and as described in this policy. For any data we collect directly from you (such as support communications or nexus configuration you provide), we act as an independent data controller.</p>
+
+  <h2>3. How We Process Order Data</h2>
+  <p>Your order data is processed as follows:</p>
+  <ol>
+    <li>Orders are fetched from the Shopify Bulk Operations API and downloaded as JSONL files.</li>
+    <li>Each order is analyzed <strong>in memory</strong> by our tax computation engine, which compares original tax amounts against current (post-refund) tax amounts.</li>
+    <li>Only the scan findings (metadata and discrepancy details) are stored in our database. We store order IDs and order names for reference but <strong>do not store full order contents</strong>.</li>
+    <li>JSONL files are processed and discarded — they are not retained after analysis.</li>
+  </ol>
+
+  <h2>4. Data Storage and Security</h2>
+  <ul>
+    <li>All data is stored in a PostgreSQL database hosted on Railway (United States).</li>
+    <li>Shopify access tokens are encrypted at rest using AES-256 encryption.</li>
+    <li>All connections use HTTPS/TLS encryption in transit.</li>
+    <li>We do not sell, rent, or share your data with third parties for marketing purposes.</li>
+    <li>In the event of a data breach affecting your data, we will notify you and Shopify within 24 hours of discovery, in accordance with Shopify's Partner Program Agreement and applicable law.</li>
+  </ul>
+
+  <h2>5. Third-Party Services</h2>
+  <p>The App uses the following third-party services to operate:</p>
+
+  <table>
+    <thead>
+      <tr><th>Service</th><th>Purpose</th><th>Data shared</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Shopify Admin API</td>
+        <td>Order data access and authentication</td>
+        <td>Session tokens, order queries</td>
+      </tr>
+      <tr>
+        <td>Inngest</td>
+        <td>Background job scheduling</td>
+        <td>Shop ID, scan metadata (not order contents)</td>
+      </tr>
+      <tr>
+        <td>Railway</td>
+        <td>Application and database hosting</td>
+        <td>All stored data (encrypted)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>No full order data is transmitted to Inngest or any other external service. Order data is fetched directly from the Shopify API and processed on our application server.</p>
+  <p>If we add or replace a sub-processor in a way that materially affects how your data is processed, we will update this Privacy Policy and notify you through the App.</p>
+
+  <h2>6. Data Retention</h2>
+  <ul>
+    <li><strong>While installed</strong> — Scan results, findings, and shop data are retained for as long as the App is installed on your store.</li>
+    <li><strong>On uninstall</strong> — All data associated with your shop is permanently deleted immediately and automatically. This includes: sessions, scans, findings, nexus configuration, and your shop record. Deletion is atomic and irreversible.</li>
+    <li><strong>GDPR shop/redact</strong> — If Shopify sends a shop data erasure request, all shop data is deleted within 48 hours.</li>
+  </ul>
+
+  <h2>7. Your Rights</h2>
+  <p>You have the right to:</p>
+  <ul>
+    <li><strong>Access</strong> — View all scan data and findings through the App's dashboard. Export findings as CSV.</li>
+    <li><strong>Deletion</strong> — Uninstalling the App immediately deletes all your data. You can also contact us to request deletion without uninstalling.</li>
+    <li><strong>Data portability</strong> — Contact us to request an export of your stored data in machine-readable format (CSV or JSON).</li>
+    <li><strong>Correction</strong> — Contact us if you believe any stored data is inaccurate.</li>
+  </ul>
+  <p>We respond to all data requests within 30 days.</p>
+
+  <h2>8. International Data Transfers</h2>
+  <p>Your data is processed and stored on servers located in the United States. By using the App, you consent to the transfer of your data to the United States for processing.</p>
+
+  <h2>9. Cookies and Tracking</h2>
+  <p>The App does not use cookies, tracking pixels, or any analytics or advertising technologies. We do not track your behavior within the Shopify Admin.</p>
+
+  <h2>10. Children's Privacy</h2>
+  <p>The App is designed for use by Shopify merchants (business users) and is not directed at children under 13. We do not knowingly collect data from children.</p>
+
+  <h2>11. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. If we make material changes, we will update the effective date at the top of this page. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
+
+  <h2>12. Contact Us</h2>
+  <div class="contact-block">
+    <p>If you have questions about this Privacy Policy or want to exercise your data rights, contact us at:</p>
+    <p><strong>Email:</strong> <a href="mailto:support@alpenglowsoftware.com">support@alpenglowsoftware.com</a></p>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2026 Alpenglow Software LLC. All rights reserved.</p>
+</footer>
+</body>
+</html>

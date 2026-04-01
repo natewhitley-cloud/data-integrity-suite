@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — Tax Integrity Monitor</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main>
+  <h1>Terms of Service</h1>
+  <p class="app-name">Tax Integrity Monitor — Shopify Tax Discrepancy Scanner</p>
+  <p class="effective-date">Effective date: April 1, 2026</p>
+
+  <p>These Terms of Service ("Terms") govern your use of Tax Integrity Monitor ("the App"), operated by Alpenglow Software LLC ("we," "us," "our"). By installing or using the App, you agree to these Terms. If you do not agree, do not install or use the App.</p>
+
+  <h2>1. Service Description</h2>
+  <p>Tax Integrity Monitor is a Shopify app that scans your store's order history to detect tax discrepancies caused by partial refunds, undercollection relative to known state base tax rates, and accidental tax collection in jurisdictions where you are not registered.</p>
+  <p>The App operates in <strong>read-only mode</strong>. It does not modify, edit, or delete any orders, refunds, tax settings, or financial data. All remediation actions (adjusting tax settings, issuing corrections) are performed by you, the merchant, outside of this App.</p>
+
+  <h2>2. Eligibility</h2>
+  <p>The App is available to Shopify merchants with an active Shopify store. You must have appropriate permissions to install apps on your store. By installing the App, you represent that you are authorized to do so on behalf of the store owner.</p>
+
+  <h2>3. Plans and Billing</h2>
+
+  <h3>Available plans</h3>
+  <table>
+    <thead>
+      <tr><th>Plan</th><th>Price</th><th>Scan limit</th><th>Key features</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Free</td>
+        <td>$0</td>
+        <td>1 scan per month</td>
+        <td>60-day order window, partial refund overpayment detection, unregistered collection detection, CSV export</td>
+      </tr>
+      <tr>
+        <td>Standard</td>
+        <td>See current pricing on the Shopify App Store listing</td>
+        <td>Weekly scans</td>
+        <td>Full order history (with read_all_orders), undercollection detection with state base rate comparison, automated monitoring, all Free features</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Billing terms</h3>
+  <ul>
+    <li>All paid plans are billed monthly through Shopify's billing system. Charges appear on your regular Shopify invoice.</li>
+    <li>Paid plans include a <strong>7-day free trial</strong>. You will not be charged during the trial period.</li>
+    <li>You may upgrade, downgrade, or cancel your plan at any time. Changes take effect immediately.</li>
+    <li>We do not offer refunds for partial billing periods. Upon cancellation, you retain access to paid features until the end of your current billing cycle.</li>
+    <li>If your subscription lapses or is cancelled, your account reverts to the Free plan. Your existing scan data is retained.</li>
+    <li>Full order history scanning via the <code>read_all_orders</code> scope requires Shopify Partner approval, which is subject to Shopify's review process. If this scope has not yet been approved, Standard plan users will receive the same 60-day order window as the Free plan until approval is granted. We will notify you when full history access becomes available.</li>
+  </ul>
+
+  <h2>4. Acceptable Use</h2>
+  <p>You agree not to:</p>
+  <ul>
+    <li>Use the App in any way that violates applicable laws or Shopify's Terms of Service.</li>
+    <li>Attempt to circumvent scan limits, rate limits, or feature gating.</li>
+    <li>Reverse engineer, decompile, or attempt to extract the source code of the App.</li>
+    <li>Use the App to scan stores you do not own or have authorization to access.</li>
+    <li>Interfere with or disrupt the App's infrastructure or other users' access.</li>
+  </ul>
+
+  <h2>5. Intellectual Property</h2>
+  <ul>
+    <li><strong>Your content</strong> — You retain all ownership rights to your order data, store content, and data. The App does not claim any rights to your content.</li>
+    <li><strong>Our service</strong> — The App, including its tax computation engine, detection algorithms, user interface, and documentation, is our intellectual property. These Terms do not grant you any rights to our intellectual property beyond the right to use the App as intended.</li>
+  </ul>
+
+  <h2>6. Data and Privacy</h2>
+  <p>Our collection and use of your data is governed by our <a href="privacy.html">Privacy Policy</a>. By using the App, you agree to our data practices as described in that policy.</p>
+  <p>Key points:</p>
+  <ul>
+    <li>We access your order data in read-only mode for scanning purposes only.</li>
+    <li>Full order contents are not stored — only scan findings and metadata.</li>
+    <li>All data is deleted immediately when you uninstall the App.</li>
+    <li>We do not access customer personal information, payment data, or shopper behavior data.</li>
+    <li>We do not use artificial intelligence or machine learning to process your data. Your order data and scan findings are not used to train AI or machine learning models.</li>
+  </ul>
+
+  <h2>7. Accuracy and Disclaimers</h2>
+  <ul>
+    <li>Scan results are provided on a <strong>best-effort basis</strong>. Tax Integrity Monitor identifies potential tax discrepancies using computational analysis of order data. We do not guarantee that all findings are accurate or that all discrepancies will be detected.</li>
+    <li><strong>Not tax advice</strong> — The App is an analytical tool, not a tax advisory service. Findings should be reviewed by a qualified tax professional before taking action. We do not provide legal, accounting, or tax compliance advice.</li>
+    <li><strong>No professional relationship</strong> — Use of the App does not create an accountant-client, attorney-client, or any other professional advisory relationship between you and Alpenglow Software LLC.</li>
+    <li><strong>Merchant-specific circumstances</strong> — Tax Integrity Monitor cannot account for your store's specific circumstances, including: nexus determinations, economic nexus thresholds, marketplace facilitator obligations, product-specific tax exemptions, customer exemption certificates, local district tax rates, or sourcing rules applicable to your business. These factors may materially affect whether a detected discrepancy represents an actual compliance issue.</li>
+    <li><strong>False positives</strong> — Some findings may identify discrepancies that are intentional, expected, or already accounted for in your tax filings.</li>
+    <li><strong>False negatives</strong> — The App may not detect all tax discrepancies, particularly from manual refunds without line items, orders with estimated taxes, or jurisdictions with unparseable tax line titles.</li>
+    <li><strong>Unauditable orders</strong> — Orders with manual refunds that lack line-item details cannot be analyzed by the App and are flagged as "unauditable." This designation indicates a technical limitation of available data, not a finding of tax discrepancy or non-compliance. No action should be taken based solely on an "unauditable" designation without reviewing the underlying order in Shopify.</li>
+    <li><strong>Orders with estimated taxes</strong> — Orders where Shopify has not yet finalized tax calculations (flagged as "estimated taxes" in Shopify's API) are excluded from scanning. These orders will not appear in findings.</li>
+    <li><strong>State base rates</strong> — Undercollection detection compares collected rates against known state-level base sales tax rates. Local rates (county, city, district) are not included. Rate data may not reflect recent rate changes, emergency legislation, or pending adjustments. Always verify current rates against official state revenue department sources before acting on undercollection findings.</li>
+    <li><strong>Nexus configuration accuracy</strong> — Unregistered collection detection depends entirely on the nexus states you declare through the App's settings. The App cannot detect collection in unregistered states that you have not declared as nexus states. You are responsible for accurately maintaining your nexus configuration. We are not responsible for missed findings caused by incomplete or inaccurate nexus declarations.</li>
+    <li>The App does not modify your orders, tax settings, or financial data. You are solely responsible for any actions you take based on scan findings.</li>
+  </ul>
+
+  <h2>8. Limitation of Liability</h2>
+  <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW:</p>
+  <ul>
+    <li>The App is provided "AS IS" and "AS AVAILABLE" without warranties of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.</li>
+    <li>We are not liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of revenue, data, or business opportunities.</li>
+    <li>Our total liability for any claim arising from your use of the App shall not exceed the amount you paid for the App in the 12 months preceding the claim.</li>
+    <li>We are not responsible for any financial consequences, tax penalties, or compliance issues resulting from actions you take (or fail to take) based on scan findings.</li>
+    <li>We are not responsible for inaccuracies in state base tax rate data used for undercollection detection.</li>
+  </ul>
+
+  <h2>9. Termination</h2>
+  <ul>
+    <li><strong>By you</strong> — You may stop using the App at any time by uninstalling it from your Shopify store. All your data will be deleted immediately upon uninstall.</li>
+    <li><strong>By us</strong> — We may suspend or terminate your access to the App if you violate these Terms, if required by law, or if we discontinue the App. We will provide reasonable notice when possible.</li>
+    <li>We recommend exporting your scan findings as CSV before uninstalling the App if you wish to retain records for tax compliance documentation purposes. Findings are not recoverable after uninstall.</li>
+    <li>The following sections survive termination of these Terms: Intellectual Property, Accuracy and Disclaimers, Limitation of Liability, Indemnification, Dispute Resolution, and General Provisions.</li>
+  </ul>
+
+  <h2>10. Changes to These Terms</h2>
+  <p>We may update these Terms from time to time. If we make material changes, we will update the effective date at the top of this page. Continued use of the App after changes constitutes acceptance of the updated Terms. If you disagree with any changes, you may uninstall the App.</p>
+
+  <h2>11. Indemnification</h2>
+  <p>You agree to indemnify, defend, and hold harmless Alpenglow Software LLC and its officers, employees, and agents from and against any claims, liabilities, damages, losses, and expenses (including reasonable legal fees) arising out of or related to:</p>
+  <ul>
+    <li>Your use of the App, including any actions you take based on scan findings.</li>
+    <li>Any tax filing decisions, corrections, or omissions you make based on information provided by the App.</li>
+    <li>Your violation of these Terms or any applicable law.</li>
+    <li>Your violation of any third-party rights.</li>
+  </ul>
+
+  <h2>12. Force Majeure</h2>
+  <p>We are not liable for any failure or delay in performing our obligations under these Terms due to causes beyond our reasonable control, including but not limited to: Shopify platform outages or API changes, internet service disruptions, infrastructure provider failures, natural disasters, pandemics, government actions, tax law changes, or acts of war or terrorism.</p>
+
+  <h2>13. Dispute Resolution</h2>
+  <h3>Informal resolution</h3>
+  <p>Before filing any formal claim, you agree to contact us at <a href="mailto:support@alpenglowsoftware.com">support@alpenglowsoftware.com</a> and attempt to resolve the dispute informally for at least 30 days.</p>
+  <h3>Binding arbitration</h3>
+  <p>If a dispute cannot be resolved informally, you and Alpenglow Software LLC agree to resolve it through binding arbitration administered by the American Arbitration Association (AAA) under its Commercial Arbitration Rules. Arbitration will take place in Boulder County, Colorado, before a single arbitrator. The arbitrator's decision is final and binding.</p>
+  <h3>Small claims exception</h3>
+  <p>Either party may bring qualifying claims in small claims court in Boulder County, Colorado, as an alternative to arbitration.</p>
+  <h3>Class action waiver</h3>
+  <p>You agree that any dispute resolution proceedings will be conducted only on an individual basis and not as part of a class, consolidated, or representative action. You waive any right to participate in a class action lawsuit or class-wide arbitration against Alpenglow Software LLC.</p>
+  <h3>Governing law</h3>
+  <p>These Terms are governed by and construed in accordance with the laws of the State of Colorado, United States, without regard to conflict of law principles.</p>
+
+  <h2>14. General Provisions</h2>
+  <ul>
+    <li><strong>Severability</strong> — If any provision of these Terms is found to be unenforceable or invalid, that provision will be modified to the minimum extent necessary to make it enforceable, and the remaining provisions will remain in full force and effect.</li>
+    <li><strong>Entire agreement</strong> — These Terms, together with the <a href="privacy.html">Privacy Policy</a>, constitute the entire agreement between you and Alpenglow Software LLC regarding the App and supersede all prior agreements and understandings.</li>
+    <li><strong>Assignment</strong> — We may assign or transfer these Terms, in whole or in part, without restriction. You may not assign your rights or obligations under these Terms without our prior written consent.</li>
+    <li><strong>Waiver</strong> — Our failure to enforce any provision of these Terms does not constitute a waiver of that provision or any other provision.</li>
+    <li><strong>Shopify relationship</strong> — Tax Integrity Monitor is an independent application. Shopify Inc. is not responsible for the App and has no liability to you in connection with these Terms or your use of the App.</li>
+  </ul>
+
+  <h2>15. Contact Us</h2>
+  <div class="contact-block">
+    <p>If you have questions about these Terms, contact us at:</p>
+    <p><strong>Email:</strong> <a href="mailto:support@alpenglowsoftware.com">support@alpenglowsoftware.com</a></p>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2026 Alpenglow Software LLC. All rights reserved.</p>
+</footer>
+</body>
+</html>
