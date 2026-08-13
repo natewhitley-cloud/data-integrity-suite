@@ -10,19 +10,18 @@
 <main>
   <h1>Privacy Policy</h1>
   <p class="app-name">ClearSignal — Bot Traffic Detection for Shopify</p>
-  <p class="effective-date">Effective date: March 28, 2026</p>
+  <p class="effective-date">Effective date: August 13, 2026</p>
 
-  <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of ClearSignal ("the App") collects, uses, stores, and protects information when you install and use the App through the Shopify platform. ClearSignal detects bot traffic that may be polluting your store's analytics by combining client-side fingerprinting, web pixel events, and server-side signal correlation.</p>
+  <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of ClearSignal ("the App") collects, uses, stores, and protects information when you install and use the App through the Shopify platform. ClearSignal detects bot traffic that may be polluting your store's analytics by combining client-side fingerprinting, order-level signal analysis, and server-side signal correlation. A web pixel extension for capturing storefront customer events is planned but not yet active — see Section 1 for details.</p>
 
   <h2>1. Information We Collect</h2>
 
   <h3>Data from Shopify APIs</h3>
-  <p>When you install the App, we access the following through the Shopify Admin API using the <code>read_customer_events</code>, <code>write_pixels</code>, and <code>read_orders</code> scopes:</p>
+  <p>The App currently requests one Shopify Admin API scope:</p>
   <ul>
-    <li><strong><code>write_pixels</code></strong> — registers a web pixel extension on your storefront to capture page view, cart, and checkout events.</li>
-    <li><strong><code>read_customer_events</code></strong> — reads customer events captured by the web pixel extension.</li>
-    <li><strong><code>read_orders</code></strong> — queries aggregate order counts to calculate true conversion rates. This scope grants access to order data; however, the App queries only aggregate order counts and does not access or store individual order details, customer information, or payment data.</li>
+    <li><strong><code>read_orders</code></strong> — used to attribute orders to AI-agent-driven traffic and to surface Shopify's own order-level risk assessment. For each order, the App reads and stores the order ID, order total and currency, sales channel and referrer information, and Shopify's risk recommendation, risk level, and risk assessment details. The App does <strong>not</strong> access or store customer names, addresses, email addresses, or payment information through this scope.</li>
   </ul>
+  <p><strong>Planned, not yet active:</strong> the App intends to add a Web Pixel extension in a future release to capture storefront customer events (page views, cart, and checkout activity) as an additional bot-detection signal. This would require the <code>write_pixels</code> and <code>read_customer_events</code> scopes, which are <strong>not currently requested or granted</strong>. This policy will be updated with a new effective date before those scopes are requested and that data collection begins.</p>
 
   <h3>Data collected through Shopify session</h3>
   <p>Shopify provides the following data as part of the standard app authentication process:</p>
@@ -66,7 +65,6 @@
   <h3>Data we do NOT collect</h3>
   <ul>
     <li>Customer names, postal addresses, or payment information</li>
-    <li>Individual order details or transaction amounts</li>
     <li>Raw click ID values (gclid, fbclid, etc.) — only whether they are present</li>
     <li>Theme files or store source code</li>
     <li>Customer email addresses, unless you connect the Klaviyo integration and Klaviyo provides them as part of profile data</li>
@@ -75,8 +73,10 @@
   <h2>2. How We Use Your Information</h2>
   <p>We use the data we collect solely to provide and improve the App's services:</p>
   <ul>
-    <li><strong>Bot detection</strong> — we correlate fingerprint, behavioral, pixel event, and IP reputation signals to score storefront sessions and classify them as bot or human traffic.</li>
-    <li><strong>Analytics impact reporting</strong> — we use order count data and session classifications to calculate your true conversion rate and estimate how bot traffic may be distorting your analytics.</li>
+    <li><strong>Bot detection</strong> — we correlate fingerprint, behavioral, and IP reputation signals to score storefront sessions and classify them as bot or human traffic.</li>
+    <li><strong>AI-agent order attribution</strong> — we analyze each order's sales channel, referrer, and source data to identify orders driven by AI-agent traffic (e.g., ChatGPT, Microsoft Copilot) and estimate the revenue they contribute.</li>
+    <li><strong>Order risk surfacing</strong> — we display Shopify's own order-level risk recommendation and risk level in your dashboard so you can evaluate order quality.</li>
+    <li><strong>Analytics impact reporting</strong> — we use session classifications to calculate your true conversion rate and estimate how bot traffic may be distorting your analytics.</li>
     <li><strong>Dashboard display</strong> — we surface bot percentage, session breakdowns, and signal details in the App's merchant dashboard.</li>
     <li><strong>Klaviyo profile audit</strong> (if connected) — we analyze Klaviyo profiles for bot-like behavior and tag suspected bot profiles so they can be excluded from campaigns.</li>
     <li><strong>Subscription management</strong> — we store your current billing plan to gate features appropriately.</li>
@@ -89,13 +89,13 @@
   <p>Storefront visitor data flows through the App as follows:</p>
   <ol>
     <li>The theme app extension loads on your storefront and runs FingerprintJS BotD in the visitor's browser. No data leaves the browser until the next step.</li>
-    <li>The Web Pixel extension captures page view, cart, and checkout events through Shopify's sandboxed event pipeline.</li>
     <li>Fingerprint and behavioral signals are sent to the App's server via a Shopify app proxy endpoint with HMAC verification.</li>
-    <li>The server correlates all available signals — fingerprint score, behavioral patterns, pixel events, and IP reputation — and computes a bot probability score.</li>
+    <li>The server correlates all available signals — fingerprint score, behavioral patterns, and IP reputation — and computes a bot probability score.</li>
     <li>The classification verdict and signal breakdown are stored in the database. Raw behavioral signal data is not stored after scoring.</li>
     <li>Aggregated results are displayed in your merchant dashboard.</li>
   </ol>
   <p>Bot classifications represent probabilistic assessments, not definitive verdicts. Individual session records include the contributing signals so you can evaluate the basis for any classification.</p>
+  <p>Separately, order data (see Section 1) is read directly from the Shopify Admin API via the <code>read_orders</code> scope when an order is created. The resulting order attribution and risk record is stored on its own — it does not pass through the fingerprinting/scoring pipeline described above. The planned Web Pixel extension referenced in Section 1 would add page-view, cart, and checkout event capture to the storefront pipeline in a future release; it is not active today.</p>
 
   <h2>4. Data Storage and Security</h2>
   <ul>
@@ -117,8 +117,8 @@
     <tbody>
       <tr>
         <td>Shopify Admin API</td>
-        <td>Authentication, order counts, web pixel registration</td>
-        <td>Session tokens, GraphQL queries</td>
+        <td>Authentication, order attribution data, order risk assessment</td>
+        <td>Session tokens, GraphQL order queries</td>
       </tr>
       <tr>
         <td>FingerprintJS BotD</td>
@@ -150,8 +150,8 @@
 
   <h2>6. Data Retention</h2>
   <ul>
-    <li><strong>While installed</strong> — All session data, detection records, and reports are retained for as long as the App is installed on your store.</li>
-    <li><strong>On uninstall</strong> — All data associated with your shop is permanently deleted immediately and automatically. This includes sessions, detections, Klaviyo tokens, and your shop record. Deletion is atomic and irreversible.</li>
+    <li><strong>While installed</strong> — All session data, detection records, order attribution records, and reports are retained for as long as the App is installed on your store.</li>
+    <li><strong>On uninstall</strong> — All data associated with your shop is permanently deleted immediately and automatically. This includes sessions, detections, order attribution records, Klaviyo tokens, and your shop record. Deletion is atomic and irreversible.</li>
     <li><strong>GDPR shop/redact</strong> — If Shopify sends a shop data erasure request, all shop data is deleted within 48 hours.</li>
     <li><strong>IP reputation cache</strong> — IP reputation scores are cached with a 24-hour TTL and expire automatically.</li>
     <li><strong>Klaviyo tokens</strong> — Deleted immediately on disconnect or uninstall.</li>
