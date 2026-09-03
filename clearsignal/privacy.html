@@ -10,18 +10,29 @@
 <main>
   <h1>Privacy Policy</h1>
   <p class="app-name">ClearSignal: Bot Traffic Detection for Shopify</p>
-  <p class="effective-date">Effective date: August 13, 2026</p>
+  <p class="effective-date">Effective date: September 3, 2026</p>
 
-  <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of ClearSignal ("the App") collects, uses, stores, and protects information when you install and use the App through the Shopify platform. ClearSignal detects bot traffic that may be polluting your store's analytics by combining client-side fingerprinting, order-level signal analysis, and server-side signal correlation. A web pixel extension for capturing storefront customer events is planned but not yet active. See Section 1 for details.</p>
+  <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of ClearSignal ("the App") collects, uses, stores, and protects information when you install and use the App through the Shopify platform. ClearSignal detects bot traffic that may be polluting your store's analytics by combining client-side fingerprinting, order-level signal analysis, and server-side signal correlation. A Shopify Web Pixel extension additionally captures storefront checkout events (checkout started and checkout completed) as a bot-detection and order-integrity signal. See Section 1 for details.</p>
 
   <h2>1. Information We Collect</h2>
 
   <h3>Data from Shopify APIs</h3>
-  <p>The App currently requests one Shopify Admin API scope:</p>
+  <p>The App requests the following Shopify access scopes:</p>
   <ul>
     <li><strong><code>read_orders</code></strong>: used to attribute orders to AI-agent-driven traffic and to surface Shopify's own order-level risk assessment. For each order, the App reads and stores the order ID, order total and currency, sales channel and referrer information, and Shopify's risk recommendation, risk level, and risk assessment details. The App does <strong>not</strong> access or store customer names, addresses, email addresses, or payment information through this scope.</li>
+    <li><strong><code>read_products</code></strong>: used to resolve product titles and handles for the storefront pages your visitors and AI agents view, so reports display product names rather than raw identifiers. The App reads product title and handle only. It does not create, modify, or delete products.</li>
+    <li><strong><code>write_pixels</code></strong> and <strong><code>read_customer_events</code></strong>: used to register and operate a Shopify Web Pixel that receives storefront checkout events. See "Data from the Web Pixel extension" below for exactly what these events contain.</li>
   </ul>
-  <p><strong>Planned, not yet active:</strong> the App intends to add a Web Pixel extension in a future release to capture storefront customer events (page views, cart, and checkout activity) as an additional bot-detection signal. This would require the <code>write_pixels</code> and <code>read_customer_events</code> scopes, which are <strong>not currently requested or granted</strong>. This policy will be updated with a new effective date before those scopes are requested and that data collection begins.</p>
+
+  <h3>Data from the Web Pixel extension (storefront checkout events)</h3>
+  <p>ClearSignal registers a Shopify Web Pixel that receives checkout events (checkout started and checkout completed) from your storefront. The pixel runs in Shopify's sandboxed pixel environment and fires only where your visitors' analytics consent permits, as managed by Shopify's Customer Privacy controls. From each event we collect only non-identifying, order-integrity data:</p>
+  <ul>
+    <li>The event type (checkout started or checkout completed)</li>
+    <li>The Shopify order identifier and checkout token</li>
+    <li>Shopify's first-party visitor identifier (<code>clientId</code>), used to match a completed order to the bot-scored sessions that preceded it</li>
+    <li>The event timestamp and your shop domain</li>
+  </ul>
+  <p>We do <strong>not</strong> receive or store customer names, email addresses, phone numbers, or postal addresses from these events. Shopify withholds those fields unless an app is separately approved for them, and ClearSignal does not request that approval.</p>
 
   <h3>Data collected through Shopify session</h3>
   <p>Shopify provides the following data as part of the standard app authentication process:</p>
@@ -44,6 +55,7 @@
     <li><strong>Durable visitor identifier</strong> (optional, off by default): if you enable order-to-session matching, ClearSignal stores a random, first-party identifier (<code>_clearsignal_sid</code>) in the visitor's browser using local storage (localStorage). This is <strong>not</strong> a cookie and contains no name, email address, or other personal detail. Its sole purpose is to match a completed order back to the bot-scored sessions that preceded it. It is stored only where the visitor's analytics consent permits; otherwise a temporary, page-only identifier is used instead. This setting is off unless you enable it. See Section 9 for details.</li>
   </ul>
   <p>This data is transmitted to the App's server via a Shopify app proxy endpoint, which verifies request authenticity using HMAC signature validation.</p>
+  <p>ClearSignal's storefront component also sends a direct request to the App's server. From that request the App observes the visitor's network (IP) address and reduces it immediately to a truncated /24 network block (the final part of the address is discarded). This truncated block is used only to detect automated (bot) traffic, and is processed for all storefront sessions &mdash; including visitors who declined analytics consent &mdash; on the basis of the App's and the merchant's legitimate interest in fraud and bot detection, not on consent. It is never combined or compared across merchants, and is never used to identify an individual visitor.</p>
 
   <h3>Data from server-side processing</h3>
   <p>When a storefront session is scored, the App processes and stores:</p>
@@ -90,13 +102,13 @@
   <p>Storefront visitor data flows through the App as follows:</p>
   <ol>
     <li>The theme app extension loads on your storefront and runs FingerprintJS BotD in the visitor's browser. No data leaves the browser until the next step.</li>
-    <li>Fingerprint and behavioral signals are sent to the App's server via a Shopify app proxy endpoint with HMAC verification.</li>
+    <li>Fingerprint and behavioral signals are sent to the App's server via a Shopify app proxy endpoint with HMAC verification. A separate direct request also conveys the visitor's truncated /24 network block (see Section 1) for bot detection.</li>
     <li>The server correlates all available signals (fingerprint score, behavioral patterns, and IP reputation) and computes a bot probability score.</li>
     <li>The classification verdict and signal breakdown are stored in the database. Raw behavioral signal data is not stored after scoring.</li>
     <li>Aggregated results are displayed in your merchant dashboard.</li>
   </ol>
   <p>Bot classifications represent probabilistic assessments, not definitive verdicts. Individual session records include the contributing signals so you can evaluate the basis for any classification.</p>
-  <p>Separately, order data (see Section 1) is read directly from the Shopify Admin API via the <code>read_orders</code> scope when an order is created. The resulting order attribution and risk record is stored on its own. It does not pass through the fingerprinting/scoring pipeline described above. The planned Web Pixel extension referenced in Section 1 would add page-view, cart, and checkout event capture to the storefront pipeline in a future release; it is not active today.</p>
+  <p>Separately, order data (see Section 1) is read directly from the Shopify Admin API via the <code>read_orders</code> scope when an order is created. The resulting order attribution and risk record is stored on its own. It does not pass through the fingerprinting/scoring pipeline described above. The Web Pixel extension referenced in Section 1 delivers storefront checkout events (checkout started and completed) to the App's server, where they are recorded as order-integrity signals. We use Shopify's visitor identifier (<code>clientId</code>) from these events solely to match completed orders to the bot-scored storefront sessions that preceded them, so genuine buyers can be distinguished from bot traffic in your analytics. This matching is performed only within your own store's data and is never combined or compared across merchants.</p>
   <p>When order-to-session matching is enabled (off by default; see Section 9), the App additionally maintains a link between a completed order and the storefront session that preceded it, using the durable visitor identifier described in Sections 1 and 9. When an order is created, the App records an order-to-session join (an <code>OrderSessionLink</code> record) connecting the Shopify order to that visitor identifier, so that bot-scored page views can be attributed to the revenue they generated. (In a future release, the App intends to carry the identifier from the visitor's browser into the order via cart and checkout custom attributes; that stamping mechanism is not active today.) Because a Shopify order can be tied to an identifiable customer, enabling this feature can make the linked session data personal data relating to that customer. See Sections 6, 7, and 9 for the corresponding retention limits and data rights.</p>
 
   <h2>4. Data Storage and Security</h2>
@@ -160,6 +172,7 @@
     <li><strong>Klaviyo tokens</strong>: Deleted immediately on disconnect or uninstall.</li>
     <li><strong>Durable visitor identifier (<code>_clearsignal_sid</code>)</strong>: When order-to-session matching is enabled, the identifier stored in a visitor's browser is retained on a 30-day rolling basis: it is regenerated at least every 30 days, and is removed from the visitor's browser immediately if the visitor withdraws analytics consent.</li>
     <li><strong>Order-to-session join records (<code>OrderSessionLink</code>)</strong>: Retained for no longer than 13 months, after which they are purged. This window permits year-over-year revenue-attribution reporting before the linkage is removed.</li>
+    <li><strong>Web Pixel checkout-event records</strong>: Records of storefront checkout events, which link a Shopify order to Shopify's visitor identifier, are retained for no longer than 13 months, then purged. They are deleted immediately on app uninstall, and on any customer redaction request covering the affected order.</li>
     <li><strong>Order-linked session records</strong>: Bot-detection session records that have been linked to an order are de-identified (the durable identifier is removed) at approximately 90 days, so that the ability to relate a session to an individual does not outlive the order-attribution purpose.</li>
   </ul>
   <p>The three retention limits above are additional ceilings on the storefront visitor-identification and order-attribution data; they do not override the immediate deletion described earlier in this section. Uninstalling the App, or a Shopify shop-redact request, deletes this data immediately regardless of these ceilings.</p>
@@ -172,7 +185,7 @@
     <li><strong>Data portability</strong>: Contact us to request an export of your stored data.</li>
     <li><strong>Correction</strong>: Contact us if you believe any stored data is inaccurate.</li>
   </ul>
-  <p>Regarding your store's visitors: ClearSignal's bot-detection extension does not collect names, email addresses, or other directly identifying information from storefront visitors (the optional Klaviyo integration is the exception; if connected, Klaviyo provides email addresses as part of profile data). However, if you enable order-to-session matching (see Section 9), the durable visitor identifier can be linked to a completed order, and through your Shopify order records to an identifiable customer. Where that link exists, the associated bot-detection session data becomes personal data relating to that customer. ClearSignal honors Shopify's customer privacy webhooks for this data: a <code>customers/data_request</code> surfaces the order-linked session records we hold for the requested orders, and a <code>customers/redact</code> request deletes them. Sessions that were never linked to an order, including those of visitors who did not grant analytics consent, carry no durable identifier and remain anonymous and unmatchable to any individual. If a visitor contacts you with a data request, you may contact us and we will assist.</p>
+  <p>Regarding your store's visitors: ClearSignal's bot-detection extension does not collect names, email addresses, or other directly identifying information from storefront visitors (the optional Klaviyo integration is the exception; if connected, Klaviyo provides email addresses as part of profile data). However, if you enable order-to-session matching (see Section 9), the durable visitor identifier can be linked to a completed order, and through your Shopify order records to an identifiable customer. Where that link exists, the associated bot-detection session data becomes personal data relating to that customer. Separately, ClearSignal receives Shopify's first-party visitor identifier (<code>clientId</code>) through the Web Pixel checkout events described in Section 1; because those records link an order to that identifier, they are likewise treated as personal data, not as anonymous data. ClearSignal honors Shopify's customer privacy webhooks for all of this data: a <code>customers/data_request</code> surfaces the order-linked session records and Web Pixel checkout-event records we hold for the requested orders, and a <code>customers/redact</code> request deletes them. Sessions that were never linked to an order, including those of visitors who did not grant analytics consent, carry no durable identifier and remain anonymous and unmatchable to any individual. If a visitor contacts you with a data request, you may contact us and we will assist.</p>
   <p>We respond to all data requests within 30 days.</p>
 
   <h2>8. International Data Transfers</h2>
@@ -190,6 +203,9 @@
   <h3>Durable visitor identifier (optional, off by default)</h3>
   <p>If you enable order-to-session matching, a setting that is off by default, ClearSignal stores a random, first-party identifier in each visitor's browser using local storage (localStorage). This is <strong>not</strong> a cookie. The identifier (<code>_clearsignal_sid</code>) contains no name, email address, or other personal detail, is scoped to your store's domain only, and is never shared or reused across other websites. Its sole purpose is to link a completed order back to the bot-scored page views that led to it.</p>
   <p>This identifier is stored only where your visitors' analytics consent permits. Where a visitor has not granted analytics consent, or where the setting is off, ClearSignal instead uses a temporary identifier that exists only for the current page and is discarded when the page is closed. If a visitor withdraws analytics consent, ClearSignal removes the stored identifier from their browser and reverts to the temporary identifier.</p>
+
+  <h3>Checkout events via Shopify Web Pixel</h3>
+  <p>ClearSignal registers a Shopify Web Pixel that receives checkout events from your storefront (see Section 1). This pixel runs in Shopify's sandboxed environment and is gated by Shopify's Customer Privacy controls, so it fires only under the analytics consent your visitors have granted. It does not read information from the visitor's device and does not set any identifier of its own. It receives Shopify's own first-party visitor identifier (<code>clientId</code>), which ClearSignal uses solely to match completed orders to the sessions that preceded them, within your store only.</p>
 
   <h3>No cross-site tracking</h3>
   <p>None of these techniques track visitors across different websites or link a visitor's activity on your store to their activity elsewhere. All collected signals are used solely for bot detection and order attribution on your store.</p>
