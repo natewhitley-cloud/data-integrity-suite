@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service: FraudPilot</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main>
+  <h1>Terms of Service</h1>
+  <p class="app-name">FraudPilot: High-risk order review for Shopify</p>
+  <p class="effective-date">Effective date: September 14, 2026</p>
+
+  <p>These Terms of Service ("Terms") govern your use of FraudPilot ("the App"), operated by Alpenglow Software LLC ("we," "us," "our"). By installing or using the App, you agree to these Terms. If you do not agree, do not install or use the App.</p>
+
+  <h2>1. Service Description</h2>
+  <p>FraudPilot is a Shopify app that gives you a human-review queue for orders that Shopify's risk engine flags as medium or high risk. The App enriches each flagged order with the order facts, Shopify's own risk signals, geographic and network context, order velocity, and your own prior decisions for the same buyer, so you can review a risky order in one place. You then record your decision (approve, cancel, or tag), and the App keeps an immutable, append-only decision log that you can export as chargeback-representment evidence.</p>
+  <p>The App operates in <strong>review, enrichment, and record-keeping mode only</strong>. FraudPilot is read-only against your Shopify data. It does <strong>not</strong> cancel, hold, modify, refund, fulfill, or tag orders on your behalf; it does not block or decline any order or customer; and it does not make any automated decision about an order. Recording a decision in FraudPilot does not carry that action out in Shopify. Every action on an order is completed by you in the Shopify Admin, and every decision recorded in the App is one you made.</p>
+  <p><strong>What FraudPilot is not.</strong> FraudPilot is not a fraud-prevention guarantee, fraud insurance, or a chargeback-protection service. It does not guarantee that you will win any chargeback or dispute. It is not an automatic order canceller, an order-blocking tool, or a country/IP blocker. It is a decision-support and record-keeping tool that equips you to decide and to document your decision; the judgment, the action, and the outcome remain yours.</p>
+
+  <h2>2. Eligibility</h2>
+  <p>The App is available to Shopify merchants with an active Shopify store. You must have appropriate permissions to install apps on your store. By installing the App, you represent that you are authorized to do so on behalf of the store owner.</p>
+
+  <h2>3. Plans and Billing</h2>
+
+  <h3>Available plans</h3>
+  <table>
+    <thead>
+      <tr><th>Plan</th><th>Description</th><th>Key features</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Free</td>
+        <td>Read-only review queue with limited history</td>
+        <td>Review queue for flagged orders, enrichment panel, recent decision history</td>
+      </tr>
+      <tr>
+        <td>Paid</td>
+        <td>Full history and export</td>
+        <td>Full decision-log history, decision-log export (CSV) for representment, full enrichment, outcome tracking</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><em>Exact pricing and feature limits are listed in the App and on the Shopify App Store listing prior to subscription. Pricing is subject to change with notice.</em></p>
+
+  <h3>Billing terms</h3>
+  <ul>
+    <li>Paid plans are billed through <strong>Shopify's Managed Pricing</strong> billing system. Charges appear on your regular Shopify invoice.</li>
+    <li>You upgrade, downgrade, or cancel your plan through Shopify (in the App's plan page, which links to Shopify's managed billing, or in your Shopify Admin). Because billing is handled by Shopify Managed Pricing, plan changes are managed by Shopify, not by in-app charge buttons.</li>
+    <li>Any free-trial terms for a paid plan, if offered, are as stated on the App Store listing at the time you subscribe. You are not charged during a trial period.</li>
+    <li>We do not offer refunds for partial billing periods. Upon cancellation, you retain access to paid features until the end of your current billing cycle.</li>
+    <li>If your subscription lapses or is cancelled, your account reverts to the Free plan. Your existing decision-log data is retained while the App remains installed.</li>
+  </ul>
+
+  <h2>4. Acceptable Use</h2>
+  <p>You agree not to:</p>
+  <ul>
+    <li>Use the App in any way that violates applicable laws or Shopify's Terms of Service.</li>
+    <li>Attempt to circumvent feature gating, plan limits, or rate limits.</li>
+    <li>Reverse engineer, decompile, or attempt to extract the source code of the App.</li>
+    <li>Use order, risk, or customer-identifier data surfaced by the App to unlawfully discriminate against, harass, or take unlawful action against any individual.</li>
+    <li>Represent Shopify's risk signals or any enrichment shown in the App as a definitive or legally conclusive determination of fraud; they are probabilistic and contextual inputs to your own judgment.</li>
+    <li>Interfere with or disrupt the App's infrastructure or other users' access.</li>
+  </ul>
+
+  <h2>5. Intellectual Property</h2>
+  <ul>
+    <li><strong>Your content</strong>: you retain all ownership rights to your store data, order data, customer data, and your recorded decisions. The App does not claim any rights to your content.</li>
+    <li><strong>Our service</strong>: the App, including its enrichment logic, queue and workflow design, decision-log and export design, user interface, and documentation, is our intellectual property. These Terms do not grant you any rights to our intellectual property beyond the right to use the App as intended.</li>
+    <li><strong>Third-party components</strong>: open-source components used by the App (including the <code>geoip-lite</code> geographic-IP database) are licensed under their own terms, separate from this agreement.</li>
+  </ul>
+
+  <h2>6. Data and Privacy</h2>
+  <p>Our collection and use of your data is governed by our <a href="privacy.html">Privacy Policy</a>. By using the App, you agree to our data practices as described in that policy.</p>
+  <p>Key points:</p>
+  <ul>
+    <li>FraudPilot is read-only against your Shopify data. It reads flagged orders and their risk signals (<code>read_orders</code>) and the Shopify Customer identifier attached to an order (<code>read_customers</code>).</li>
+    <li>FraudPilot does not collect customer names, addresses, email addresses, or phone numbers. It stores two Shopify Protected Customer Data Level 1 identifiers tied to a flagged order: the Customer identifier (GID) and a coarsened <code>/24</code> network prefix. The raw IP address is never stored.</li>
+    <li>We do not sell your data or use it for advertising, marketing, profiling, or automated decision-making.</li>
+    <li>We do not use artificial intelligence or machine learning to process your data or train models.</li>
+    <li>All shop data is deleted when you uninstall the App (via Shopify's shop-redact request), and order-linked data is deleted on a customer redaction request, as described in the Privacy Policy.</li>
+    <li>For applicable data protection laws, you are the data controller and Alpenglow Software LLC is a data processor acting on your instructions.</li>
+  </ul>
+
+  <h2>7. Accuracy and Disclaimers</h2>
+  <ul>
+    <li><strong>Decision support, not a fraud verdict</strong>: FraudPilot surfaces Shopify's risk signals and contextual enrichment to help you review an order. It does not determine whether an order is fraudulent, and it does not guarantee that any approved order is legitimate or that any cancelled order was fraudulent. The decision, and responsibility for it, is yours.</li>
+    <li><strong>No chargeback guarantee</strong>: the decision log and its exports are intended to help you assemble representment evidence. FraudPilot does not guarantee that any chargeback or dispute will be won, or that any exported record will be accepted by a card network, bank, or payment provider. Chargeback outcomes depend on many factors outside the App's control.</li>
+    <li><strong>No automated action</strong>: FraudPilot does not cancel, hold, block, refund, or otherwise act on any order. Recording a decision in the App does not perform that action in Shopify. You are solely responsible for any action you take, or decline to take, in the Shopify Admin.</li>
+    <li><strong>Third-party and upstream data</strong>: Shopify's risk assessment and signals are produced by Shopify, and geographic/network context is derived from a local database that may be imperfect or out of date. We are not responsible for the accuracy of data originating from Shopify or from third-party data sources, or for decisions made based on that data.</li>
+    <li><strong>Best-effort service</strong>: the App is provided on a best-effort basis. The quality of enrichment depends on the availability and completeness of the underlying order and risk data.</li>
+  </ul>
+
+  <h2>8. Limitation of Liability</h2>
+  <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW:</p>
+  <ul>
+    <li>The App is provided "AS IS" and "AS AVAILABLE" without warranties of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.</li>
+    <li>We are not liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of revenue, chargeback losses, fraud losses, data, or business opportunities.</li>
+    <li>Our total liability for any claim arising from your use of the App shall not exceed the amount you paid for the App in the 12 months preceding the claim.</li>
+    <li>We are not responsible for any consequences resulting from decisions you make or actions you take (or decline to take) on any order, including approvals, cancellations, tags, refunds, or the submission of representment evidence.</li>
+    <li>We are not responsible for the accuracy of risk data provided by Shopify or of geographic/network data derived from third-party or local databases, or for decisions made based on that data.</li>
+  </ul>
+
+  <h2>9. Termination</h2>
+  <ul>
+    <li><strong>By you</strong>: you may stop using the App at any time by uninstalling it from your Shopify store. Your shop data will be deleted following Shopify's shop-redact request, as described in the Privacy Policy.</li>
+    <li><strong>By us</strong>: we may suspend or terminate your access to the App if you violate these Terms, if required by law, or if we discontinue the App. We will provide reasonable notice when possible and will continue to support the App until any published removal date, consistent with our obligations to Shopify.</li>
+    <li>Sections 5 (Intellectual Property), 7 (Accuracy and Disclaimers), 8 (Limitation of Liability), 11 (Indemnification), 13 (Dispute Resolution), and 14 (General Provisions) survive termination of these Terms.</li>
+  </ul>
+
+  <h2>10. Changes to These Terms</h2>
+  <p>We may update these Terms from time to time. If we make material changes, we will update the effective date at the top of this page. Continued use of the App after changes constitutes acceptance of the updated Terms. If you disagree with any changes, you may uninstall the App.</p>
+
+  <h2>11. Indemnification</h2>
+  <p>You agree to indemnify, defend, and hold harmless Alpenglow Software LLC and its officers, employees, and agents from and against any claims, liabilities, damages, losses, and expenses (including reasonable legal fees) arising out of or related to:</p>
+  <ul>
+    <li>Your use of the App, including any decision you make or action you take (or decline to take) on an order based on information provided by the App.</li>
+    <li>Any representment evidence you submit, and the outcome of any chargeback or dispute.</li>
+    <li>Your violation of these Terms or any applicable law.</li>
+    <li>Your violation of any third-party rights, including the rights of your customers.</li>
+  </ul>
+
+  <h2>12. Force Majeure</h2>
+  <p>We are not liable for any failure or delay in performing our obligations under these Terms due to causes beyond our reasonable control, including but not limited to: Shopify platform outages or API changes, internet service disruptions, infrastructure provider failures, third-party service unavailability, natural disasters, pandemics, government actions, or acts of war or terrorism.</p>
+
+  <h2>13. Dispute Resolution</h2>
+  <h3>Informal resolution</h3>
+  <p>Before filing any formal claim, you agree to contact us at <a href="mailto:support@alpenglowsoftware.com">support@alpenglowsoftware.com</a> and attempt to resolve the dispute informally for at least 30 days.</p>
+  <h3>Binding arbitration</h3>
+  <p>If a dispute cannot be resolved informally, you and Alpenglow Software LLC agree to resolve it through binding arbitration administered by the American Arbitration Association (AAA) under its Commercial Arbitration Rules. Arbitration will take place in Boulder County, Colorado, before a single arbitrator. The arbitrator's decision is final and binding.</p>
+  <h3>Small claims exception</h3>
+  <p>Either party may bring qualifying claims in small claims court in Boulder County, Colorado, as an alternative to arbitration.</p>
+  <h3>Class action waiver</h3>
+  <p>You agree that any dispute resolution proceedings will be conducted only on an individual basis and not as part of a class, consolidated, or representative action. You waive any right to participate in a class action lawsuit or class-wide arbitration against Alpenglow Software LLC.</p>
+  <h3>Governing law</h3>
+  <p>These Terms are governed by and construed in accordance with the laws of the State of Colorado, United States, without regard to conflict of law principles.</p>
+
+  <h2>14. General Provisions</h2>
+  <ul>
+    <li><strong>Severability</strong>: if any provision of these Terms is found to be unenforceable or invalid, that provision will be modified to the minimum extent necessary to make it enforceable, and the remaining provisions will remain in full force and effect.</li>
+    <li><strong>Entire agreement</strong>: these Terms, together with the <a href="privacy.html">Privacy Policy</a>, constitute the entire agreement between you and Alpenglow Software LLC regarding the App and supersede all prior agreements and understandings.</li>
+    <li><strong>Assignment</strong>: we may assign or transfer these Terms, in whole or in part, without restriction. You may not assign your rights or obligations under these Terms without our prior written consent.</li>
+    <li><strong>Waiver</strong>: our failure to enforce any provision of these Terms does not constitute a waiver of that provision or any other provision.</li>
+    <li><strong>Shopify relationship</strong>: FraudPilot is an independent application. Shopify Inc. is not responsible for the App and has no liability to you in connection with these Terms or your use of the App.</li>
+  </ul>
+
+  <h2>15. Contact Us</h2>
+  <div class="contact-block">
+    <p>If you have questions about these Terms, contact us at:</p>
+    <p><strong>Email:</strong> <a href="mailto:support@alpenglowsoftware.com">support@alpenglowsoftware.com</a></p>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2026 Alpenglow Software LLC. All rights reserved.</p>
+</footer>
+</body>
+</html>

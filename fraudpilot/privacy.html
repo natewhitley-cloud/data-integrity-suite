@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy: FraudPilot</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="app-name">FraudPilot: High-risk order review for Shopify</p>
+  <p class="effective-date">Effective date: September 14, 2026</p>
+
+  <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of FraudPilot ("the App"), collects, uses, stores, and protects information when you install and use the App through the Shopify platform. FraudPilot is a human-review queue for orders that Shopify's risk engine flags as medium or high risk. It enriches each flagged order with the facts you need to make a call, lets you record your decision (approve, cancel, or tag), and keeps an immutable, append-only decision log you can export as chargeback-representment evidence. FraudPilot is read-only against your Shopify data and does not decide for you. See Section 1 for details.</p>
+
+  <h2>1. Information We Collect</h2>
+
+  <h3>Data from Shopify APIs</h3>
+  <p>The App requests the following Shopify access scopes:</p>
+  <ul>
+    <li><strong><code>read_orders</code></strong>: used to build and enrich the review queue. For each order Shopify flags as medium or high risk, the App reads and stores the order name/number, order total and currency, line-item count, AVS (address verification) and CVV result codes, fulfillment status, and Shopify's own risk assessment and risk signals. The App reads the network (IP) address recorded on the order, but stores it only in coarsened form (see "Protected Customer Data" below). The App does <strong>not</strong> access or store customer names, postal addresses, email addresses, phone numbers, or payment card information through this scope.</li>
+    <li><strong><code>read_customers</code></strong>: used solely to read the Shopify Customer identifier (the customer's GID) attached to an order, so the App can recognize a repeat buyer across your own prior decisions. The App reads and stores the customer identifier <strong>only</strong>. It does <strong>not</strong> read or store the customer's name, email address, phone number, or address, and it does not modify customer records.</li>
+  </ul>
+  <p>The App requests no write scopes. It does not cancel, modify, refund, fulfill, or tag orders on your behalf, and it does not change any customer or order record in Shopify. Any action you take on an order is completed by you in the Shopify Admin.</p>
+
+  <h3>Protected Customer Data (Level 1)</h3>
+  <p>Two of the fields above are treated as Shopify Protected Customer Data at <strong>Level 1</strong> (identifiers only, with no name, address, email, or phone):</p>
+  <ul>
+    <li><strong>Coarsened network (IP) prefix and country</strong>: the App reads the client IP recorded on the order and immediately reduces it to a <code>/24</code> network prefix (the final part of the address is discarded) and derives a country using a local geographic-IP database bundled with the App. The <strong>raw IP address is never stored</strong>, and no external lookup is performed for this. The coarsened prefix and country are used only to surface order velocity and geographic context for the flagged order, and to recognize whether the same network has appeared in your prior decisions.</li>
+    <li><strong>Shopify Customer identifier (GID)</strong>: used only to recognize repeat buyers across your own past decisions, as described above.</li>
+  </ul>
+  <p>The App does not request or access any Level 2 Protected Customer Data (name, address, email, or phone). Those fields are withheld by Shopify unless an app is separately approved for them, and FraudPilot does not request that approval.</p>
+
+  <h3>Data collected through the Shopify session</h3>
+  <p>Shopify provides the following data as part of the standard app authentication process:</p>
+  <ul>
+    <li>Shop domain</li>
+    <li>Staff member name, email address, and user ID</li>
+    <li>Account role (store owner or collaborator) and email verification status</li>
+    <li>Locale preference</li>
+    <li>Session tokens, access tokens, and refresh tokens</li>
+  </ul>
+  <p>This session data is managed by Shopify's official session storage library and is required for the App to function within the Shopify Admin. The App additionally stores the staff <strong>user identifier</strong> derived from the session with each recorded decision, so the decision log accurately attributes who made each call.</p>
+
+  <h3>Data we generate and store</h3>
+  <p>As you use the App, we store:</p>
+  <ul>
+    <li><strong>Review queue items</strong>: the flagged orders awaiting your review, and their queue state (for example, needs decision, snoozed, decided).</li>
+    <li><strong>Enrichment snapshot</strong>: the order facts and risk signals described above, captured at review time so the record reflects what was known when the decision was made.</li>
+    <li><strong>Decision log entries</strong> (append-only): for each decision, the order identifier, the acting staff user identifier, the action taken (approve, cancel, or tag), your reason or note, a snapshot of the risk facts at decision time, the associated Shopify Customer identifier, and the coarsened <code>/24</code> network prefix.</li>
+    <li><strong>Dispute outcomes</strong>: if you record how a chargeback or dispute resolved (for example, "won in representment"), we store that outcome against the related decision.</li>
+    <li><strong>Store contact email</strong>: your store's contact email address, read from Shopify and stored so we can send the daily review digest (when enabled). This is your own merchant email, not customer data.</li>
+  </ul>
+
+  <h3>Data we do NOT collect</h3>
+  <ul>
+    <li>Customer or shopper names, postal addresses, email addresses, or phone numbers</li>
+    <li>Raw (full) IP addresses</li>
+    <li>Payment card or banking information</li>
+    <li>Product catalog, inventory, or theme/storefront code</li>
+    <li>Storefront visitor or web-analytics behavior data</li>
+    <li>Marketing or advertising data</li>
+  </ul>
+  <p>We do not use artificial intelligence or machine learning to process your data, and your data is not used to train AI or machine-learning models.</p>
+
+  <h2>2. How We Use Your Information</h2>
+  <p>We use the data we collect solely to provide and improve the App's services:</p>
+  <ul>
+    <li><strong>Review queue</strong>: we surface orders Shopify has flagged as medium or high risk so you can review them in one place rather than scanning the raw Orders list.</li>
+    <li><strong>Enrichment</strong>: we assemble the order facts, risk signals, geographic and network context, order velocity, and your own prior decisions for the same buyer or network into a single review panel.</li>
+    <li><strong>Decision recording</strong>: we record the decision you make (approve, cancel, or tag), together with your reason and the evidence snapshot, into the immutable decision log.</li>
+    <li><strong>Representment evidence</strong>: we let you export the decision log and its evidence snapshots as a CSV file you can use to contest chargebacks.</li>
+    <li><strong>Outcome tracking</strong>: we store dispute outcomes you record so you can see how your decisions held up.</li>
+    <li><strong>Subscription management</strong>: we store your current billing plan to gate features appropriately.</li>
+    <li><strong>App functionality</strong>: we use your shop domain and session data to authenticate requests and deliver the App within the Shopify Admin.</li>
+  </ul>
+  <p>We do <strong>not</strong> sell your data, and we do <strong>not</strong> use it for advertising, marketing, profiling, or automated decision-making. FraudPilot makes no automated decision about any order or customer; every decision recorded in the App is one a member of your staff made.</p>
+  <p>For the purposes of applicable data protection laws, you (the merchant) are the <strong>data controller</strong> for the order and customer data made available through the App. Alpenglow Software LLC acts as a <strong>data processor</strong>, processing that data solely on your behalf and as described in this policy. For any data we collect directly from you (such as support communications), we act as an independent data controller.</p>
+
+  <h2>3. How We Process Order Data</h2>
+  <p>Order and risk data flows through the App as follows:</p>
+  <ol>
+    <li>When Shopify flags an order as medium or high risk (or when the App reads a flagged order via the Admin API), the App fetches the order facts and risk signals over the <code>read_orders</code> scope and the customer identifier over the <code>read_customers</code> scope.</li>
+    <li>The client IP on the order is reduced to a <code>/24</code> network prefix and resolved to a country using a local geographic-IP database in the same step. The raw IP is discarded and never written to storage.</li>
+    <li>The App assembles an enrichment snapshot from these facts, adds order-velocity and prior-decision context drawn only from your own store's records, and places the order in your review queue.</li>
+    <li>When you make a decision, the App writes an append-only decision-log entry capturing the action, your reason, and the evidence snapshot as it stood at that moment.</li>
+    <li>Enrichment and decision records are displayed to you in the App and can be exported for representment.</li>
+  </ol>
+  <p>The decision log is <strong>append-only</strong>: the App exposes no path to edit or delete a logged decision through normal use. This is what makes the log usable as tamper-resistant evidence. The only paths that remove decision-log rows are the data-deletion obligations described in Section 6 (customer redaction, shop redaction, or a deletion request you make).</p>
+
+  <h2>4. Data Storage and Security</h2>
+  <ul>
+    <li>All data is stored in a PostgreSQL database hosted on Railway (United States).</li>
+    <li>Shopify access tokens are encrypted at rest using AES-256-GCM encryption.</li>
+    <li>All connections use HTTPS/TLS encryption in transit.</li>
+    <li>We store the client IP only in coarsened <code>/24</code> form; the raw IP is never persisted.</li>
+    <li>We do not sell your data. We do not share your data with third parties for marketing, advertising, or profiling purposes.</li>
+    <li>In the event of a data breach affecting your data, we will notify you and Shopify within 24 hours of discovery, in accordance with Shopify's Partner Program Agreement and applicable law.</li>
+  </ul>
+
+  <h2>5. Third-Party Services</h2>
+  <p>The App uses the following third-party services to operate:</p>
+
+  <table>
+    <thead>
+      <tr><th>Service</th><th>Purpose</th><th>Data shared</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Shopify Admin API</td>
+        <td>Authentication, order and risk-assessment data, customer identifier</td>
+        <td>Session tokens, GraphQL order and customer queries</td>
+      </tr>
+      <tr>
+        <td>Railway</td>
+        <td>Application and database hosting</td>
+        <td>All stored data (encrypted in transit; access tokens encrypted at rest)</td>
+      </tr>
+      <tr>
+        <td>Resend</td>
+        <td>Transactional email: a daily review digest to Paid-plan stores (contact us to stop receiving it), and operator alerts</td>
+        <td>Recipient email address and message content (queue counts and notifications). No customer identifiers or order-level personal data are sent.</td>
+      </tr>
+      <tr>
+        <td>Inngest</td>
+        <td>Background job scheduling</td>
+        <td>Shop ID and job parameters only. No customer personal data is placed in job payloads.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The App also uses <code>geoip-lite</code>, an open-source geographic-IP database that runs <strong>entirely on our server</strong>. No data is sent to any external service for IP-to-country resolution.</p>
+  <p>If we add or replace a sub-processor in a way that materially affects how your data is processed, we will update this Privacy Policy and notify you through the App.</p>
+
+  <h2>6. Data Retention</h2>
+  <ul>
+    <li><strong>While installed</strong>: review queue items, enrichment snapshots, decision-log entries, and dispute outcomes are retained for as long as the App is installed on your store. The decision log is retained deliberately, because it is your representment evidence.</li>
+    <li><strong>On uninstall</strong>: when you uninstall the App, Shopify sends a shop-redact request (typically 48 hours after uninstall). On receiving it, all data associated with your shop is permanently deleted, including sessions, queue items, enrichment snapshots, decision-log entries, dispute outcomes, and your shop record. Deletion is completed within the timeframe below.</li>
+    <li><strong>GDPR / privacy shop-redact</strong>: if Shopify sends a shop data erasure request, all shop data is deleted within 30 days (and in practice promptly on receipt).</li>
+    <li><strong>Customer redaction</strong>: on a customer redaction request (see Section 7), the review artifacts, decision-log rows, and dispute outcomes tied to the affected order(s) are deleted within 30 days.</li>
+  </ul>
+
+  <h2>7. Your Rights</h2>
+  <p>You have the right to:</p>
+  <ul>
+    <li><strong>Access</strong>: view your review queue, enrichment snapshots, and full decision history in the App, and export the decision log as CSV.</li>
+    <li><strong>Deletion</strong>: uninstalling the App deletes all your data (see Section 6). You may also contact us to request deletion without uninstalling.</li>
+    <li><strong>Data portability</strong>: export your decision log from the App, or contact us to request an export of your stored data in a machine-readable format.</li>
+    <li><strong>Correction</strong>: contact us if you believe any stored data is inaccurate. Note that the decision log is append-only by design; corrections are made by recording a new decision rather than altering a historical entry.</li>
+  </ul>
+  <p><strong>Regarding your customers.</strong> FraudPilot does not collect customer names, addresses, email addresses, or phone numbers. It does store two Level 1 identifiers tied to a flagged order: the Shopify Customer identifier and the coarsened <code>/24</code> network prefix. Because these identifiers can be associated with an order, and through your Shopify records with an identifiable customer, we treat the order-linked review artifacts and decision-log rows as personal data rather than as anonymous data. FraudPilot honors Shopify's customer privacy webhooks for this data:</p>
+  <ul>
+    <li>A <strong><code>customers/data_request</code></strong> surfaces the review artifacts and decision-log rows we hold for the requested customer's orders.</li>
+    <li>A <strong><code>customers/redact</code></strong> request deletes the order-linked review artifacts, decision-log rows, and dispute outcomes for the specified orders.</li>
+    <li>A <strong><code>shop/redact</code></strong> request deletes all data for your shop.</li>
+  </ul>
+  <p>If a customer contacts you with a data request, you may contact us and we will assist. We respond to all data requests within 30 days.</p>
+
+  <h2>8. International Data Transfers</h2>
+  <p>Your data is processed and stored on servers located in the United States. By using the App, you consent to the transfer of your data to the United States for processing.</p>
+
+  <h2>9. Cookies and Tracking</h2>
+  <p>The App does not use cookies, tracking pixels, or any analytics or advertising technologies, and it does not track your behavior within the Shopify Admin. FraudPilot has no storefront component and collects nothing from your store's visitors.</p>
+
+  <h2>10. Children's Privacy</h2>
+  <p>The App is designed for use by Shopify merchants (business users) and is not directed at children under 13. We do not knowingly collect personal data from children.</p>
+
+  <h2>11. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. If we make material changes, we will update the effective date at the top of this page. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
+
+  <h2>12. Contact Us</h2>
+  <div class="contact-block">
+    <p>If you have questions about this Privacy Policy or want to exercise your data rights, contact us at:</p>
+    <p><strong>Email:</strong> <a href="mailto:support@alpenglowsoftware.com">support@alpenglowsoftware.com</a></p>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2026 Alpenglow Software LLC. All rights reserved.</p>
+</footer>
+</body>
+</html>
