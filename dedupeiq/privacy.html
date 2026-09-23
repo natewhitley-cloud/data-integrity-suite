@@ -14,7 +14,7 @@
 
   <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of DedupeIQ ("the App"), collects, uses, stores, and protects information when you install and use the App through the monday.com platform. DedupeIQ finds duplicate and near-duplicate items on your monday.com boards, lets you review each match, and, only when you choose to, merges a confirmed pair by filling in the item you keep and archiving the other.</p>
 
-  <p><strong>The short version:</strong> matching runs in your browser. The item names and column values on your boards (names, emails, phone numbers, companies, and any other column) are read and compared on your device and are <strong>never sent to or stored on our servers</strong>. Our servers store only IDs, counts, match scores, and your review decisions.</p>
+  <p><strong>The short version:</strong> matching runs in your browser. The item names and column values on your boards (names, emails, phone numbers, companies, and any other column) are read and compared on your device and are <strong>never sent to or stored on our servers</strong>. Our servers store only IDs, counts, match scores, your review decisions, merge records (IDs only), and your plan status.</p>
 
   <h2>1. Information We Collect</h2>
 
@@ -22,22 +22,21 @@
   <ul>
     <li><strong><code>boards:read</code></strong>: used to read the columns and items of the boards you choose to scan, so duplicates can be detected. This reading happens in your browser.</li>
     <li><strong><code>boards:write</code></strong>: used only when you explicitly merge a confirmed pair (or keep one of two records across boards). The App writes the values you chose to the item you keep and archives the other item. Scanning and reviewing never write to your boards.</li>
-    <li><strong><code>me:read</code></strong>: used to identify the signed-in monday.com user so decisions and merges can be attributed to a user ID.</li>
   </ul>
 
   <h3>Data processed in your browser only (never sent to us)</h3>
   <ul>
     <li>Item names and column values of the boards you scan, including names, email addresses, phone numbers, company names, and the other columns shown when you compare or merge two items.</li>
-    <li>Match explanations (for example, "nickname: Bob and Robert"). Before anything leaves your browser, these are converted to value-free codes (for example, "name nickname match"), which contain no names, emails, or phone numbers.</li>
+    <li>Match explanations (for example, "nickname: Bob and Robert"). These are generated and shown only in your browser and are never sent to us.</li>
   </ul>
 
   <h3>Data we store (on monday.com's infrastructure)</h3>
   <ul>
-    <li><strong>Scan summaries:</strong> your monday.com account ID, the board ID(s) scanned, the user ID that ran the scan, the number of items read and found, match counts, and which column IDs were used for name, email, phone, and company.</li>
+    <li><strong>Scan summaries:</strong> your monday.com account ID, the board ID(s) scanned, the user ID that ran the scan, the number of items read, the total items on the boards, whether the scan reached your plan's record limit, match counts (overall and per board or board pair), and which column IDs were used for name, email, phone, and company.</li>
     <li><strong>Review decisions:</strong> for each pair you confirm or dismiss, the two item IDs, the decision, the match band and confidence score, the user ID, and the time. Undoing a decision deletes it.</li>
-    <li><strong>Merge records:</strong> for each merge you perform, the item IDs involved, the IDs of columns filled or chosen, the user ID, and whether the archive step succeeded. No column values are recorded.</li>
+    <li><strong>Merge records:</strong> for each merge you perform, the item IDs involved (and, for a cross-board merge, the board of the archived item), the IDs of columns filled, chosen, or skipped, the match band, whether it was a bulk or cross-board merge, the user ID, the time, and whether the archive step succeeded. No column values are recorded.</li>
     <li><strong>Usage events:</strong> product events such as "scan run" or "upgrade prompt shown," with IDs and counts only.</li>
-    <li><strong>Plan and subscription status:</strong> your current DedupeIQ plan, trial status, and related dates, as reported by monday.com's billing system, plus counters used to apply plan limits (for example, scans this month or merges used in a trial).</li>
+    <li><strong>Plan and subscription status:</strong> your current DedupeIQ plan, trial status, and related dates, as reported by monday.com's billing system. Plan limits (for example, scans this month or merges used in a trial) are calculated from your scan and merge records.</li>
     <li><strong>Rate-limit counters:</strong> a per-account daily count of database writes, used to protect the service from abuse.</li>
   </ul>
 
@@ -58,14 +57,16 @@
     <li><strong>Improving the App:</strong> aggregate usage events (counts, not content) help us understand which features are used.</li>
   </ul>
   <p>We do not sell your data, and we do not use it for advertising, marketing, or profiling. DedupeIQ never merges or changes anything automatically: every merge is started by a member of your team.</p>
-  <p>For the purposes of applicable data protection laws, you are the data controller for your board data. Alpenglow Software LLC acts as a data processor for the limited identifiers described above, processing them solely on your behalf and as described in this policy.</p>
+  <p>For the purposes of applicable data protection laws, you are the data controller for your board data. Alpenglow Software LLC acts as a data processor for the limited identifiers described above, processing them solely on your behalf and as described in this policy. For aggregate product usage data and for information you send us directly (such as support emails), we act as an independent controller.</p>
 
   <h2>3. Data Storage and Security</h2>
   <ul>
     <li>The App runs entirely on monday.com infrastructure: the interface is served from monday.com's app hosting, and our server and database run on monday code, monday.com's hosting platform, in the United States region.</li>
     <li>All connections use HTTPS/TLS encryption in transit.</li>
-    <li>Every request to our server is authenticated with a monday.com-signed session token, and all stored data is scoped to your monday.com account.</li>
-    <li>In the event of a data breach affecting your data, we will notify you and monday.com promptly after discovery, in accordance with monday.com's marketplace requirements and applicable law.</li>
+    <li>Every request that reads or writes your data is authenticated with a monday.com-signed session token, and all stored data is scoped to your monday.com account.</li>
+    <li>We do not store monday.com access tokens. Each request carries a short-lived session token that we verify and do not keep. Board reads and merges run in your browser using your own monday.com session.</li>
+    <li><strong>Logging:</strong> our server logs technical events needed to operate the App. Some log lines include your monday.com account ID and plan identifier; logs never include board content, names, email addresses, or phone numbers. Logs are kept according to monday code's log retention.</li>
+    <li>If we become aware of a security incident affecting your data, we will notify monday.com within 24 hours and affected customers without undue delay (and within 72 hours where required by law).</li>
   </ul>
 
   <h2>4. Third-Party Services and Domains</h2>
@@ -73,7 +74,7 @@
     <thead><tr><th>Service</th><th>Purpose</th><th>Data involved</th></tr></thead>
     <tbody>
       <tr><td>monday.com API (api.monday.com)</td><td>Reading your boards and performing merges you request, from your browser</td><td>Your board data, accessed with your own monday.com permissions</td></tr>
-      <tr><td>monday.com app hosting (*.monday.app, *.cdn2.monday.app)</td><td>Serving the App's interface, and hosting our server and database (monday code)</td><td>The stored identifiers, counts, and decisions described above</td></tr>
+      <tr><td>monday.com app hosting (*.cdn2.monday.app for the interface; *.us.monday.app for our server)</td><td>Serving the App's interface, and hosting our server and database (monday code)</td><td>The stored identifiers, counts, and decisions described above</td></tr>
       <tr><td>monday.com billing</td><td>Plans, trials, and payments</td><td>Plan and subscription status (we never see payment details)</td></tr>
     </tbody>
   </table>
@@ -82,7 +83,7 @@
   <h2>5. Data Retention</h2>
   <ul>
     <li><strong>While installed:</strong> scan summaries, decisions, merge records, and events are kept while the App is installed, so your review history persists.</li>
-    <li><strong>On uninstall:</strong> when you uninstall the App, monday.com notifies us and we immediately and permanently delete all data associated with your account (scan summaries, decisions, merge records, events, and plan status). The only exception is the rate-limit counter for the current day, which contains your account ID, the date, and a number, and is deleted automatically after that day. It is kept so that uninstalling cannot be used to bypass abuse limits.</li>
+    <li><strong>On uninstall:</strong> when you uninstall the App, monday.com notifies us and we permanently delete all data associated with your account (scan summaries, decisions, merge records, events, and plan status), promptly and in all cases within 10 days. The one short-lived exception is the current day's rate-limit counter (your account ID, the date, and a number), which is kept briefly so that uninstalling cannot be used to bypass abuse limits, and is deleted automatically within 2 days.</li>
     <li><strong>Your boards:</strong> uninstalling does not change your boards. Items you merged stay merged, and items the App archived remain in your board's archive under monday.com's policies, where you can restore them.</li>
   </ul>
 
@@ -95,10 +96,10 @@
   <p>Because we do not store the contents of your boards, requests about a specific person's data (for example, a contact on your CRM board) are fulfilled in monday.com itself. We store no names, emails, or phone numbers that could be searched. We respond to all data requests within 30 days.</p>
 
   <h2>7. International Data Transfers</h2>
-  <p>Our server and database run in monday.com's United States region. By using the App, you consent to the processing of the identifiers described above in the United States.</p>
+  <p>Our server and database run in monday.com's United States region, so the identifiers described above are processed in the United States. Where the law requires it, such transfers rely on appropriate safeguards, such as Standard Contractual Clauses.</p>
 
   <h2>8. Cookies and Tracking</h2>
-  <p>The App does not use cookies, tracking pixels, or advertising technologies. Usage events are recorded on our own server as described above and contain no board content.</p>
+  <p>The App does not use cookies, tracking pixels, or advertising technologies, and it does not store anything in your browser's local storage. Usage events are recorded on our own server as described above and contain no board content.</p>
 
   <h2>9. Children's Privacy</h2>
   <p>The App is designed for business users of monday.com and is not directed at children under 13. We do not knowingly collect personal data from children.</p>
