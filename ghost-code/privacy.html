@@ -10,7 +10,7 @@
 <main>
   <h1>Privacy Policy</h1>
   <p class="app-name">Ghost Code — Shopify Theme Audit App</p>
-  <p class="effective-date">Effective date: March 22, 2026</p>
+  <p class="effective-date">Effective date: September 24, 2026</p>
 
   <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of Ghost Code ("the App") collects, uses, stores, and protects information when you install and use the App through the Shopify platform.</p>
 
@@ -24,13 +24,15 @@
   </ul>
   <p>We do not request write access to your themes. We do not modify any theme files.</p>
 
-  <h3>Permission Audit feature (optional)</h3>
-  <p>If you activate the Permission Audit feature, the App requests an additional <code>read_apps</code> scope through Shopify's consent flow. This scope allows us to access:</p>
+  <h3>Optional scopes</h3>
+  <p>You can grant additional read-only scopes from the Permissions card on the App's Settings page. Each one is requested through Shopify's consent screen, and the App does not access that data until you approve it. You can revoke these scopes at any time in your Shopify admin.</p>
   <ul>
-    <li><strong>Installed app information</strong> — App name, handle, description, and installation date for apps currently installed on your store.</li>
-    <li><strong>Permission snapshots</strong> — The API access scopes granted to each installed app, captured at the time of each audit run.</li>
+    <li><strong><code>read_translations</code></strong>: translated content for your store, used to find orphaned translations left by uninstalled apps.</li>
+    <li><strong><code>read_products</code></strong>: product tags, prices and compare-at prices, and product metafields, used to find orphaned product tags, stale compare-at prices, leftover metafields, and structured-data (JSON-LD) prices in your theme that no longer match your live product prices.</li>
+    <li><strong><code>read_content</code></strong>: your online store pages, used to find orphaned pages and links to pages that no longer exist.</li>
+    <li><strong><code>read_online_store_navigation</code></strong>: your URL redirects, used to find orphaned redirects left by uninstalled apps.</li>
   </ul>
-  <p>This data is used to identify apps with excessive permissions, detect permission changes over time, and generate a risk score for each installed app. You must explicitly grant the <code>read_apps</code> scope before this feature collects any data. The scope can be revoked at any time through your Shopify admin.</p>
+  <p>If you do not grant a scope, the App skips the checks that depend on it.</p>
 
   <h3>Data collected through Shopify session</h3>
   <p>Shopify provides the following data as part of the standard app authentication process:</p>
@@ -43,12 +45,28 @@
   </ul>
   <p>This session data is managed by Shopify's official session storage library and is required for the App to function within the Shopify Admin.</p>
 
+  <h3>Information you provide</h3>
+  <ul>
+    <li><strong>Feedback</strong>: if you choose to use the in-app feedback form, we collect a satisfaction rating (1 to 5), your answers to up to three optional free-text questions, and an optional contact email address.</li>
+    <li><strong>App name suggestions</strong>: if you suggest which app an unrecognized script belongs to, we store your suggestion for review.</li>
+    <li><strong>Ignored findings</strong>: if you choose to ignore a finding, we store that choice and any optional note you add.</li>
+  </ul>
+
+  <h3>Usage of the App</h3>
+  <p>The App records your use of its own pages so we can operate and improve it. These are server-side records kept in our own database:</p>
+  <ul>
+    <li>A page visit record (your shop domain and the App page you opened) each time an App page is loaded.</li>
+    <li>The last time your store opened the App.</li>
+    <li>Whether in-app prompts (for example, the feedback prompt or an upgrade preview) were shown to you, clicked, dismissed, or completed.</li>
+  </ul>
+  <p>This does not use cookies or third-party analytics tools, and it does not record anything outside the App's own pages.</p>
+
   <h3>Data we do NOT collect</h3>
   <ul>
     <li>Customer or shopper personal information</li>
     <li>Order or transaction data</li>
     <li>Payment or financial information</li>
-    <li>Analytics or visitor behavior data</li>
+    <li>Storefront visitor analytics or behavior data</li>
     <li>Marketing or advertising data</li>
   </ul>
 
@@ -57,6 +75,10 @@
   <ul>
     <li><strong>Theme scanning</strong> — We analyze your theme files in memory to detect orphaned code patterns (ghost scripts, stylesheets, snippets, and sections) left by previously uninstalled apps.</li>
     <li><strong>Scan results</strong> — We store findings (file name, line number, a short code snippet of up to 300 characters, severity, and the identified app name) so you can review results in the App.</li>
+    <li><strong>Optional-scope findings</strong>: for checks that use an optional scope, findings store short excerpts (up to 300 characters) and identifiers such as tag names, product or page handles, metafield keys with short value excerpts, and redirect paths. Full product, page, translation, and redirect data is not stored.</li>
+    <li><strong>Third-party script domains</strong>: for each scan we store the third-party domains your theme references and any unrecognized script URLs, with the file name, line number, and a short code snippet. We may analyze this data in aggregate across stores to improve how the App recognizes apps. This data is never sold, and it is deleted with the rest of your shop data as described in Section 6.</li>
+    <li><strong>Feedback</strong>: we use feedback only to improve the App and, if you gave an email address, to reply to you.</li>
+    <li><strong>Usage records</strong>: we use records of your use of the App's pages and prompts to operate and improve the App.</li>
     <li><strong>Subscription management</strong> — We store your current billing plan to gate features appropriately.</li>
     <li><strong>App functionality</strong> — We use your shop domain and session data to authenticate requests and deliver the App within the Shopify Admin.</li>
   </ul>
@@ -67,13 +89,14 @@
     <li>Theme files are fetched from the Shopify API and processed <strong>in memory</strong>.</li>
     <li>Pattern matching detects orphaned code artifacts.</li>
     <li>Only the scan findings (metadata and short code snippets) are stored in our database.</li>
+    <li>Data accessed through optional scopes is processed the same way: only findings are stored.</li>
     <li>Full theme file contents are <strong>not stored</strong> — they are discarded after processing.</li>
   </ol>
 
   <h2>4. Data Storage and Security</h2>
   <ul>
     <li>All data is stored in a PostgreSQL database hosted on Railway (United States).</li>
-    <li>Shopify access tokens are encrypted at rest using AES-256 encryption.</li>
+    <li>Our hosting provider encrypts all stored data at rest at the storage level, including Shopify access tokens. Access tokens are used only by our servers to call the Shopify API and are deleted when you uninstall the App.</li>
     <li>All connections use HTTPS/TLS encryption in transit.</li>
     <li>We do not sell, rent, or share your data with third parties for marketing purposes.</li>
   </ul>
@@ -101,6 +124,11 @@
         <td>Application and database hosting</td>
         <td>All stored data (encrypted)</td>
       </tr>
+      <tr>
+        <td>Resend</td>
+        <td>Transactional email to the operator (feedback notifications, operational alerts)</td>
+        <td>Feedback rating and answers you submit, and your shop domain (not your contact email)</td>
+      </tr>
     </tbody>
   </table>
 
@@ -109,15 +137,20 @@
   <h2>6. Data Retention</h2>
   <ul>
     <li><strong>While installed</strong> — Scan results, findings, and shop data are retained for as long as the App is installed on your store.</li>
-    <li><strong>On uninstall</strong> — All data associated with your shop is permanently deleted immediately and automatically. This includes: sessions, scans, findings, and your shop record. Deletion is atomic and irreversible.</li>
-    <li><strong>GDPR shop/redact</strong> — If Shopify sends a shop data erasure request, all shop data is deleted within 48 hours.</li>
+    <li><strong>Page visit records</strong>: deleted after 14 days.</li>
+    <li><strong>In-app prompt interaction records</strong>: deleted after 90 days.</li>
+    <li><strong>Feedback</strong>: kept until your shop data is deleted.</li>
+    <li><strong>On uninstall</strong>: your sessions and Shopify access tokens are deleted immediately, and your shop is marked as uninstalled. The rest of your data is kept until Shopify sends a shop data erasure (<code>shop/redact</code>) request, which Shopify sends 48 hours after you uninstall. If you reinstall before then, your existing data is still available.</li>
+    <li><strong>Shop data erasure</strong>: when we receive the <code>shop/redact</code> request, we permanently delete all data associated with your shop, including scans, findings, script domain records, feedback, usage records, and your shop record.</li>
+    <li><strong>Email copies</strong>: feedback notifications and operational alerts already delivered to our inbox are not part of the App's database and are not removed by this automated deletion. Contact us to have them deleted.</li>
+    <li><strong>Aggregate statistics</strong>: summary counts that do not identify your store (for example, total scans across all stores) may be kept after your data is deleted.</li>
   </ul>
 
   <h2>7. Your Rights</h2>
   <p>You have the right to:</p>
   <ul>
     <li><strong>Access</strong> — View all scan data and findings through the App's dashboard.</li>
-    <li><strong>Deletion</strong> — Uninstalling the App immediately deletes all your data. You can also contact us to request deletion without uninstalling.</li>
+    <li><strong>Deletion</strong>: uninstalling the App deletes your sessions immediately and all remaining shop data when Shopify sends the <code>shop/redact</code> request 48 hours later (see Section 6). You can also contact us to request deletion without uninstalling.</li>
     <li><strong>Data portability</strong> — Contact us to request an export of your stored data.</li>
     <li><strong>Correction</strong> — Contact us if you believe any stored data is inaccurate.</li>
   </ul>
@@ -127,7 +160,7 @@
   <p>Your data is processed and stored on servers located in the United States. By using the App, you consent to the transfer of your data to the United States for processing.</p>
 
   <h2>9. Cookies and Tracking</h2>
-  <p>The App does not use cookies, tracking pixels, or any analytics or advertising technologies. We do not track your behavior within the Shopify Admin.</p>
+  <p>The App does not use cookies, tracking pixels, or any third-party analytics or advertising technologies. The App records your use of its own pages on our servers to operate and improve it, as described in Section 1. It does not track your activity elsewhere in the Shopify Admin.</p>
 
   <h2>10. Children's Privacy</h2>
   <p>The App is designed for use by Shopify merchants (business users) and is not directed at children under 13. We do not knowingly collect data from children.</p>
