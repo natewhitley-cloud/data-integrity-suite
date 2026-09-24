@@ -10,7 +10,7 @@
 <main>
   <h1>Privacy Policy</h1>
   <p class="app-name">ClearSignal: Bot Traffic Detection for Shopify</p>
-  <p class="effective-date">Effective date: September 23, 2026</p>
+  <p class="effective-date">Effective date: September 24, 2026</p>
 
   <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of ClearSignal ("the App") collects, uses, stores, and protects information when you install and use the App through the Shopify platform. ClearSignal detects bot traffic that may be polluting your store's analytics by combining client-side fingerprinting, order-level signal analysis, and server-side signal correlation. A Shopify Web Pixel extension additionally captures storefront checkout and funnel events (such as checkout started, checkout completed, and add-to-cart) as bot-detection, order-integrity, and conversion-funnel signals. See Section 1 for details.</p>
 
@@ -64,13 +64,13 @@
     <li><strong>Pre-consent tracker observations</strong>: to help you verify that your store's consent banner is working, the extension observes the network destinations your storefront page contacts (such as requests to Google Analytics, Meta, or TikTok) and recognizes a fixed list of known third-party tracking services. Where a visitor has <strong>not</strong> granted analytics consent and a known tracker fires anyway, the extension reports which tracker it was (a short label such as "ga4" or "meta"), how it was detected, the page path, and the visitor's consent state at page load. The App stores only per-day counts by tracker label and consent state for your store; it does not store the visitor identifier or the tracker's request contents. See Section 9 for details.</li>
   </ul>
   <p>This data is transmitted to the App's server via a Shopify app proxy endpoint, which verifies request authenticity using HMAC signature validation.</p>
-  <p>ClearSignal's storefront component also sends a direct request to the App's server. From that request the App observes the visitor's network (IP) address and reduces it immediately to a truncated /24 network block (the final part of the address is discarded). This truncated block is used only to detect automated (bot) traffic, and is processed for all storefront sessions &mdash; including visitors who declined analytics consent &mdash; on the basis of the App's and the merchant's legitimate interest in fraud and bot detection, not on consent. It is never combined or compared across merchants, and is never used to identify an individual visitor.</p>
+  <p>ClearSignal's storefront component also sends a direct request to the App's server. From that request the App observes the visitor's network (IP) address and reduces it immediately to a truncated network block (a /24 block for IPv4 or a /48 block for IPv6; the rest of the address is discarded). This truncated block is used only to detect automated (bot) traffic, and is processed for all storefront sessions &mdash; including visitors who declined analytics consent &mdash; on the basis of the App's and the merchant's legitimate interest in fraud and bot detection, not on consent. It is never combined or compared across merchants, and is never used to identify an individual visitor.</p>
 
   <h3>Data from server-side processing</h3>
   <p>When a storefront session is scored, the App processes and stores:</p>
   <ul>
     <li><strong>IP addresses</strong>: used for geographic analysis and queried against an IP reputation service. IP addresses are retained as part of session records.</li>
-    <li><strong>IP reputation scores</strong>: scores from the IPQualityScore API indicating the likelihood that an IP address is associated with bots, proxies, or data centers. For storefront visitors, only the truncated /24 network block (see above) and the browser user-agent are sent to IPQualityScore, never the visitor's full IP address. Results are cached for your store only.</li>
+    <li><strong>IP reputation scores</strong>: scores from the IPQualityScore API indicating the likelihood that an IP address is associated with bots, proxies, or data centers. For storefront visitors, IPQualityScore receives the browser user-agent together with either the network address of the Shopify relay that forwarded the visitor's request (Shopify infrastructure, not the visitor's own address) or the visitor's truncated network block (see above). The visitor's own full IP address is never sent. Results are cached for your store only.</li>
     <li><strong>Data center and ASN classification</strong>: whether the session originated from a cloud provider, hosting service, or residential network.</li>
     <li><strong>Bot classification and session scores</strong>: the final classification verdict (DEFINITE_BOT, LIKELY_BOT, SUSPICIOUS, or LIKELY_HUMAN) and the underlying signal breakdown that produced it.</li>
   </ul>
@@ -89,10 +89,10 @@
   <p>If you connect your Klaviyo account, the App additionally collects:</p>
   <ul>
     <li><strong>Klaviyo OAuth tokens</strong>: stored encrypted at rest using AES-256-GCM. Used to authenticate API calls to your Klaviyo account.</li>
-    <li><strong>Klaviyo profile data</strong>: email addresses, profile IDs, and activity metrics for profiles in your Klaviyo account, used to assess bot risk. This data is queried from Klaviyo's API and processed to generate bot scores.</li>
+    <li><strong>Klaviyo profile data</strong>: email addresses, profile IDs, and activity metrics for profiles in your Klaviyo account, used to assess bot risk. This data is queried from Klaviyo's API and processed to generate bot scores. For profiles the App flags as likely bots, it stores the email address, Klaviyo profile ID, bot signals, confidence score, and review status so you can review and act on them.</li>
     <li><strong>ClearSignal tags applied to profiles</strong>: when a profile is flagged, a tag (e.g., "ClearSignal: Bot Suspect") is written back to the Klaviyo profile through the Klaviyo API.</li>
   </ul>
-  <p>Klaviyo tokens are deleted immediately when you disconnect the integration or uninstall the App.</p>
+  <p>Klaviyo tokens are deleted immediately when you disconnect the integration, and with the rest of your data after you uninstall the App (see Section 6).</p>
 
   <h3>Data we do NOT collect</h3>
   <ul>
@@ -124,7 +124,7 @@
     <li>The theme app extension loads on your storefront and runs FingerprintJS BotD in the visitor's browser. No data leaves the browser until the next step.</li>
     <li>Fingerprint and behavioral signals are sent to the App's server via a Shopify app proxy endpoint with HMAC verification. A separate direct request also conveys the visitor's truncated /24 network block (see Section 1) for bot detection.</li>
     <li>The server correlates all available signals (fingerprint score, behavioral patterns, and IP reputation) and computes a bot probability score.</li>
-    <li>The classification verdict and signal breakdown are stored in the database. Raw behavioral signal data is not stored after scoring.</li>
+    <li>The classification verdict, the signal breakdown, and the signals it was computed from are stored with the session record for its retention window. Behavioral signals are stored only as aggregate measurements (counts of mouse and scroll events, scroll distance, time on page, and screen size) and the BotD result; individual mouse and scroll events are not stored.</li>
     <li>Aggregated results are displayed in your merchant dashboard.</li>
   </ol>
   <p>Bot classifications represent probabilistic assessments, not definitive verdicts. Individual session records include the contributing signals so you can evaluate the basis for any classification.</p>
@@ -134,7 +134,7 @@
   <h2>4. Data Storage and Security</h2>
   <ul>
     <li>All data is stored in a PostgreSQL database hosted on Railway (United States).</li>
-    <li>Shopify access tokens and Klaviyo OAuth tokens are encrypted at rest using AES-256-GCM encryption.</li>
+    <li>Klaviyo OAuth tokens and the App's own stored copy of your Shopify access token are encrypted at rest using AES-256-GCM encryption. Authentication sessions created by Shopify's official session storage library are stored in the same access-controlled database.</li>
     <li>All connections use HTTPS/TLS encryption in transit.</li>
     <li>IP reputation results are cached, per store, for up to 7 days and then expire automatically.</li>
     <li>We do not sell your data or your visitors' data. We do not share data with third parties for marketing, advertising, or profiling purposes.</li>
@@ -162,7 +162,7 @@
       <tr>
         <td>IPQualityScore</td>
         <td>IP reputation scoring</td>
-        <td>A truncated /24 network block of the visitor's IP address (never the full address) and the browser user-agent</td>
+        <td>The browser user-agent, with either the address of the Shopify relay that forwarded the visitor's request or the visitor's truncated network block. Never the visitor's own full IP address</td>
       </tr>
       <tr>
         <td>Inngest</td>
@@ -191,28 +191,28 @@
   <h2>6. Data Retention</h2>
   <ul>
     <li><strong>While installed</strong>: Detection records, order attribution records, and reports are retained while the App is installed on your store. Bot-detection session records are additionally subject to the per-plan retention window described below, and are automatically purged once they age past it.</li>
-    <li><strong>Bot-detection session records (per-plan retention)</strong>: Session records are retained on a rolling basis determined by your plan and then automatically deleted: <strong>Free: 15 days; Essentials: 35 days; Growth: 100 days</strong>. Your dashboard reports over a shorter window (Free: 7 days, Essentials: 30 days, Growth: 90 days); records are kept slightly longer than the reporting window so that reporting for the most recent period is complete before the records are deleted. Uninstalling the App, or a Shopify shop-redact request, deletes this data immediately regardless of the window.</li>
-    <li><strong>On uninstall</strong>: All data associated with your shop is permanently deleted immediately and automatically. This includes sessions, detections, order attribution records, Klaviyo tokens, and your shop record. Deletion is atomic and irreversible.</li>
-    <li><strong>GDPR shop/redact</strong>: If Shopify sends a shop data erasure request, all shop data is deleted within 48 hours.</li>
+    <li><strong>Bot-detection session records (per-plan retention)</strong>: Session records are retained on a rolling basis determined by your plan and then automatically deleted: <strong>Free: 15 days; Essentials: 35 days; Growth: 100 days</strong>. Your dashboard reports over a shorter window (Free: 7 days, Essentials: 30 days, Growth: 90 days); records are kept slightly longer than the reporting window so that reporting for the most recent period is complete before the records are deleted. Uninstalling the App deletes this data, regardless of the window, when Shopify's shop data-erasure request arrives (see "On uninstall").</li>
+    <li><strong>On uninstall</strong>: All data associated with your shop is permanently and automatically deleted when Shopify sends its shop data-erasure request, which Shopify sends about 48 hours after you uninstall. This includes sessions, detections, order attribution records, Klaviyo data and tokens, and your shop record. Deletion is atomic and irreversible. If you reinstall before that request arrives, your existing data is kept. You can ask us to delete it sooner (see Section 7).</li>
+    <li><strong>GDPR shop/redact</strong>: When Shopify sends a shop data-erasure request, all shop data is deleted on receipt.</li>
     <li><strong>IP reputation cache</strong>: IP reputation scores are cached, per store, for up to 7 days and expire automatically.</li>
-    <li><strong>Klaviyo tokens</strong>: Deleted immediately on disconnect or uninstall.</li>
+    <li><strong>Klaviyo tokens</strong>: Deleted immediately on disconnect, and with your other data after uninstall.</li>
     <li><strong>Durable visitor identifier (<code>_clearsignal_sid</code>)</strong>: When order-to-session matching is enabled, the identifier stored in a visitor's browser is retained on a 30-day rolling basis: it is regenerated at least every 30 days, and is removed from the visitor's browser immediately if the visitor withdraws analytics consent.</li>
     <li><strong>Order-to-session join records (<code>OrderSessionLink</code>)</strong>: Retained for no longer than 13 months, after which they are purged. This window permits year-over-year revenue-attribution reporting before the linkage is removed.</li>
-    <li><strong>Web Pixel checkout-event records</strong>: Records of completed checkouts, which link a Shopify order to Shopify's visitor identifier, are retained for no longer than 13 months, then purged. Records of checkouts that were started but not completed carry no order identifier and are purged after 60 days. All are deleted immediately on app uninstall, and completed-checkout records on any customer redaction request covering the affected order.</li>
+    <li><strong>Web Pixel checkout-event records</strong>: Records of completed checkouts, which link a Shopify order to Shopify's visitor identifier, are retained for no longer than 13 months, then purged. Records of checkouts that were started but not completed carry no order identifier and are purged after 60 days. All are deleted with your other data after uninstall, and completed-checkout records on any customer redaction request covering the affected order.</li>
     <li><strong>Web Pixel funnel-event records</strong>: Purged after 60 days.</li>
     <li><strong>Abandoned-checkout records</strong>: Purged 60 days after the checkout was created, and deleted on any customer redaction request that reaches the linked visitor identifier.</li>
     <li><strong>Pre-consent tracker counts</strong>: Purged after 60 days.</li>
     <li><strong>In-app usage records</strong>: Purged after 30 days.</li>
-    <li><strong>Feedback you submit and operational logs</strong>: Retained while the App is installed and deleted on uninstall. You may ask us to delete your feedback at any time.</li>
+    <li><strong>Feedback you submit, flagged Klaviyo profile records, and operational logs</strong>: Retained while the App is installed and deleted with your other data after uninstall. Some diagnostic log entries reference your shop only by its domain rather than your shop record, and may be kept for troubleshooting after uninstall. You may ask us to delete your feedback at any time.</li>
     <li><strong>Order-linked session records</strong>: Bot-detection session records that have been linked to an order are de-identified (the durable identifier is removed) at approximately 90 days, so that the ability to relate a session to an individual does not outlive the order-attribution purpose.</li>
   </ul>
-  <p>The retention limits above are additional ceilings on the storefront visitor-identification and order-attribution data; they do not override the immediate deletion described earlier in this section. Uninstalling the App, or a Shopify shop-redact request, deletes this data immediately regardless of these ceilings.</p>
+  <p>The retention limits above are additional ceilings on the storefront visitor-identification and order-attribution data; they do not override the deletion after uninstall described earlier in this section, which removes this data regardless of these ceilings.</p>
 
   <h2>7. Your Rights</h2>
   <p>You have the right to:</p>
   <ul>
     <li><strong>Access</strong>: View session classifications, signal breakdowns, and detection history through the App's dashboard.</li>
-    <li><strong>Deletion</strong>: Uninstalling the App immediately deletes all your data. You may also contact us to request deletion without uninstalling.</li>
+    <li><strong>Deletion</strong>: Uninstalling the App deletes all your data when Shopify's shop data-erasure request arrives, about 48 hours after uninstall. You may also contact us to request deletion sooner, or without uninstalling.</li>
     <li><strong>Data portability</strong>: Contact us to request an export of your stored data.</li>
     <li><strong>Correction</strong>: Contact us if you believe any stored data is inaccurate.</li>
   </ul>
