@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to use DedupeIQ</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main>
+  <h1>How to use DedupeIQ</h1>
+  <p class="app-name">DedupeIQ: Merge Duplicates for monday.com</p>
+
+  <p>DedupeIQ finds duplicate items on your monday boards, including near-duplicates that exact matching misses (nicknames, typos, company variants), and merges them without losing data. Nothing on your board changes until you merge.</p>
+
+  <h2>1. Install and open DedupeIQ</h2>
+  <ol>
+    <li>Install DedupeIQ from the monday apps marketplace.</li>
+    <li>Open the board you want to clean up, click <strong>+</strong> next to your board views, choose <strong>Apps</strong>, and add <strong>DedupeIQ</strong>.</li>
+    <li>The first time, a short welcome explains the three steps. Click <strong>Get started</strong>.</li>
+  </ol>
+  <p>[screenshot: adding the DedupeIQ board view]</p>
+
+  <h2>2. Match your columns</h2>
+  <p>DedupeIQ compares four details: <strong>name</strong> (the item name), <strong>email</strong>, <strong>phone</strong>, and <strong>company</strong>. It picks the matching columns for you and marks them <em>auto</em>. Check them and change any it got wrong. Set a detail to <em>None</em> if your board doesn't have it.</p>
+  <p>[screenshot: the column mapping card]</p>
+
+  <h2>3. Scan</h2>
+  <p>Click <strong>Scan this board</strong>. DedupeIQ reads the board and finds duplicates. Scanning never changes your board. The number of records a scan can read depends on your plan; if a scan reaches the limit, DedupeIQ tells you how many records it read out of the total.</p>
+
+  <h2>4. Review the matches</h2>
+  <ul>
+    <li>Matches are grouped by what matched (for example, same email or similar name), highest confidence first.</li>
+    <li><strong>Exact</strong> matches share an identical email or phone. <strong>Near</strong> matches have similar names, typos, or company variants and are worth a quick look.</li>
+    <li>The <strong>confidence score</strong> (0 to 99) shows how strongly the two records agree. Each match also says why it matched.</li>
+    <li>Open a match to see both records side by side, then choose <strong>Confirm duplicate</strong> or <strong>Not a duplicate</strong>. You can undo either. Dismissed matches stay dismissed when you scan again.</li>
+  </ul>
+  <p>[screenshot: the review queue and a side-by-side match]</p>
+
+  <h2>5. Merge safely</h2>
+  <ul>
+    <li>For a confirmed match, click <strong>Merge</strong>. Choose which record to keep; DedupeIQ suggests the more complete one.</li>
+    <li>Empty fields on the record you keep are filled from the other record. Where both records have different values, you choose which to keep (your kept record wins by default).</li>
+    <li>DedupeIQ then <strong>archives</strong> the other record. It is not deleted: you can restore it from the board's archive.</li>
+    <li><strong>What isn't carried over:</strong> some columns can't be copied between items (for example files, subitems, and links to other boards). DedupeIQ lists these before you merge. Item updates (comments) and activity history are never copied.</li>
+  </ul>
+  <p>[screenshot: the merge panel with a conflict]</p>
+
+  <h2>6. Bulk merge (Pro and above)</h2>
+  <p>In <strong>Confirmed</strong>, select several matches and click <strong>Merge selected</strong>. Matches with no conflicting values merge in one pass; any that need a decision are held back for you to review one at a time.</p>
+
+  <h2>7. Check across boards (Pro and above)</h2>
+  <p>Under <strong>Also check other boards</strong>, add boards to scan together with this one, for example Leads and Contacts. When the same person or company appears on two boards, choose which record to <strong>keep</strong>: DedupeIQ can fill its empty name, email, phone, or company from the other record, then archives the other one.</p>
+
+  <h2>8. Plans and limits</h2>
+  <p>DedupeIQ has a Free plan and paid plans: <strong>Starter</strong>, <strong>Pro</strong>, <strong>Business</strong>, and <strong>Scale</strong>. Plans differ in how many records and boards one scan can include, and in features such as near-duplicate detail, bulk merge, and cross-board scanning. Current plans and prices are shown in monday's plan selection. Paid plans include a free trial.</p>
+
+  <h2>9. Permissions DedupeIQ asks for</h2>
+  <ul>
+    <li><strong>Read boards</strong> (<code>boards:read</code>): to read the items and columns of the boards you scan. Matching happens in your browser.</li>
+    <li><strong>Write boards</strong> (<code>boards:write</code>): only when you merge, to fill the record you keep and archive the other. Scanning and reviewing never write to your boards.</li>
+  </ul>
+  <p>If you have view-only access to a board, you can look at duplicates but not change them. Merging and reviewing need edit access.</p>
+
+  <h2>10. Your data</h2>
+  <ul>
+    <li>Matching runs in your browser. Names, emails, phone numbers, and other column values are never sent to or stored on our servers.</li>
+    <li>We store only IDs, counts, match scores, your review decisions, and merge records (IDs only), on monday's own infrastructure.</li>
+    <li>Uninstalling DedupeIQ deletes everything we stored for your account. Your board keeps any merges you made.</li>
+  </ul>
+  <p>Details: <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
+
+  <h2>Need help?</h2>
+  <div class="contact-block">
+    <p>Email <a href="mailto:support@alpenglowsoftware.com">support@alpenglowsoftware.com</a>. We respond within 2 business days.</p>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2026 Alpenglow Software LLC. All rights reserved.</p>
+</footer>
+</body>
+</html>
