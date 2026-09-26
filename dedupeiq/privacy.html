@@ -10,11 +10,15 @@
 <main>
   <h1>Privacy Policy</h1>
   <p class="app-name">DedupeIQ: Merge Duplicates for monday.com</p>
-  <p class="effective-date">Effective date: September 24, 2026</p>
+  <p class="effective-date">Effective date: September 25, 2026</p>
 
   <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of DedupeIQ ("the App"), collects, uses, stores, and protects information when you install and use the App through the monday.com platform. DedupeIQ finds duplicate and near-duplicate items on your monday.com boards, lets you review each match, and, only when you choose to, merges a confirmed pair by filling in the item you keep and archiving the other.</p>
 
-  <p><strong>The short version:</strong> matching runs in your browser. The item names and column values on your boards (names, emails, phone numbers, companies, and any other column) are read and compared on your device and are <strong>never sent to or stored on our servers</strong>. Our servers store only IDs, counts, match scores, your review decisions, merge records (IDs only), and your plan status.</p>
+  <p><strong>The short version:</strong> scanning, reviewing and merging run in your browser, and our servers <strong>never store</strong> the item names or column values on your boards. Our servers store only IDs, counts, match scores, your review decisions, merge records (IDs only), and your plan status. Two optional features process board content outside your browser, and only when someone on your team starts them:</p>
+  <ul>
+    <li><strong>AI review</strong> sends the name, email, phone and company of the pairs you choose to <strong>monday.com's AI service</strong>, which returns a suggested verdict. It does not go to our servers.</li>
+    <li><strong>DedupeIQ in monday sidekick</strong> asks our server to read the board you name and check it for duplicates or for a record you describe. Our server does this in memory, answers, and keeps nothing.</li>
+  </ul>
 
   <h2>1. Information We Collect</h2>
 
@@ -22,12 +26,27 @@
   <ul>
     <li><strong><code>boards:read</code></strong>: used to read the columns and items of the boards you choose to scan, so duplicates can be detected. This reading happens in your browser.</li>
     <li><strong><code>boards:write</code></strong>: used only when you explicitly merge a confirmed pair (or keep one of two records across boards). The App writes the values you chose to the item you keep and archives the other item. Scanning and reviewing never write to your boards.</li>
+    <li><strong><code>ai:consume</code></strong>: used only when someone clicks AI review, to ask monday.com's AI service about the pairs they chose. Usage is billed to your monday.com account's AI credits.</li>
   </ul>
 
-  <h3>Data processed in your browser only (never sent to us)</h3>
+  <h3>Data processed in your browser when you use the App (not sent to us)</h3>
   <ul>
     <li>Item names and column values of the boards you scan, including names, email addresses, phone numbers, company names, and the other columns shown when you compare or merge two items.</li>
     <li>Match explanations (for example, "nickname: Bob and Robert"). These are generated and shown only in your browser and are never sent to us.</li>
+  </ul>
+
+  <h3>Data processed by monday.com's AI service (only when you use AI review)</h3>
+  <ul>
+    <li>When someone clicks AI review, the App sends the name, email address, phone number and company of the pairs they chose (up to 30 pairs per click) from their browser to monday.com's AI service, using their own monday.com session. No other columns, and no item or board IDs, are included.</li>
+    <li>monday.com's AI service returns a suggested verdict (likely the same, likely different, or unsure) and a short reason for each pair. These are shown in your browser only; they are not sent to or stored on our servers.</li>
+    <li>monday.com processes AI requests with its AI model providers under monday.com's own terms and agreements. DedupeIQ has no direct relationship with those providers and does not receive or keep the request or the response.</li>
+  </ul>
+
+  <h3>Data processed in memory by our server (only when you use DedupeIQ in monday sidekick)</h3>
+  <ul>
+    <li>When someone asks monday sidekick to use a DedupeIQ skill, monday.com sends our server the details sidekick took from the conversation (the board to check, and for the "already exists" check, the name, email, phone or company to look for) together with a short-lived monday.com token for that request.</li>
+    <li>Our server uses that token only to read the named boards' item names and their name, email, phone and company columns from monday.com, compares them in memory, and returns a short answer to monday sidekick (match counts, the names of matching items, why they match, and links to them). The board data, the details from the conversation, and the token are discarded when the request ends and are not stored. Our logs for these requests record only your account ID, board IDs and counts (and, for errors, the error type).</li>
+    <li>monday sidekick shows that answer to you as part of your conversation, which monday.com processes under its own terms.</li>
   </ul>
 
   <h3>Data we store (on monday.com's infrastructure)</h3>
@@ -44,31 +63,32 @@
 
   <h3>Data we do NOT collect</h3>
   <ul>
-    <li>Item names or column values from your boards (no names, emails, phone numbers, companies, notes, files, or updates)</li>
+    <li>We do not store item names or column values from your boards (no names, emails, phone numbers, companies, notes, files, or updates), including any processed for monday sidekick or AI review as described above</li>
     <li>monday.com user IDs, user names, or email addresses (records written before September 24, 2026 may contain a numeric monday.com user ID; these are deleted with the rest of your data on uninstall)</li>
     <li>Payment card or banking information (billing is handled entirely by monday.com)</li>
     <li>Tracking, advertising, or web-analytics data</li>
   </ul>
-  <p>We do not use artificial intelligence or machine learning to process your data, and your data is not used to train AI or machine-learning models. Matching is performed by deterministic statistical comparison running in your browser.</p>
+  <p>Duplicate matching is performed by deterministic statistical comparison, not by AI. AI is used only in the two optional features above (AI review, and monday sidekick itself), both provided through monday.com's AI, which uses third-party model providers (such as OpenAI and Anthropic). We do not use your data to train AI or machine-learning models.</p>
 
   <h2>2. How We Use Your Information</h2>
   <ul>
     <li><strong>Resume and remember:</strong> scan summaries and decisions let you reopen a board where you left off, and keep dismissed pairs dismissed when you scan again.</li>
     <li><strong>Merging at your direction:</strong> merge records provide an audit trail of merges you performed.</li>
     <li><strong>Plans and limits:</strong> plan status and counters let us apply the features and limits of your plan.</li>
+    <li><strong>Answering sidekick requests:</strong> reading the boards named in a monday sidekick request, in memory, only to return the answer.</li>
     <li><strong>Improving the App:</strong> aggregate usage events (counts, not content) help us understand which features are used.</li>
     <li><strong>Support and operations:</strong> we review per-account usage metrics (for example, scan and merge counts, plan, and install date; never board content) to operate the App, provide support, and prevent abuse. After you uninstall, we keep only account-free daily totals (for example, the number of installs per day).</li>
   </ul>
   <p>We do not sell your data, and we do not use it for advertising, marketing, or profiling. DedupeIQ never merges or changes anything automatically: every merge is started by a member of your team.</p>
-  <p>For the purposes of applicable data protection laws, you are the data controller for your board data. Alpenglow Software LLC acts as a data processor for the limited identifiers described above, processing them solely on your behalf and as described in this policy. For aggregate product usage data and for information you send us directly (such as support emails), we act as an independent controller.</p>
+  <p>For the purposes of applicable data protection laws, you are the data controller for your board data. Alpenglow Software LLC acts as your data processor for the identifiers described above and for board content our server reads in memory to answer a monday sidekick request, processing them solely on your behalf and as described in this policy. For AI review, board content goes directly from your browser to monday.com under your own agreement with monday.com; we do not receive it, and monday.com's AI providers are not our sub-processors. For aggregate product usage data and for information you send us directly (such as support emails), we act as an independent controller.</p>
 
   <h2>3. Data Storage and Security</h2>
   <ul>
     <li>The App runs entirely on monday.com infrastructure: the interface is served from monday.com's app hosting, and our server and database run on monday code, monday.com's hosting platform, in the United States region.</li>
     <li>All connections use HTTPS/TLS encryption in transit.</li>
-    <li>Every request that reads or writes your data is authenticated with a monday.com-signed session token, and all stored data is scoped to your monday.com account.</li>
-    <li>We do not store monday.com access tokens. Each request carries a short-lived session token that we verify and do not keep. Board reads and merges run in your browser using your own monday.com session.</li>
-    <li><strong>Logging:</strong> our server logs technical events needed to operate the App through monday code's logger. Some log lines include your monday.com account ID and plan identifier; logs never include board content, names, email addresses, or phone numbers. Logs are kept according to monday code's log retention.</li>
+    <li>Every request is authenticated with a token signed by monday.com (a session token in the App, or a signed request for monday sidekick), and all stored data is scoped to your monday.com account.</li>
+    <li>We do not store monday.com access tokens. Each request carries a short-lived session token that we verify and do not keep. In the App, board reads, merges and AI review run in your browser using your own monday.com session. When monday sidekick runs a DedupeIQ skill, monday.com gives our server a short-lived token for that one request, limited to the App's permissions on your account; we use it only to read the boards named in the request and never store it.</li>
+    <li><strong>Logging:</strong> our server logs technical events needed to operate the App through monday code's logger. Some log lines include your monday.com account ID, plan identifier, board IDs and counts; logs never include board content, names, email addresses, or phone numbers. Logs are kept according to monday code's log retention.</li>
     <li><strong>Secrets:</strong> the App's own credentials (for example, the key used to verify monday.com session tokens) are kept in monday code's encrypted secret store, never in source code.</li>
     <li>If we become aware of a security incident affecting your data, we will notify monday.com within 24 hours and affected customers without undue delay (and within 72 hours where required by law).</li>
   </ul>
@@ -77,12 +97,14 @@
   <table>
     <thead><tr><th>Service</th><th>Purpose</th><th>Data involved</th></tr></thead>
     <tbody>
-      <tr><td>monday.com API (api.monday.com)</td><td>Reading your boards and performing merges you request, from your browser; and, from our server, checking your DedupeIQ plan and subscription status with monday.com</td><td>From your browser: your board data, accessed with your own monday.com permissions. From our server: your account ID and subscription status only (no board data)</td></tr>
+      <tr><td>monday.com API (api.monday.com)</td><td>Reading your boards and performing merges you request, from your browser; from our server, checking your DedupeIQ plan and subscription status, and, when monday sidekick runs a DedupeIQ skill, reading the boards named in that request</td><td>From your browser: your board data, accessed with your own monday.com permissions. From our server: your account ID and subscription status; for a sidekick request, the named boards' item names and name, email, phone and company columns, processed in memory and not stored</td></tr>
+      <tr><td>monday.com AI service (api.monday.com, AI review only)</td><td>Suggesting whether pairs you choose are the same person or company, when someone clicks AI review</td><td>Name, email, phone and company of the chosen pairs, sent from your browser; billed to your monday.com AI credits and processed by monday.com and its AI model providers under monday.com's terms</td></tr>
+      <tr><td>monday sidekick</td><td>Running DedupeIQ skills that someone on your team asks for in sidekick</td><td>The details sidekick passes to our server, and the answer our server returns (described in Section 1)</td></tr>
       <tr><td>monday.com app hosting (*.cdn2.monday.app for the interface; *.us.monday.app for our server)</td><td>Serving the App's interface, and hosting our server and database (monday code)</td><td>The stored identifiers, counts, and decisions described above</td></tr>
       <tr><td>monday.com billing</td><td>Plans, trials, and payments</td><td>Plan and subscription status (we never see payment details)</td></tr>
     </tbody>
   </table>
-  <p>The App uses no other third-party services, domains, analytics, or sub-processors. If this changes, we will update this Privacy Policy before the change takes effect.</p>
+  <p>Apart from monday.com (and the AI model providers monday.com uses for AI review under your agreement with monday.com), the App uses no other third-party services, domains, analytics, or sub-processors. If this changes, we will update this Privacy Policy before the change takes effect.</p>
 
   <h2>5. Data Retention</h2>
   <ul>
@@ -101,7 +123,7 @@
   <p>Because we do not store the contents of your boards, requests about a specific person's data (for example, a contact on your CRM board) are fulfilled in monday.com itself. We store no names, emails, or phone numbers that could be searched. We respond to all data requests within 30 days.</p>
 
   <h2>7. International Data Transfers</h2>
-  <p>Our server and database run in monday.com's United States region, so the identifiers described above are processed in the United States. Where the law requires it, such transfers rely on appropriate safeguards, such as Standard Contractual Clauses.</p>
+  <p>Our server and database run in monday.com's United States region, so the identifiers described above, and board content read in memory for monday sidekick requests, are processed in the United States. Where the law requires it, such transfers rely on appropriate safeguards, such as Standard Contractual Clauses.</p>
 
   <h2>8. Cookies and Tracking</h2>
   <p>The App does not use cookies, tracking pixels, or advertising technologies, and it does not store anything in your browser's local storage. Usage events are recorded on our own server as described above and contain no board content.</p>
