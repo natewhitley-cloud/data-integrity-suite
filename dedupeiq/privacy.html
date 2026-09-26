@@ -10,14 +10,14 @@
 <main>
   <h1>Privacy Policy</h1>
   <p class="app-name">DedupeIQ: Merge Duplicates for monday.com</p>
-  <p class="effective-date">Effective date: September 25, 2026</p>
+  <p class="effective-date">Effective date: September 26, 2026</p>
 
   <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of DedupeIQ ("the App"), collects, uses, stores, and protects information when you install and use the App through the monday.com platform. DedupeIQ finds duplicate and near-duplicate items on your monday.com boards, lets you review each match, and, only when you choose to, merges a confirmed pair by filling in the item you keep and archiving the other.</p>
 
   <p><strong>The short version:</strong> scanning, reviewing and merging run in your browser, and our servers <strong>never store</strong> the item names or column values on your boards. Our servers store only IDs, counts, match scores, your review decisions, merge records (IDs only), and your plan status. Two optional features process board content outside your browser, and only when someone on your team starts them:</p>
   <ul>
     <li><strong>AI review</strong> sends the name, email, phone and company of the pairs you choose to <strong>monday.com's AI service</strong>, which returns a suggested verdict. It does not go to our servers.</li>
-    <li><strong>DedupeIQ in monday sidekick</strong> asks our server to read the board you name and check it for duplicates or for a record you describe. Our server does this in memory, answers, and keeps nothing.</li>
+    <li><strong>DedupeIQ in monday sidekick</strong> asks our server to read the board you name and check it for duplicates or for a record you describe. Our server does this in memory, answers, and keeps no board content (it records only that the skill ran, as a usage event).</li>
   </ul>
 
   <h2>1. Information We Collect</h2>
@@ -38,7 +38,7 @@
   <h3>Data processed by monday.com's AI service (only when you use AI review)</h3>
   <ul>
     <li>When someone clicks AI review, the App sends the name, email address, phone number and company of the pairs they chose (up to 30 pairs per click) from their browser to monday.com's AI service, using their own monday.com session. No other columns, and no item or board IDs, are included.</li>
-    <li>monday.com's AI service returns a suggested verdict (likely the same, likely different, or unsure) and a short reason for each pair. These are shown in your browser only; they are not sent to or stored on our servers.</li>
+    <li>monday.com's AI service returns a suggested verdict (likely the same, likely different, or unsure) and a short reason for each pair. These are shown in your browser. If you then confirm or dismiss that pair, we store only the verdict label (same, different or unsure) with your decision, never the reason text or any board content.</li>
     <li>monday.com processes AI requests with its AI model providers under monday.com's own terms and agreements. DedupeIQ has no direct relationship with those providers and does not receive or keep the request or the response.</li>
   </ul>
 
@@ -52,9 +52,9 @@
   <h3>Data we store (on monday.com's infrastructure)</h3>
   <ul>
     <li><strong>Scan summaries:</strong> your monday.com account ID, the board ID(s) scanned, the number of items read, the total items on the boards, whether the scan reached your plan's record limit, match counts (overall and per board or board pair), and which column IDs were used for name, email, phone, and company.</li>
-    <li><strong>Review decisions:</strong> for each pair you confirm or dismiss, the two item IDs, the decision, the match band and confidence score, and the time. Undoing a decision deletes it.</li>
+    <li><strong>Review decisions:</strong> for each pair you confirm or dismiss, the two item IDs, the decision, the match band and confidence score, the time, and, when available, the AI review's verdict label and how similar each compared field was (a number from 0 to 100 per field, never the field's value). Undoing a decision deletes it.</li>
     <li><strong>Merge records:</strong> for each merge you perform, the item IDs involved (and, for a cross-board merge, the board of the archived item), the IDs of columns filled, chosen, or skipped, the match band, whether it was a bulk or cross-board merge, the time, and whether the archive step succeeded. No column values are recorded.</li>
-    <li><strong>Usage events:</strong> product events such as "scan run" or "upgrade prompt shown," with IDs and counts only.</li>
+    <li><strong>Usage events:</strong> product events such as "scan run," "upgrade prompt shown," "AI review used" (how many pairs, the verdict counts, and whether it succeeded) or "sidekick skill used" (which skill, whether it succeeded, and how long it took), with IDs and counts only.</li>
     <li><strong>Plan and subscription status:</strong> your current DedupeIQ plan, trial status, and related dates, as reported by monday.com's billing system. Plan limits (for example, scans this month or merges used in a trial) are calculated from your scan and merge records.</li>
     <li><strong>Rate-limit counters:</strong> a per-account daily count of database writes, used to protect the service from abuse.</li>
     <li><strong>Install and plan history:</strong> the date you installed the App and your plan-change history.</li>
@@ -68,7 +68,7 @@
     <li>Payment card or banking information (billing is handled entirely by monday.com)</li>
     <li>Tracking, advertising, or web-analytics data</li>
   </ul>
-  <p>Duplicate matching is performed by deterministic statistical comparison, not by AI. AI is used only in the two optional features above (AI review, and monday sidekick itself), both provided through monday.com's AI, which uses third-party model providers (such as OpenAI and Anthropic). We do not use your data to train AI or machine-learning models.</p>
+  <p>Duplicate matching is performed by deterministic statistical comparison, not by AI. AI is used only in the two optional features above (AI review, and monday sidekick itself), both provided through monday.com's AI, which uses third-party model providers (such as OpenAI and Anthropic). We do not use your board content to train AI or machine-learning models. We do use aggregate decision statistics, which contain no board content (for example, how often people confirm pairs with a given similarity score, or agree with AI review's verdict), to tune DedupeIQ's matching thresholds and AI review instructions.</p>
 
   <h2>2. How We Use Your Information</h2>
   <ul>
@@ -76,7 +76,7 @@
     <li><strong>Merging at your direction:</strong> merge records provide an audit trail of merges you performed.</li>
     <li><strong>Plans and limits:</strong> plan status and counters let us apply the features and limits of your plan.</li>
     <li><strong>Answering sidekick requests:</strong> reading the boards named in a monday sidekick request, in memory, only to return the answer.</li>
-    <li><strong>Improving the App:</strong> aggregate usage events (counts, not content) help us understand which features are used.</li>
+    <li><strong>Improving the App:</strong> aggregate usage events and decision statistics (counts and scores, not content) help us understand which features are used and make matching and AI review more accurate.</li>
     <li><strong>Support and operations:</strong> we review per-account usage metrics (for example, scan and merge counts, plan, and install date; never board content) to operate the App, provide support, and prevent abuse. After you uninstall, we keep only account-free daily totals (for example, the number of installs per day).</li>
   </ul>
   <p>We do not sell your data, and we do not use it for advertising, marketing, or profiling. DedupeIQ never merges or changes anything automatically: every merge is started by a member of your team.</p>
