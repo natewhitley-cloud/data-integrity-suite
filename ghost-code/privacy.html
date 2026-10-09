@@ -47,15 +47,15 @@
   <p>This session data is managed by Shopify's official session storage library and is required for the App to function within the Shopify Admin.</p>
 
   <h3>Store owner email address</h3>
-  <p>If your store receives the weekly summary email (see Section 2), we read your store owner's email address from the Shopify Admin API. Shopify describes this as the address it uses to communicate with the shop owner. Reading it does not require any additional scope. It is not your public customer-facing contact email, and it is not a staff member's email address.</p>
-  <p>We store a copy of this address on your shop record and refresh it from Shopify from time to time while the App is installed. We use it only to send the weekly summary email.</p>
+  <p>If your store receives the summary email (see Section 2), we read your store owner's email address from the Shopify Admin API. Shopify describes this as the address it uses to communicate with the shop owner. Reading it does not require any additional scope. It is not your public customer-facing contact email, and it is not a staff member's email address.</p>
+  <p>We store a copy of this address on your shop record and refresh it from Shopify from time to time while the App is installed. We use it only to send the summary email.</p>
 
   <h3>Information you provide</h3>
   <ul>
     <li><strong>Feedback</strong>: if you choose to use the in-app feedback form, we collect a satisfaction rating (1 to 5), your answers to up to three optional free-text questions, and an optional contact email address.</li>
     <li><strong>App name suggestions</strong>: if you suggest which app an unrecognized script belongs to, we store your suggestion for review.</li>
     <li><strong>Ignored findings</strong>: if you choose to ignore a finding, we store that choice and any optional note you add.</li>
-    <li><strong>Email preference</strong>: whether the weekly summary email is turned on or off for your store.</li>
+    <li><strong>Email preference</strong>: whether the summary email is turned on or off for your store.</li>
   </ul>
 
   <h3>Usage of the App</h3>
@@ -86,10 +86,11 @@
     <li><strong>Third-party script domains</strong>: for each scan we store the third-party domains your theme references and any unrecognized script URLs, with the file name, line number, and a short code snippet. We may analyze this data in aggregate across stores to improve how the App recognizes apps. This data is never sold, and it is deleted with the rest of your shop data as described in Section 6.</li>
     <li><strong>Feedback</strong>: we use feedback only to improve the App and, if you gave an email address, to reply to you.</li>
     <li><strong>Usage records</strong>: we use records of your use of the App's pages and prompts to operate and improve the App.</li>
-    <li><strong>App removal records</strong>: Shopify does not tell us which apps you install or remove. When a scan finds leftover code from an app that the previous scan of the same theme did not find, we infer that the app was removed. For each removal we detect, we store your shop ID, the theme ID, the app's name, the IDs of the scan that detected it and of the previous scan, the number of leftover items, its status (removed, cleaned up, or reinstalled), and when it was detected and last updated. Later scans update the status. These records contain no code and no personal data. We use them to show removed apps in the App and in the weekly summary email. Because this is an inference, it can miss a removal (for example, an app that left no code behind) or, rarely, report one that did not happen.</li>
+    <li><strong>App removal records</strong>: Shopify does not tell us which apps you install or remove. When an app was active in your store at one scan (its app embed was switched on in your theme, or it loaded through a storefront script tag) and is no longer active at the next scan of the same theme, while its code is still in your theme, we infer that the app is no longer active and record what it left behind. For each removal we detect, we store your shop ID, the theme ID, the app's name, the IDs of the scan that detected it and of the previous scan, the number of leftover items, its status (removed, cleaned up, or reinstalled), and when it was detected and last updated. Later scans update the status. These records contain no code and no personal data. We use them to show these apps in the App and in the summary email. Because this is an inference, it can miss a removal (for example, an app that left no code behind, or an app we cannot see as active) or, rarely, report one that did not happen (for example, if you only switched an app's embed off).</li>
+    <li><strong>Active apps at scan time</strong>: each scan stores the names of the apps it saw as active in your store (apps whose app embed was switched on, and apps loading through storefront script tags). We use this only to detect apps that are no longer active, as described above.</li>
     <li><strong>App signature fingerprints</strong>: each scan stores a fingerprint (hash) of each of the App's built-in app signatures as they were when the scan ran. These describe our own detection rules, not your store. We use them so that an update to our rules is never mistaken for an app removal.</li>
-    <li><strong>Weekly summary email</strong>: once a week, we email your store owner's email address a summary of what changed in your scans. [PLAN CHOICE, decide 2026-10-16, keep one: "Stores on the Standard and Professional plans receive it. Free plan stores do not." OR "Stores on every plan, including Free, receive it."] The email contains your myshopify domain, the apps we detected as removed since the previous email (each with the number of items it left behind, or a note that they were cleaned up), the number of new findings and fixed findings, a link to the App in your Shopify admin, and an unsubscribe link. [INCLUDE ONLY IF SHIPPED: "It may also say which of your apps are affected by Shopify's script tag deadline."] It does not contain code snippets, theme file names, or any customer data. We send at most one weekly summary email per store each week. [EMPTY-WEEK CHOICE, decide 2026-10-16, keep one: "If nothing changed that week, we do not send one." OR "If nothing changed that week, we send a short email saying so."]</li>
-    <li><strong>Weekly summary email records</strong>: for each weekly summary email we send, we store your shop ID, the recipient email address, the time it was sent, and the counts it reported. We use these records to avoid sending duplicate emails and to confirm what was sent. We also store a random unsubscribe code on your shop record so the unsubscribe link in each email works.</li>
+    <li><strong>Summary email</strong>: after each scheduled scan, we email your store owner's email address a summary of what changed in your scans. On the Professional plan this is weekly; on the Standard plan it is monthly. [FREE PLAN CHOICE, decide 2026-10-16, keep one: "Free plan stores do not receive it." OR "Free plan stores receive it after a scan they run, at most once a month."] The email contains your myshopify domain, the apps we detected as no longer active since the previous email (each with the number of items it left behind, or a note that they were cleaned up), the number of new findings and fixed findings, a link to the App in your Shopify admin, and an unsubscribe link. [INCLUDE ONLY IF SHIPPED: "It may also say which of your apps are affected by Shopify's script tag deadline."] It does not contain code snippets, theme file names, or any customer data. We send at most one summary email per store for each scheduled scan. [EMPTY-PERIOD CHOICE, decide 2026-10-16, keep one: "If nothing changed, we do not send one." OR "If nothing changed, we send a short email saying so."]</li>
+    <li><strong>Summary email records</strong>: for each summary email we send, we store your shop ID, the recipient email address, the time it was sent, and the counts it reported. We use these records to avoid sending duplicate emails and to confirm what was sent. We also store a random unsubscribe code on your shop record so the unsubscribe link in each email works.</li>
     <li><strong>Subscription management</strong> — We store your current billing plan to gate features appropriately.</li>
     <li><strong>App functionality</strong> — We use your shop domain and session data to authenticate requests and deliver the App within the Shopify Admin.</li>
   </ul>
@@ -138,8 +139,8 @@
       </tr>
       <tr>
         <td><a href="https://resend.com/legal/privacy-policy">Resend</a></td>
-        <td>Transactional email: notifications to the operator (feedback notifications, operational alerts) and the weekly summary email to your store owner</td>
-        <td>For operator notifications: feedback rating and answers you submit, and your shop domain (not the feedback contact email you give us). For the weekly summary email: your store owner's email address and the email content described in Section 2</td>
+        <td>Transactional email: notifications to the operator (feedback notifications, operational alerts) and the summary email to your store owner</td>
+        <td>For operator notifications: feedback rating and answers you submit, and your shop domain (not the feedback contact email you give us). For the summary email: your store owner's email address and the email content described in Section 2</td>
       </tr>
     </tbody>
   </table>
@@ -154,11 +155,11 @@
     <li><strong>Technical error reports</strong>: deleted after 30 days.</li>
     <li><strong>Feedback</strong>: kept until your shop data is deleted.</li>
     <li><strong>App removal records</strong>: kept until your shop data is deleted. A record is not deleted if the app is reinstalled; its status changes instead.</li>
-    <li><strong>Weekly summary email records and your stored store owner email address</strong>: kept until your shop data is deleted.</li>
+    <li><strong>Summary email records and your stored store owner email address</strong>: kept until your shop data is deleted.</li>
     <li><strong>On uninstall</strong>: your sessions and Shopify access tokens are deleted immediately, and your shop is marked as uninstalled. The rest of your data is kept until Shopify sends a shop data erasure (<code>shop/redact</code>) request, which Shopify sends 48 hours after you uninstall. If you reinstall before then, your existing data is still available.</li>
-    <li><strong>Shop data erasure</strong>: when we receive the <code>shop/redact</code> request, we permanently delete all data associated with your shop, including scans, findings, script domain records, feedback, usage records, app removal records, weekly summary email records, and your shop record (including the stored store owner email address and unsubscribe code).</li>
+    <li><strong>Shop data erasure</strong>: when we receive the <code>shop/redact</code> request, we permanently delete all data associated with your shop, including scans, findings, script domain records, feedback, usage records, app removal records, summary email records, and your shop record (including the stored store owner email address and unsubscribe code).</li>
     <li><strong>Email copies</strong>: feedback notifications and operational alerts already delivered to our inbox are not part of the App's database and are not removed by this automated deletion. Contact us to have them deleted.</li>
-    <li><strong>Weekly summary emails you received</strong>: emails already delivered to your store owner's inbox are outside our control and are not removed by this automated deletion.</li>
+    <li><strong>Summary emails you received</strong>: emails already delivered to your store owner's inbox are outside our control and are not removed by this automated deletion.</li>
     <li><strong>Aggregate statistics</strong>: summary counts that do not identify your store (for example, total scans across all stores) may be kept after your data is deleted.</li>
   </ul>
 
@@ -169,7 +170,7 @@
     <li><strong>Deletion</strong>: uninstalling the App deletes your sessions immediately and all remaining shop data when Shopify sends the <code>shop/redact</code> request 48 hours later (see Section 6). You can also contact us to request deletion without uninstalling.</li>
     <li><strong>Data portability</strong> — Contact us to request an export of your stored data.</li>
     <li><strong>Correction</strong> — Contact us if you believe any stored data is inaccurate.</li>
-    <li><strong>Opt out of the weekly summary email</strong>: the email is on by default for stores that receive it. Turn it off at any time in the App's Settings page, or use the one-click unsubscribe link in any weekly summary email. Unsubscribing stops only this email. It does not change your plan or your scans.</li>
+    <li><strong>Opt out of the summary email</strong>: the email is on by default for stores that receive it. Turn it off at any time in the App's Settings page, or use the one-click unsubscribe link in any summary email. Unsubscribing stops only this email. It does not change your plan or your scans.</li>
   </ul>
   <p>We respond to all data requests within 30 days.</p>
 
