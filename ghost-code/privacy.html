@@ -21,8 +21,8 @@
   <p>When you install the App, we access the following through the Shopify Admin API using the <code>read_themes</code> scope:</p>
   <ul>
     <li><strong>Theme files</strong> — Liquid templates, sections, snippets, and layout files from your published theme. We access these files in read-only mode to scan for orphaned code left by previously uninstalled apps.</li>
-    <li><strong>Theme metadata</strong> — Theme name and ID to identify which theme was scanned.</li>
-    <li><strong>Store domain</strong>: your store's primary domain, used to find your public storefront homepage (see below).</li>
+    <li><strong>Theme metadata</strong> — Theme name, ID, and role (whether it is your published theme) to identify which theme was scanned.</li>
+    <li><strong>Store domain</strong>: your store's primary domain and myshopify.com domain, used to find your public storefront homepage (see below).</li>
   </ul>
   <p>We do not request write access to your themes. We do not modify any theme files.</p>
 
@@ -38,7 +38,7 @@
   <p>If you do not grant a scope, the App skips the checks that depend on it.</p>
 
   <h3>Your public storefront homepage</h3>
-  <p>When the App scans your published theme, our server loads your store's public homepage once, the same page any visitor sees. If your homepage redirects, the App follows up to 3 redirects, and only to your store's own domains. From the page we read only the list of script addresses that Shopify adds for your installed apps ("script tags"). We do not log in, submit forms, or send cookies. We do not collect information about your visitors or customers. If your storefront is password-protected, the App does not try to get past the password page and skips this check.</p>
+  <p>When the App scans your published theme, our server loads your store's public homepage once per scan (again only if that step is retried after an error), the same page any visitor sees. If your homepage redirects, the App follows up to 3 redirects, and only to your primary domain or your myshopify.com domain. If it redirects anywhere else, the App skips this check. We use the page only to find the list of script addresses that Shopify adds for your installed apps ("script tags") and to confirm it is a Shopify page that is not password-protected. Our requests identify themselves with the User-Agent <code>GhostCode/1.0 (+https://alpenglowsoftware.com)</code>. We do not log in, submit forms, or send cookies. We do not collect information about your visitors or customers. If your storefront is password-protected, the App does not try to get past the password page and skips this check.</p>
 
   <h3>Data collected through Shopify session</h3>
   <p>Shopify provides the following data as part of the standard app authentication process:</p>
@@ -90,7 +90,7 @@
     <li><strong>Scan results</strong> — We store findings (file name, line number, a short code snippet of up to 300 characters, severity, and the identified app name) so you can review results in the App.</li>
     <li><strong>Optional-scope findings</strong>: for checks that use an optional scope, findings store short excerpts (up to 300 characters) and identifiers such as tag names, product or page handles, metafield keys with short value excerpts, and redirect paths. Full product, page, translation, and redirect data is not stored.</li>
     <li><strong>Third-party script domains</strong>: for each scan we store the third-party domains your theme references and any unrecognized script URLs, with the file name, line number, and a short code snippet. We may analyze this data in aggregate across stores to improve how the App recognizes apps. This data is never sold, and it is deleted with the rest of your shop data as described in Section 6.</li>
-    <li><strong>Storefront script tags</strong>: for each scan we store the web addresses of the scripts that Shopify loads on your storefront for your apps, with query strings and fragments removed and each address shortened to 300 characters, along with the app we identify for each one. These addresses belong to third-party apps and may contain identifiers those apps use for your store. Identifiers for files stored on Shopify's own servers are removed. We use them to warn you about apps that will stop working when Shopify stops running script tags on March 1, 2027. This data is deleted with the rest of your shop data as described in Section 6.</li>
+    <li><strong>Storefront script tags</strong>: for each scan we store the web addresses of the scripts that Shopify loads on your storefront for your apps, with query strings and fragments removed, kept in a short excerpt of up to 300 characters per app, along with the app we identify for each one. These addresses belong to third-party apps and may contain identifiers those apps use for your store. Your store's file ID in addresses on Shopify's CDN (cdn.shopify.com) is removed. We use them to warn you about apps that will stop working when Shopify stops running script tags on March 1, 2027. This data is deleted with the rest of your shop data as described in Section 6.</li>
     <li><strong>Feedback</strong>: we use feedback only to improve the App and, if you gave an email address, to reply to you.</li>
     <li><strong>Usage records</strong>: we use records of your use of the App's pages and prompts to operate and improve the App.</li>
     <li><strong>App removal records</strong>: Shopify does not tell us which apps you install or remove. When an app was active in your store at one scan (its app embed was switched on in your theme, or it loaded through a storefront script tag) and is no longer active at the next scan of the same theme, while its code is still in your theme, we infer that the app is no longer active and record what it left behind. For each removal we detect, we store your shop ID, the theme ID, the app's name, the IDs of the scan that detected it and of the previous scan, the number of leftover items, its status (removed, cleaned up, or reinstalled), and when it was detected and last updated. Later scans update the status. These records contain no code and no personal data. We use them to show these apps in the App and in the summary email. Because this is an inference, it can miss a removal (for example, an app that left no code behind, or an app we cannot see as active) or, rarely, report one that did not happen (for example, if you only switched an app's embed off).</li>
@@ -139,7 +139,7 @@
       <tr>
         <td>Your Shopify storefront</td>
         <td>Reading your public homepage for script tags</td>
-        <td>A standard HTTPS request from our server (our server's IP address and User-Agent); no store or customer data is sent</td>
+        <td>A standard HTTPS request from our server (our server's IP address and the User-Agent <code>GhostCode/1.0 (+https://alpenglowsoftware.com)</code>); no store or customer data is sent</td>
       </tr>
       <tr>
         <td><a href="https://www.inngest.com/privacy">Inngest</a></td>
