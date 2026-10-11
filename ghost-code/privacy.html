@@ -91,6 +91,7 @@
     <li><strong>App signature fingerprints</strong>: each scan stores a fingerprint (hash) of each of the App's built-in app signatures as they were when the scan ran. These describe our own detection rules, not your store. We use them so that an update to our rules is never mistaken for an app removal.</li>
     <li><strong>Summary email</strong>: after each scheduled scan, we email your store owner's email address a summary of what changed in your scans. On the Professional plan this is weekly; on the Standard plan it is monthly. Free plan stores do not receive it. The email contains your store name (or your myshopify domain if no name is available), the apps we detected as no longer active since the previous summary (or, for your first summary, since the previous scan), each with the number of items it left behind or a note that they were cleaned up, the number of new findings, fixed findings, and findings still in your theme, a link to the App in your Shopify admin, an unsubscribe link, and our company name, logo, and contact email. The logo image is loaded from our website when you open the email. It does not contain code snippets, theme file names, or any customer data. We send at most one summary email per store for each scheduled scan. If nothing changed since the previous summary (no new or fixed findings, and no app newly inactive or cleaned up), we do not send one.</li>
     <li><strong>Summary email records</strong>: for each summary email we send, we store your shop ID, the ID of the scan it summarized, the recipient email address, the time it was sent, the counts it reported, and a fingerprint (hash) of what it reported. We use these records to avoid sending duplicate emails and to confirm what was sent. We also store a random unsubscribe code on your shop record so the unsubscribe link in each email works.</li>
+    <li><strong>Store speed report</strong>: on the Professional plan, once a week and when you click Run now (at most once a day), we ask Google PageSpeed Insights to test your storefront homepage and one product page. We send Google only the public addresses (URLs) of those pages; Google's servers then load the pages the way a visitor would. Because of that, the test can appear as a visit in your store's analytics. We store a summary of each test: the speed scores and timings, page weight and request counts, and how much time and data each app or third-party service on the page used. We do not store the pages' content. If your storefront is password protected, the test cannot run and we record only that.</li>
     <li><strong>Subscription management</strong> — We store your current billing plan to gate features appropriately.</li>
     <li><strong>App functionality</strong> — We use your shop domain and session data to authenticate requests and deliver the App within the Shopify Admin.</li>
   </ul>
@@ -138,6 +139,11 @@
         <td>All stored data (encrypted)</td>
       </tr>
       <tr>
+        <td><a href="https://policies.google.com/privacy">Google PageSpeed Insights</a></td>
+        <td>Store speed report (Professional plan)</td>
+        <td>The public URLs of your storefront homepage and one product page. No theme files, credentials, or personal data</td>
+      </tr>
+      <tr>
         <td><a href="https://resend.com/legal/privacy-policy">Resend</a></td>
         <td>Transactional email: notifications to the operator (feedback notifications, operational alerts) and the summary email to your store owner</td>
         <td>For operator notifications: feedback rating and answers you submit, and your shop domain (not the feedback contact email you give us). For the summary email: your store owner's email address and the email content described in Section 2</td>
@@ -155,9 +161,10 @@
     <li><strong>Technical error reports</strong>: deleted after 30 days.</li>
     <li><strong>Feedback</strong>: kept until your shop data is deleted.</li>
     <li><strong>App removal records</strong>: kept until your shop data is deleted. A record is not deleted if the app is reinstalled; its status changes instead.</li>
+    <li><strong>Store speed reports</strong>: kept until your shop data is deleted.</li>
     <li><strong>Summary email records and your stored store owner email address and store name</strong>: kept until your shop data is deleted.</li>
     <li><strong>On uninstall</strong>: your sessions and Shopify access tokens are deleted immediately, and your shop is marked as uninstalled. The rest of your data is kept until Shopify sends a shop data erasure (<code>shop/redact</code>) request, which Shopify sends 48 hours after you uninstall. If you reinstall before then, your existing data is still available.</li>
-    <li><strong>Shop data erasure</strong>: when we receive the <code>shop/redact</code> request, we permanently delete all data associated with your shop, including scans, findings, script domain records, feedback, usage records, app removal records, summary email records, and your shop record (including the stored store owner email address, store name, and unsubscribe code).</li>
+    <li><strong>Shop data erasure</strong>: when we receive the <code>shop/redact</code> request, we permanently delete all data associated with your shop, including scans, findings, script domain records, feedback, usage records, app removal records, store speed reports, summary email records, and your shop record (including the stored store owner email address, store name, and unsubscribe code).</li>
     <li><strong>Email copies</strong>: feedback notifications and operational alerts already delivered to our inbox are not part of the App's database and are not removed by this automated deletion. Contact us to have them deleted.</li>
     <li><strong>Summary emails you received</strong>: emails already delivered to your store owner's inbox are outside our control and are not removed by this automated deletion.</li>
     <li><strong>Aggregate statistics</strong>: summary counts that do not identify your store (for example, total scans across all stores) may be kept after your data is deleted.</li>
