@@ -10,7 +10,7 @@
 <main>
   <h1>Privacy Policy</h1>
   <p class="app-name">Tax Integrity Monitor — Shopify Tax Discrepancy Scanner</p>
-  <p class="effective-date">Effective date: April 1, 2026</p>
+  <p class="effective-date">Effective date: October 16, 2026</p>
 
   <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of Tax Integrity Monitor ("the App") collects, uses, stores, and protects information when you install and use the App through the Shopify platform.</p>
 
@@ -40,7 +40,18 @@
   <ul>
     <li><strong>Nexus states</strong> — US states where you have declared sales tax registration. You provide this information voluntarily through the App's settings to enable unregistered collection detection.</li>
     <li><strong>Monitoring preferences</strong> — Scan frequency and notification settings.</li>
+    <li><strong>Feedback</strong>: if you choose to use the in-app feedback form, we collect a satisfaction rating (1 to 5), your answers to up to three optional free-text questions, and an optional contact email address. You can submit the form more than once.</li>
   </ul>
+
+  <h3>Usage of the App</h3>
+  <p>The App records your use of its own pages so we can operate and improve it. These are server-side records kept in our own database and linked to your shop:</p>
+  <ul>
+    <li>Whether in-app prompts (for example, the feedback prompt, an upgrade preview, or a request to leave a review) were shown to you, clicked, dismissed, or completed. We also store on your shop record when each prompt was first shown, clicked, dismissed, or completed, so the App shows each prompt at the right time.</li>
+    <li>Which setup steps you have completed (running your first scan, reviewing results, setting up your nexus states, and turning on monitoring).</li>
+    <li>App events such as plan changes, reinstalls, and nexus re-checks.</li>
+    <li>Technical error reports when something in the App fails: an error code and message. We remove email addresses, IP addresses, tokens, and similar identifiers from these reports before storing them.</li>
+  </ul>
+  <p>This does not use cookies or third-party analytics tools, and it does not record anything outside the App's own pages.</p>
 
   <h3>Data we do NOT collect</h3>
   <ul>
@@ -48,7 +59,7 @@
     <li>Payment card or banking information</li>
     <li>Product catalog or inventory data</li>
     <li>Theme or storefront code</li>
-    <li>Analytics or visitor behavior data</li>
+    <li>Storefront visitor analytics or behavior data</li>
     <li>Marketing or advertising data</li>
   </ul>
   <p>We do not use AI or machine learning to process your data.</p>
@@ -60,8 +71,11 @@
     <li><strong>Scan results</strong> — We store findings (order ID, order name, finding type, jurisdiction, expected tax, actual tax, discrepancy amount, and severity) so you can review results in the App's dashboard.</li>
     <li><strong>Subscription management</strong> — We store your current billing plan to gate features appropriately.</li>
     <li><strong>App functionality</strong> — We use your shop domain and session data to authenticate requests and deliver the App within the Shopify Admin.</li>
+    <li><strong>Feedback</strong>: we use feedback only to improve the App and, if you gave an email address, to reply to you.</li>
+    <li><strong>Usage records</strong>: we use records of your use of the App's pages, prompts, and setup steps to operate and improve the App.</li>
+    <li><strong>Operator notifications</strong>: we email ourselves (the App's operator, never you or your customers) a notification when feedback is submitted, a daily operational summary, and an alert if a shop data erasure request fails. The feedback notification contains your rating and free-text answers and says only whether you left a contact email, not the address itself. The daily summary contains activity counts and setup progress per store (installs, plan, scans, amounts found, prompt activity), feedback ratings and the number of submissions with a contact email, and error codes. These emails identify your store only by an internal ID, never by your store domain, and never include the feedback contact email address.</li>
   </ul>
-  <p>For the purposes of applicable data protection laws, you (the merchant) are the data controller for the order and business data you make available through the App. Alpenglow Software LLC acts as a data processor, processing this data solely on your behalf and as described in this policy. For any data we collect directly from you (such as support communications or nexus configuration you provide), we act as an independent data controller.</p>
+  <p>For the purposes of applicable data protection laws, you (the merchant) are the data controller for the order and business data you make available through the App. Alpenglow Software LLC acts as a data processor, processing this data solely on your behalf and as described in this policy. For any data we collect directly from you (such as support communications, feedback, or nexus configuration you provide), we act as an independent data controller.</p>
 
   <h2>3. How We Process Order Data</h2>
   <p>Your order data is processed as follows:</p>
@@ -104,6 +118,11 @@
         <td>Application and database hosting</td>
         <td>All stored data (encrypted)</td>
       </tr>
+      <tr>
+        <td><a href="https://resend.com/legal/privacy-policy">Resend</a> (Resend, Inc.)</td>
+        <td>Transactional email: notifications to the operator (feedback notifications, the daily operational summary, and operational alerts)</td>
+        <td>Your feedback rating and free-text answers, and the daily summary content described in Section 2. Your store is identified only by an internal ID. Not your store domain, and not the feedback contact email you give us</td>
+      </tr>
     </tbody>
   </table>
 
@@ -113,8 +132,11 @@
   <h2>6. Data Retention</h2>
   <ul>
     <li><strong>While installed</strong> — Scan results, findings, and shop data are retained for as long as the App is installed on your store.</li>
-    <li><strong>On uninstall</strong> — All data associated with your shop is permanently deleted immediately and automatically. This includes: sessions, scans, findings, nexus configuration, and your shop record. Deletion is atomic and irreversible.</li>
-    <li><strong>GDPR shop/redact</strong> — If Shopify sends a shop data erasure request, all shop data is deleted within 48 hours.</li>
+    <li><strong>Feedback</strong>: deleted 365 days after you submit it, or earlier when you uninstall the App or your shop data is erased.</li>
+    <li><strong>Usage records and technical error reports</strong>: deleted after 90 days, or earlier when you uninstall the App or your shop data is erased.</li>
+    <li><strong>On uninstall</strong>: your sessions are deleted immediately, along with your feedback and usage records, and any pending or in-progress scans are cancelled. Your shop is marked as uninstalled. Your scans, findings, nexus configuration, and shop record are kept until Shopify sends a shop data erasure (<code>shop/redact</code>) request, which Shopify sends 48 hours after you uninstall. If you reinstall before then, your existing data is still available.</li>
+    <li><strong>Shop data erasure</strong>: when we receive the <code>shop/redact</code> request, we permanently delete all data associated with your shop, including scans, findings, nexus configuration, feedback, usage records, and your shop record.</li>
+    <li><strong>Email copies</strong>: feedback notifications, daily operational summaries, and operational alerts already delivered to our inbox are not part of the App's database and are not removed by this automated deletion. They identify your store only by an internal ID, which can no longer be linked to your store once your shop record is deleted. Contact us to have them deleted.</li>
   </ul>
 
   <h2>7. Your Rights</h2>
@@ -131,7 +153,7 @@
   <p>Your data is processed and stored on servers located in the United States. By using the App, you consent to the transfer of your data to the United States for processing.</p>
 
   <h2>9. Cookies and Tracking</h2>
-  <p>The App does not use cookies, tracking pixels, or any analytics or advertising technologies. We do not track your behavior within the Shopify Admin.</p>
+  <p>The App does not use cookies, tracking pixels, or any third-party analytics or advertising technologies. The App records your use of its own pages on our servers to operate and improve it, as described in Section 1. It does not track your activity elsewhere in the Shopify Admin.</p>
 
   <h2>10. Children's Privacy</h2>
   <p>The App is designed for use by Shopify merchants (business users) and is not directed at children under 13. We do not knowingly collect data from children.</p>
