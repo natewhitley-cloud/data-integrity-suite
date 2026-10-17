@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — Tax Integrity Monitor</title>
+  <title>Privacy Policy: TaxDelta</title>
   <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 <main>
   <h1>Privacy Policy</h1>
-  <p class="app-name">Tax Integrity Monitor — Shopify Tax Discrepancy Scanner</p>
+  <p class="app-name">TaxDelta: Shopify Tax Discrepancy Scanner</p>
   <p class="effective-date">Effective date: October 16, 2026</p>
 
-  <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of Tax Integrity Monitor ("the App") collects, uses, stores, and protects information when you install and use the App through the Shopify platform.</p>
+  <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of TaxDelta (formerly Tax Integrity Monitor) ("the App") collects, uses, stores, and protects information when you install and use the App through the Shopify platform.</p>
 
   <h2>1. Information We Collect</h2>
 
   <h3>Data from Shopify APIs</h3>
   <p>When you install the App, we access the following through the Shopify Admin API:</p>
   <ul>
-    <li><strong>Order data</strong> (<code>read_orders</code> scope) — Order names, IDs, tax line amounts, tax line rates, tax line titles (jurisdiction names), refund amounts, refund tax details, financial status, and currency. We access order data in <strong>read-only mode</strong> to scan for tax discrepancies caused by partial refunds, undercollection, and collection in unregistered jurisdictions.</li>
+    <li><strong>Order data</strong> (<code>read_orders</code> scope) — Order names, IDs, tax line amounts, tax line rates, tax line titles (jurisdiction names), refund amounts, refund tax details, financial status, and currency. We also read whether an order is marked tax exempt, the order's subtotal and line item subtotals, the currency the customer paid in (presentment currency), and the order's total tax in both your store currency and the presentment currency. We access order data in <strong>read-only mode</strong> to scan for tax discrepancies caused by partial refunds, undercollection, and collection in unregistered jurisdictions.</li>
     <li><strong>Full order history</strong> (<code>read_all_orders</code> scope, if approved) — Same data as above but beyond the standard 60-day window. This protected scope requires separate approval from Shopify's Partner team and enables historical tax audits.</li>
   </ul>
   <p>Access to full order history requires that Shopify has approved the <code>read_all_orders</code> protected scope for the App and that you have installed the App with this scope enabled. You may revoke this access at any time by reinstalling the App without granting the scope. The standard <code>read_orders</code> scope (60-day window) remains active regardless.</p>
@@ -67,8 +67,8 @@
   <h2>2. How We Use Your Information</h2>
   <p>We use the data we collect solely to provide and improve the App's services:</p>
   <ul>
-    <li><strong>Tax discrepancy scanning</strong> — We analyze order and refund data to detect tax overpayment from partial refunds, undercollection relative to known state base rates, and accidental tax collection in states where you are not registered.</li>
-    <li><strong>Scan results</strong> — We store findings (order ID, order name, finding type, jurisdiction, expected tax, actual tax, discrepancy amount, and severity) so you can review results in the App's dashboard.</li>
+    <li><strong>Tax discrepancy scanning</strong> — We analyze order and refund data to detect tax overpayment from partial refunds, undercollection relative to known state base rates, and accidental tax collection in states where you are not registered. We also flag orders that tax filing software may report incorrectly: tax exempt orders, and orders with US state tax in a currency other than US dollars.</li>
+    <li><strong>Scan results</strong> — We store findings (order ID, order name, finding type, jurisdiction, expected tax, actual tax, discrepancy amount, and severity) so you can review results in the App's dashboard. For tax exempt orders, a finding also stores the order's subtotal and any tax charged. For orders with US state tax where your store currency or the presentment currency is not US dollars, a finding also stores the store and presentment currencies and the order's total tax in each.</li>
     <li><strong>Subscription management</strong> — We store your current billing plan to gate features appropriately.</li>
     <li><strong>App functionality</strong> — We use your shop domain and session data to authenticate requests and deliver the App within the Shopify Admin.</li>
     <li><strong>Feedback</strong>: we use feedback only to improve the App and, if you gave an email address, to reply to you.</li>
@@ -137,6 +137,7 @@
     <li><strong>On uninstall</strong>: your sessions are deleted immediately, along with your feedback and usage records, and any pending or in-progress scans are cancelled. Your shop is marked as uninstalled. Your scans, findings, nexus configuration, and shop record are kept until Shopify sends a shop data erasure (<code>shop/redact</code>) request, which Shopify sends 48 hours after you uninstall. If you reinstall before then, your existing data is still available.</li>
     <li><strong>Shop data erasure</strong>: when we receive the <code>shop/redact</code> request, we permanently delete all data associated with your shop, including scans, findings, nexus configuration, feedback, usage records, and your shop record.</li>
     <li><strong>Email copies</strong>: feedback notifications, daily operational summaries, and operational alerts already delivered to our inbox are not part of the App's database and are not removed by this automated deletion. They identify your store only by an internal ID, which can no longer be linked to your store once your shop record is deleted. Contact us to have them deleted.</li>
+    <li><strong>Aggregate statistics</strong>: we keep a separate log of App events: installs, scans started, completed, or failed, plan changes, and uninstalls. Each entry stores the event type, its date, your plan at the time (and, for a plan change, the previous plan), the scan type, whether the scan was an automatic re-check, and, for completed scans, the number of findings and the total discrepancy amount found. Entries do not contain your store domain. Instead, each carries a one-way hash of your store domain combined with a random value stored on your shop record. When your shop data is erased, that random value is deleted with your shop record, so these entries can no longer be linked to your store. These entries are not deleted on uninstall or shop data erasure and are kept indefinitely so we can measure how the App is used across all stores.</li>
   </ul>
 
   <h2>7. Your Rights</h2>
