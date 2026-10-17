@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy: PostroomIQ</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="app-name">PostroomIQ: Email to Board</p>
+  <p class="effective-date">Effective date: October 17, 2026</p>
+
+  <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of PostroomIQ ("the App"), collects, uses, stores, and protects information when you install and use the App through the monday.com platform. PostroomIQ gives your monday.com account one or more intake email addresses. Emails sent or forwarded to an intake address (for example, purchase orders, invoices, or sales leads) are read by an AI model, and the App creates or updates an item on the monday.com board you chose, with the extracted fields filled in. Items the App is unsure about go to a review queue for a person on your team.</p>
+
+  <p><strong>The short version:</strong> to do its job, the App processes the content of the emails your team sends to its intake addresses. That content passes through three services: <strong>Resend</strong> (which receives the email), <strong>Anthropic</strong> (whose Claude AI models read it), and <strong>monday.com</strong> (which hosts our server and your boards). We store the values extracted from each email and processing records so you can review them, we delete processing records after 12 months, and we delete what we store for your account when you uninstall, except a few small records described in Section 5. We do not sell or share your data, we do not use it for advertising, and we do not use it to train AI models. Our <a href="dpa.html">Data Processing Addendum</a> applies to the personal data we process for you.</p>
+
+  <h2>1. Information We Collect</h2>
+
+  <h3>Permissions (monday.com OAuth scopes)</h3>
+  <p>The App asks for these monday.com permissions when it is installed, and each user who sets up an intake address connects their own monday.com account to the App:</p>
+  <ul>
+    <li><strong><code>boards:read</code></strong>: to read the columns of the boards you connect (so values go into the right columns), to find an item the App itself created if a write is interrupted and retried, and, when the optional lookup-board feature is available and you choose a lookup board, to read that board's items so extracted values can be matched against them (for example, a customer or vendor list).</li>
+    <li><strong><code>boards:write</code></strong>: to create the board and columns you ask the setup wizard to create, and to create and update items from the emails your intake addresses receive.</li>
+    <li><strong><code>updates:read</code> and <code>updates:write</code></strong>: to post the original email's text as an update on its item, and to check whether that update was already posted.</li>
+    <li><strong><code>assets:read</code></strong>: to check which files are already attached to an item, so a re-run does not attach a file twice.</li>
+    <li><strong><code>workspaces:read</code></strong>: to let you choose the workspace for a new board.</li>
+    <li><strong><code>account:read</code> and <code>me:read</code></strong>: to identify your monday.com account and the user who is setting up the App.</li>
+  </ul>
+
+  <h3>Information from monday.com</h3>
+  <ul>
+    <li>Your monday.com account ID, the IDs of users who use the App, and whether a user is an admin, guest, or view-only member (from the session token monday.com gives the App).</li>
+    <li>Install, uninstall, and plan events for your account.</li>
+    <li>Your account's plan: the monday.com plan ID of your PostroomIQ subscription and the plan it maps to (for example, Free or Pro). We read it from monday.com when your subscription changes and re-check it regularly, normally once a day.</li>
+    <li>For each user who connects the App: a monday.com access token and refresh token, so the App can write items to your boards when an email arrives and no one is signed in. See Section 3 for how these are protected.</li>
+    <li>Board columns, and the items, files, and updates the App itself created, read when the App writes to your board. If you use the optional lookup-board feature once it is available, item names and column values from the lookup board you choose, read when an email is processed and sent to the AI model as context for matching (see Section 4). We do not store board content we read on our servers, apart from the status label of an item the App created, kept so a review can restore it.</li>
+  </ul>
+
+  <h3>Information you give us in the App</h3>
+  <ul>
+    <li>Your intake address settings: the address, the email type (template) it handles, the board and column mapping, the company name you enter as the board owner, and the ID of the user who created it. The company name is sent to the AI model so it can tell your company apart from the other party in an email.</li>
+    <li>Approved senders: the email domains (or, for free-mail providers such as gmail.com, the exact addresses) your team has approved, so emails from them are trusted. When you set up the App, the email address of the person setting it up is also stored as an approved sender, so their test emails are recognized; we record that user's ID with it. If an account admin marks a sender whose address resembles an approved one as the same company, we also record which admin did so, when, and the approved sender it resembled.</li>
+    <li>The user IDs of the people who review items.</li>
+  </ul>
+
+  <h3>Emails sent to your intake addresses</h3>
+  <p>Anyone who knows an intake address can send email to it. When an email arrives, the App processes:</p>
+  <ul>
+    <li><strong>The email itself:</strong> its sender, recipients, date, subject, text, and attachments. These may contain personal data about the sender and about other people (for example, names, business addresses, phone numbers, and email addresses on an invoice, purchase order, or sales lead).</li>
+    <li><strong>Delivery details:</strong> Resend's message ID, the email's Message-ID, the time it was received, the sender's address, and whether the sender's domain passed email authentication checks (SPF, DKIM, and DMARC).</li>
+    <li><strong>Gmail forwarding codes:</strong> if you set up forwarding from Gmail, the numeric confirmation code from Google's confirmation email, so the App can show it to you.</li>
+  </ul>
+  <p>We do not store a copy of the email itself. The App fetches the email and its attachments from Resend each time it processes the email, holds them in memory only while it does, and then discards them. Our email provider, Resend, keeps every received email for 30 days (see Section 4).</p>
+
+  <h3>Information the App creates</h3>
+  <ul>
+    <li><strong>Extraction results:</strong> for each email, the field values the AI model extracted, its confidence in each value, the short passage of the email it based each value on, the item name, any review flags (for example, "unknown sender" or "bank details present"), the model's short reason for how it classified the email, which AI model was used, how much it was used (tokens and pages), and the prompt version. The App is designed not to store full tax ID numbers or bank account or routing numbers: tax ID fields are reduced to their last 4 digits, bank numbers are never extracted, and other text is masked using patterns that recognize these numbers.</li>
+    <li><strong>Email thread records:</strong> to recognize replies and re-sent documents, the App stores one-way codes (hashes) made from each email's Message-ID, the message it replies to, and its attachments and subject, together with the IDs of the intake address and the email's record. These codes can't be turned back into the headers, subject, or files.</li>
+    <li><strong>Usage events:</strong> product events such as "first email received" or "item confirmed in review." These record names, counts, and the kind of change a reviewer made to an item (for example, "a field was edited"), never the values.</li>
+    <li><strong>Counters:</strong> daily email counts per intake address and per sender (sender counts are stored under a one-way code, not the address), daily counts of each intake address's outcomes (for example, items written or sent to review) and the total of their item amounts, your account's daily AI usage total, your account's count of second AI reads (when a second model re-reads an unclear email) per day and per month, and your account's count of items for each calendar month (UTC), used to apply your plan's limits and to protect the service from floods and abuse. The monthly count is a number only, one per account per month.</li>
+    <li><strong>Operations summary and alerts:</strong> a daily summary for our own operations, listing per account the monday.com account ID, plan, and email counts, and occasional alerts that identify an account, user, intake address, or email by its ID, and may include AI usage amounts in US dollars.</li>
+  </ul>
+
+  <h3>Information we do NOT collect</h3>
+  <ul>
+    <li>We do not connect to your mailbox. The App sees only the emails your team sends or forwards to its intake addresses.</li>
+    <li>Payment card or banking information about you (billing is handled entirely by monday.com).</li>
+    <li>Tracking, advertising, or web-analytics data.</li>
+  </ul>
+
+  <h2>2. How We Use Your Information</h2>
+  <ul>
+    <li><strong>Turning emails into board items:</strong> reading each email with an AI model and creating or updating the item on your board (and, when the optional lookup-board feature is available and you choose a lookup board, matching it against that board).</li>
+    <li><strong>Replies and re-sent documents:</strong> when an email replies to an email the App already turned into an item, the App updates that item instead of creating a new one: changed values are written to the item, the item is set to "Needs review", and an update lists each change from old to new. If the reply raises a warning (for example, an unknown or look-alike sender, wording about changed bank details, or text that looks like instructions to the AI), the changes are only listed as proposed and nothing is changed. An email that repeats an earlier email's attachments and subject gets its own item marked "Possible duplicate"; it is not sent to the AI unless you choose to process it.</li>
+    <li><strong>Emails that fail:</strong> if the App cannot process an email (for example, a document it cannot read, or an error that keeps recurring), it still creates one item on your board marked "Failed", so your team sees the email where they work. The item has the email's subject, its text as an update (with the same protections as any other item, such as withholding bank details), a list of its files, and a short, plain-language reason for the failure. Failed items are not sent to the AI model and do not count toward your plan's monthly item allowance. The App does not create one when the board, the intake address, or your monday.com connection is the cause of the failure.</li>
+    <li><strong>Review:</strong> showing items that need a person's attention in the review queue, with the reason, and remembering senders your team approves.</li>
+    <li><strong>Protecting your account:</strong> sending emails from unknown or unverified senders, emails that mention changed bank or payment details, and emails that appear to contain instructions aimed at the AI to review instead of writing them automatically. An email the App detects as containing bank details has its text withheld from the item.</li>
+    <li><strong>Plans and limits:</strong> applying your plan's limits and the App's flood and AI-usage limits. An email over a limit is held, not discarded, and can be processed for up to 29 days after it was received. An email that arrives after your plan's monthly item allowance is used is not sent to the AI model: the App creates an item from its subject and text, marked "Over limit", and holds it until you process it. The exception is a reply to an email the App already turned into an item: the App reads it to update that item (replies don't count toward the allowance), or, if it can't be added to the item, creates the "Over limit" item with the AI's reading kept.</li>
+    <li><strong>Improving the App:</strong> usage events and counts (never email content) help us understand which features are used and where extraction needs work.</li>
+    <li><strong>Support and operations:</strong> we review per-account usage counts (never email content) to operate the App, provide support, and prevent abuse.</li>
+  </ul>
+  <p>We do not sell or share your data (including "selling" or "sharing" personal information as the California Consumer Privacy Act defines those terms), and we do not use it for advertising, marketing, or profiling.</p>
+  <p><strong>Who can see email content.</strong> Our staff do not access the content of your emails, attachments, or extracted values, except with your written permission for a specific support case, to fulfil a data request you make, to investigate a security incident or abuse of an intake address, or where required by law. We never use your emails, attachments, or extracted values in our evaluation or test sets unless you opt in.</p>
+  <p><strong>AI.</strong> The App uses Anthropic's Claude models to read emails and attachments and return the fields your template asks for. The model has no tools: it cannot follow links, send email, or choose which board or item to change. Its answer is checked in code before anything is written, and flagged answers go to review. The App does not make decisions that produce legal or similarly significant effects about individuals: a person on your team decides what to do with each item. We do not use your emails, attachments, or board content to train AI or machine-learning models, and Anthropic does not use data sent through its commercial API to train its models.</p>
+  <p><strong>Roles.</strong> For the purposes of applicable data protection laws, you are the data controller for the emails your team sends to the App and for your board data, including personal data about the people in those emails. Alpenglow Software LLC acts as your data processor (a "service provider" under US state privacy laws), processing that data solely on your behalf, as described in this policy and our <a href="dpa.html">Data Processing Addendum</a>. For account and usage data (account and user IDs, plan, usage events and counts), operations records, and information you send us directly (such as support emails), we act as an independent controller.</p>
+  <p><strong>Legal bases (EU/UK).</strong> Where we act as controller, we process data to perform our contract with you (providing the App, applying your plan), for our legitimate interests in operating, securing, supporting, and improving the App and preventing abuse, and to comply with legal obligations.</p>
+
+  <h2>3. Data Storage and Security</h2>
+  <ul>
+    <li>Our server and database run on monday code, monday.com's hosting platform, in the United States region. The App's interface is served from monday.com's app hosting.</li>
+    <li>All connections the App makes use HTTPS/TLS encryption in transit. (Delivery of an email from the sender's mail server to Resend uses standard email protocols, where encryption depends on the sender's server.)</li>
+    <li>Requests from the App's interface are authenticated with a session token signed by monday.com, and all stored data is scoped to your monday.com account. Emails are accepted only from Resend, with a verified signature.</li>
+    <li><strong>Encryption of stored data:</strong> the App encrypts the personal and customer data it stores with AES-256-GCM before writing it to our database, except the fields listed at the end of this paragraph. This covers senders' email addresses, the values the AI model extracted and the passages they came from, review flags (which can name a file or a sender), attachment file names, the company name you enter for an intake address, your approved senders, and Gmail forwarding codes. The keys are kept in monday code's secret store, never in the database. Each value is bound to its own record and to your account, so it can't be read if it is copied to another record or another account. Lookups of approved senders use a keyed one-way code, not the address. Some fields stay unencrypted because the App has to search, sort, or add them up: record IDs, your monday.com account and user IDs, intake addresses, statuses, dates, counts, and item amounts (for example, an order's total).</li>
+    <li><strong>monday.com tokens:</strong> each user's access and refresh tokens are encrypted with AES-256-GCM before they are stored, using a key kept in monday code's secret store, and are used only to read and write the boards connected to that user's intake addresses. They are deleted when you uninstall.</li>
+    <li><strong>When a user leaves:</strong> an account admin can take over or disconnect the intake addresses a departing user set up, so the App stops writing with that user's connection. Stored tokens are deleted when you uninstall.</li>
+    <li><strong>Untrusted email:</strong> every email and attachment is treated as potentially hostile. File types are checked from their contents, executables and macro-enabled documents are blocked, and documents are read with strict size, time, and memory limits.</li>
+    <li><strong>Attachments are not added to your board.</strong> The App does not currently upload email attachments to your monday.com items; the item's update lists each file. Forward or BCC emails to an intake address from your own mailbox, so the original email and its attachments stay there. Until attachments are stored, do not give an intake address to vendors or customers to email directly: the App keeps no copy of their attachments for you.</li>
+    <li><strong>Logging:</strong> our server logs IDs, sizes, counts, and timings needed to operate the App. Logs are designed and tested to exclude email content, extracted values, and tokens. Logs are kept according to monday code's log retention.</li>
+    <li><strong>Secrets:</strong> the App's own credentials are kept in monday code's encrypted secret store, never in source code.</li>
+    <li>If we become aware of a personal data breach affecting your data, we will notify monday.com within 24 hours, as our agreement with monday.com requires, and then notify you without undue delay and in any event within 72 hours of becoming aware of it, with the information you reasonably need to meet your own obligations.</li>
+  </ul>
+
+  <h2>4. Third-Party Services and Sub-processors</h2>
+  <h3>Sub-processors of your email data</h3>
+  <table>
+    <thead><tr><th>Service</th><th>Purpose</th><th>Data involved</th></tr></thead>
+    <tbody>
+      <tr><td>Resend (Resend, Inc., United States)</td><td>Receiving the emails sent to your intake addresses (at in.alpenglowsoftware.com) and notifying our server; sending our own operations alerts and daily summary to us</td><td>The full email, including attachments. Resend keeps each received email for 30 days, and we cannot shorten this. This includes email sent to an intake address after it is disconnected or the App is uninstalled, which the App does not process. Our operations emails contain monday.com account IDs, plans, counts, and record IDs, never email content</td></tr>
+      <tr><td>Anthropic (Anthropic, PBC)</td><td>AI extraction: reading each email and returning the fields for your board item</td><td>The email's From, To, Date, Subject, and In-Reply-To headers, its text (up to 500 KB), its attachments (up to 20 MB per request), the company name you entered as the board owner, for a reply to an email the App already processed, the values the App extracted from the earlier email(s) in that thread (the item's current values, with tax ID and bank numbers masked as described in Section 1), and, when the optional lookup-board feature is available and you use it, context from your lookup board. Emails that arrive after your monthly item allowance is used are not sent, except replies to an email the App already turned into an item (see Section 2). Anthropic does not train its models on this data. It keeps API inputs and outputs for a limited period under its commercial terms, and longer if they are flagged under its Usage Policy; we do not have a zero-retention agreement with Anthropic</td></tr>
+      <tr><td>monday.com API (api.monday.com)</td><td>Creating and updating items, columns, and boards (including updating an item's values from a reply in its email thread); reading board columns and the App's own items; checking your install and plan status</td><td>Extracted values and the email's text (as an update), including for emails that fail or arrive after your monthly item allowance is used, written to your boards with your connected users' permissions; board content read and not stored</td></tr>
+      <tr><td>monday.com app hosting (monday code, United States region)</td><td>Serving the App's interface, and hosting our server and database</td><td>Everything we store, described in Section 1</td></tr>
+      <tr><td>monday.com billing</td><td>Plans, trials, and payments</td><td>Plan and subscription status (we never see payment details)</td></tr>
+    </tbody>
+  </table>
+  <h3>Services we use for our own operations</h3>
+  <p>These services never receive email content or extracted values. They handle only our own operations data (monday.com account IDs, plans, and counts), for which we act as controller (Section 2).</p>
+  <table>
+    <thead><tr><th>Service</th><th>Purpose</th><th>Data involved</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub (GitHub, Inc., United States)</td><td>Hosting our source code, deploying the App, and running our scheduled maintenance job (which applies the deletion schedules in Section 5)</td><td>The job's response, which includes per-account rows (monday.com account IDs, plans, and counts), processed on GitHub's servers during the run and not kept</td></tr>
+      <tr><td>Healthchecks.io (SIA Monkey See Monkey Do, Latvia)</td><td>Alerting us if the scheduled maintenance job does not run</td><td>A success or failure signal only; no account or personal data</td></tr>
+      <tr><td>Northwest Registered Agent (United States)</td><td>Hosting our support@alpenglowsoftware.com mailbox, which receives support email and the App's operations alerts and daily summary</td><td>Support email you send us; operations emails with monday.com account and user IDs, plans, counts, and record IDs</td></tr>
+      <tr><td>Google (Gmail)</td><td>Our support mailbox is forwarded to a Gmail inbox, where our team reads it</td><td>The same email as our support mailbox</td></tr>
+    </tbody>
+  </table>
+  <p>Apart from the services above, the App uses no other third-party services, domains, analytics, or sub-processors. Before we add or replace a sub-processor that processes your data, we will give at least 15 days' notice by email to your account's admin contact or in the App, and update this list. If you object, you can tell us why and we will try to address it; if we cannot, you may uninstall the App before the change takes effect.</p>
+
+  <h2>5. Data Retention</h2>
+  <ul>
+    <li><strong>While installed:</strong> intake address settings and their recent activity (the latest emails and Gmail forwarding codes the App shows you), approved senders, usage events, your account's plan, and your users' encrypted monday.com tokens are kept while the App is installed.</li>
+    <li><strong>Processing records:</strong> the record of each email, its extraction results, and the App's internal records for that email (including its email thread records) are deleted 12 months after the email was received, or sooner if you uninstall. Deletion runs daily in batches, so it can complete a few days after the 12-month mark.</li>
+    <li><strong>Counters:</strong> daily email counts are deleted along with that day's processing records, 12 months later. Your account's item count for each month is deleted about 12 months after that month ends. Your account's daily AI usage total is kept for 30 days.</li>
+    <li><strong>The email itself:</strong> we do not keep a copy. Resend keeps each received email for 30 days; the App can re-run an email for up to 29 days after it was received.</li>
+    <li><strong>Email sent to an address that is not in use:</strong> email sent to a disconnected or retired intake address is not processed or stored by the App, nor is email sent after monday.com confirms an uninstall (normally within an hour of it). Resend still receives it and keeps it for 30 days.</li>
+    <li><strong>Short-lived records:</strong> pending monday.com connections expire after 10 minutes and are deleted within a day. Records of jobs that failed (a job ID, your monday.com account ID, an email's record ID, and the type of error) are deleted after 30 days, or with your account's data on uninstall.</li>
+    <li><strong>On uninstall:</strong> when you uninstall the App, monday.com notifies us, we confirm the uninstall with monday.com, and we then permanently delete the data we store for your account (intake address settings, approved senders, processing records, extraction results, usage events, counters, and tokens), within 10 days of the uninstall. Your account's row is removed from our stored daily operations summaries; the account-free totals in them (for example, the number of emails processed that day) are kept. Operations emails already sent to our mailbox may still contain your account ID; they are kept for up to 24 months (see below).</li>
+    <li><strong>What we keep after uninstall:</strong> we keep two small records so a deleted account and its old intake addresses can't be reused by mistake: a one-way code made from your monday.com account ID with a secret key, plus the deletion date; and a one-way code for each retired intake address. Neither record holds your account ID, an email address, or any email content. We also keep each day's AI usage total for your account for 30 days, under the same kind of one-way code, so reinstalling can't reset a daily usage limit. The current day's flood and usage counters, and the record of the deletion itself, are kept for 2 days after the deletion and then deleted. You consent to our keeping these records, for these periods, when you accept the Terms of Service (Section 9).</li>
+    <li><strong>Support and operations email:</strong> email you send to support@alpenglowsoftware.com, and the operations alerts and daily summaries the App sends us, are kept in our mailbox for up to 24 months.</li>
+    <li><strong>Your boards:</strong> uninstalling does not change your boards. Items, values, and updates the App wrote stay on your boards under monday.com's policies, and you can delete them there.</li>
+  </ul>
+
+  <h2>6. Your Rights</h2>
+  <ul>
+    <li><strong>Access and portability:</strong> contact us to request a copy of the data we store for your account in a machine-readable format.</li>
+    <li><strong>Deletion:</strong> uninstalling the App deletes your data (see Section 5). You may also contact us to request deletion without uninstalling. This deletes your processing records, extraction results, approved senders, usage events, intake address activity, and daily outcome counts. Daily flood and usage-limit counters (counts only) are deleted on their 12-month schedule. It keeps your intake address setup, your users' monday.com connections, and your monthly item counts, so the App keeps working and your plan's monthly allowance still applies. To delete those as well, uninstall the App.</li>
+    <li><strong>Correction:</strong> you can correct extracted values on your board and in the review queue at any time.</li>
+    <li><strong>Objection and restriction:</strong> where we act as controller, you may object to or ask us to restrict our processing of your data.</li>
+    <li><strong>Complaints:</strong> if you are in the EU, the UK, or another place with a data protection authority, you have the right to complain to that authority.</li>
+  </ul>
+  <p>If a person whose information appeared in an email sent to your intake address contacts us, we will refer them to you, as the controller, and assist you in responding. You can find and delete the items and updates about them on your board in monday.com. We respond to all data requests within 30 days.</p>
+
+  <h2>7. International Data Transfers</h2>
+  <p>Our server and database run in monday.com's United States region, and Resend receives email in the United States. Our sub-processors may also process data in other countries where they operate. The App is offered to organizations established in the United States. Emails from outside the United States, including from the EU and UK, are transferred to the United States for processing. Where the law requires a transfer mechanism, the EU Standard Contractual Clauses and the UK Addendum apply as set out in our <a href="dpa.html">Data Processing Addendum</a>. The App does not offer data residency in any other region.</p>
+
+  <h2>8. Cookies and Tracking</h2>
+  <p>The App does not use cookies, tracking pixels, or advertising technologies. While you create a board in the setup wizard, the App stores the new board's ID, name, and workspace in your browser's local storage, so a retry reuses the same board; it is removed once the board is set up.</p>
+
+  <h2>9. Children's Privacy</h2>
+  <p>The App is designed for business users of monday.com and is not directed at children under 13. We do not knowingly collect personal data from children.</p>
+
+  <h2>10. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. If we make material changes, we will update the effective date at the top of this page and notify your account's admin contact by email or in the App before the changes take effect. Continued use of the App after changes take effect constitutes acceptance of the updated policy. We will not use data we already hold in a materially less protective way, including to train AI models, without your affirmative consent.</p>
+
+  <h2>11. Contact Us</h2>
+  <div class="contact-block">
+    <p>If you have questions about this Privacy Policy or want to exercise your data rights, contact us at:</p>
+    <p><strong>Email:</strong> <a href="mailto:support@alpenglowsoftware.com">support@alpenglowsoftware.com</a></p>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2026 Alpenglow Software LLC. All rights reserved.</p>
+</footer>
+</body>
+</html>
