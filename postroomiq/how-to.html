@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to use PostroomIQ</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>img.shot{display:block;max-width:100%;height:auto;border:1px solid #cfe6e1;border-radius:10px;margin:8px 0 4px}</style>
+</head>
+<body>
+<main>
+  <h1>How to use PostroomIQ</h1>
+  <p class="app-name">PostroomIQ: Email to Board</p>
+
+  <p>PostroomIQ gives you an intake email address. Forward an order, invoice, or sales lead to it, and an AI model reads the email and its attachments, fills your columns, and creates an item on your monday board. Anything it isn't sure about waits for a person to review.</p>
+
+
+  <h2>1. Add PostroomIQ to a board</h2>
+  <ol>
+    <li>Install PostroomIQ from the monday apps marketplace.</li>
+    <li>Open any board, click <strong>+</strong> next to your board views, choose <strong>Apps</strong>, and add <strong>PostroomIQ</strong>.</li>
+    <li>Setup starts in the view and takes about 3 minutes.</li>
+  </ol>
+
+  <h2>2. Choose what you receive by email</h2>
+  <p>Pick the email type for this address: <strong>Orders &amp; POs</strong>, <strong>Invoices &amp; bills</strong>, or <strong>Leads &amp; requests</strong>. Each card lists the fields PostroomIQ fills in. You can change the email type later. The first time, tick the box to accept the Terms of Service and Data Processing Addendum, then click <strong>Continue</strong>.</p>
+  <p><img class="shot" src="img/postroomiq-email-type.png" alt="The three email type cards: Orders and POs, Invoices and bills, Leads and requests" loading="lazy"></p>
+
+  <h2>3. Connect PostroomIQ to monday</h2>
+  <p>PostroomIQ adds items to your boards for you, even when no one is signed in, so monday asks for your OK once. Click <strong>Connect to monday</strong> and approve in the new tab. That tab then opens your board, and setup carries on in the PostroomIQ view where you started. Each person who sets up an address connects their own monday account once. Items for that address are written with their connection.</p>
+
+  <h2>4. Choose a board</h2>
+  <ul>
+    <li><strong>Use this board:</strong> PostroomIQ matches each field to a column on the board. Check the matches and change any that are wrong. Fields with no matching column are added as new columns, if you leave them checked. Existing items are never touched.</li>
+    <li><strong>Create a new board:</strong> choose a workspace and a name. PostroomIQ creates a board with a column for each field.</li>
+  </ul>
+  <p>Either way, PostroomIQ adds its own <strong>Intake status</strong> column. It never uses your board's own Status column, so your automations stay as they are.</p>
+
+  <h2>5. Get your intake address and set up forwarding</h2>
+  <p>Copy your intake address. Each address belongs to one email type and one board. Then choose how emails will reach it:</p>
+  <ul>
+    <li><strong>Forward emails as they arrive</strong> (recommended): forward any email to the address. Works in every mail app.</li>
+    <li><strong>Add it as BCC or CC</strong> when you or your team reply or send.</li>
+    <li><strong>Forward automatically</strong> (optional):
+      <ul>
+        <li><strong>Gmail:</strong> open Settings, then Forwarding and POP/IMAP, then Add a forwarding address, and paste your address. Gmail sends a confirmation code to that address. The code appears right here in the setup step, so you don't have to wait for it. Enter the code in Gmail, then create a filter (for example, from your customers' domains) that forwards to your address.</li>
+        <li><strong>Outlook or Microsoft 365:</strong> open Settings, then Mail, then Rules, then Add new rule. Choose which emails to forward, then forward them to your address. Many Microsoft 365 companies block automatic forwarding to outside addresses. If your forwards bounce, use forwarding or BCC instead, or copy the ready-made request for your IT admin.</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Anyone who knows the address can send email to it, so share it only with the people and systems that need it. Forward or BCC from your own mailbox, so the original email and its attachments stay there.</p>
+
+  <h2>6. Send your first email</h2>
+  <p>Forward a real email of that type to your address. PostroomIQ watches for it and shows each stage: received, reading attachments, filling columns. When it's done, you see the item it created and the values it filled in. Click <strong>Open the item in monday</strong> to see it on your board.</p>
+  <ul>
+    <li>The item's name and columns are filled from the email and its attachments.</li>
+    <li>The email's text is posted as an update on the item, with a list of the attached files. Attachments are not uploaded to the item: keep them in your mailbox.</li>
+    <li>The <strong>Intake status</strong> column says whether the item is done or needs review.</li>
+    <li>If something looks wrong, click <strong>Something's off</strong> to fix the values or the column they went to. Future emails follow your fix.</li>
+  </ul>
+  <p>Nothing after 2 minutes? PostroomIQ shows a checklist: the address, your Sent folder, and bounces from blocked forwarding.</p>
+
+  <h3 id="files">What PostroomIQ reads</h3>
+  <p>PostroomIQ reads the email and the files attached to it. Every plan reads the same files.</p>
+  <ul>
+    <li><strong>Read:</strong> the email text; PDFs, including scanned PDFs; photos and screenshots (JPEG, PNG, HEIC, GIF, WebP); faxes (TIFF, the first 5 pages); Excel (.xlsx), CSV and plain text; Word (.docx); forwarded emails (.eml) and ZIP files, with the files inside.</li>
+    <li><strong>Not read:</strong> older Office files (.xls, .doc) and Outlook .msg files; password-protected PDFs, Word and Excel files; PowerPoint, Apple Numbers and Pages, .rtf, .odt and winmail.dat.</li>
+    <li><strong>Blocked:</strong> Office files with macros, programs, scripts, calendar invites and contact cards.</li>
+    <li><strong>Limits:</strong> 25 MB per file. A document over 100 pages isn't read. Each email reads up to 50 pages in total. Spreadsheets and CSV files are read up to 200 line-item rows per email.</li>
+  </ul>
+  <p>If a file isn't read, the email still becomes an item, marked for review, and its update names the file and why. Ask the sender for a PDF, .xlsx or .docx copy and forward that.</p>
+
+  <h2>7. Review flagged items</h2>
+  <p>After setup, the PostroomIQ view shows your dashboard. The <strong>Needs review</strong> tab lists items PostroomIQ wasn't sure about, and items from senders it doesn't know yet.</p>
+  <ul>
+    <li>Click <strong>Review</strong> to open an item. Each flagged value shows why it was flagged and the passage of the email or attachment it was read from, with the value highlighted.</li>
+    <li>Edit any value, then click <strong>Confirm and mark Processed</strong>. The fix is saved to the item in monday. Confirming an item from a new sender also adds that sender to your approved senders, so their next emails don't need review for that reason.</li>
+    <li>Click <strong>Reject</strong> if the item shouldn't be on the board, and say why: not relevant, wrong board, duplicate, or other. The item stays on the board, marked Rejected.</li>
+    <li><strong>Review later</strong> keeps the item in the list.</li>
+  </ul>
+  <p><img class="shot" src="img/postroomiq-review.png" alt="An open review card: a flagged value, the highlighted source passage, and the Confirm and mark Processed button" loading="lazy"></p>
+
+  <h2>8. Look-alike senders</h2>
+  <p>If an email comes from a sender that looks like one you've approved but isn't (for example, acmecorp.de instead of acmecorp.com), the item goes to review with a warning. An invoice or bank change from a look-alike may be fraud. Check with the company by phone, on a number you already have, before you act. Confirming the item does not add the look-alike sender to your approved senders. If it really is the same company, an account admin can mark it as the same company on the review card.</p>
+
+  <h2>9. Replies and re-sent emails</h2>
+  <ul>
+    <li><strong>Replies update the item:</strong> when you forward, CC, or BCC a reply to an email PostroomIQ already turned into an item, PostroomIQ updates that item instead of making a new one. Changed values are written, the item goes to <strong>Needs review</strong>, and an update lists each change from old to new. A reply that adds nothing new is posted as an update only. Replies don't count toward your monthly items.</li>
+    <li><strong>Warnings make changes proposals:</strong> if a reply raises a warning (an unknown or look-alike sender, wording about changed bank details, or text that looks like instructions to the AI), nothing on the item changes: the update lists the proposed changes, and the item goes to Needs review.</li>
+    <li><strong>A new order in an old thread</strong> (a different PO or invoice number) becomes its own item, with a note pointing to the earlier one.</li>
+    <li><strong>Re-sent emails:</strong> an email with the same subject and attachments as one already on your board gets its own item marked <strong>Possible duplicate</strong>. The AI doesn't read it and it doesn't count toward your monthly items. If it isn't a duplicate, choose <strong>Process now</strong> in the Held tab: PostroomIQ reads it into that item, and it counts as an item. <strong>Process all</strong> skips possible duplicates.</li>
+    <li>Replies are matched by the email's thread headers. Forwarding from Gmail keeps them; some mail apps start a new thread when you forward, and then the reply becomes its own item.</li>
+  </ul>
+
+  <h2>10. Filtered, Held, and Failed</h2>
+  <ul>
+    <li><strong>Filtered:</strong> emails that didn't look like the email type for their address. They're on your board, marked Filtered, so nothing is lost. Choose <strong>Re-run as another type</strong> to read one again as a different type, or <strong>Dismiss</strong> it. When it looks like a type that another of your addresses receives (for example, an invoice sent to your orders address), it's marked <strong>Looks like an invoice</strong>: choose <strong>Move to Invoices &amp; bills</strong> to have it read on that address's board instead.</li>
+    <li><strong>Held:</strong> emails that were saved but not processed yet, with the reason (for example, a daily limit, or your monthly item allowance). Choose <strong>Process now</strong> or <strong>Process all</strong> when you're ready.</li>
+    <li><strong>Failed:</strong> emails PostroomIQ couldn't process, with the reason. Most are also on your board, marked Failed, with the email's text posted as an update. Choose <strong>Process again</strong> where it's offered; otherwise forward the email again, or dismiss it.</li>
+  </ul>
+  <p>PostroomIQ keeps access to each email for 30 days, so re-runs and Process now work within that time.</p>
+
+  <h2>11. Your monthly items</h2>
+  <p>The <strong>Overview</strong> tab shows your plan and how many items you've used this month. One item is one email read into an item, with up to 5 attachment pages. Each further 5 pages counts as one more. Filtered emails, duplicates, replies added to an item, and failures don't count. The count resets on the 1st of each month (UTC).</p>
+  <ul>
+    <li>When you're close to the limit, PostroomIQ tells you.</li>
+    <li>Over the limit, new emails still reach your board, marked <strong>Over limit</strong>, with the email posted as an update. The AI doesn't read them, so their fields are empty. They're listed in the Held tab.</li>
+    <li>After you upgrade, or after the count resets, choose <strong>Process now</strong> in Held. PostroomIQ reads the email and fills in that same item.</li>
+  </ul>
+  <p><img class="shot" src="img/postroomiq-usage.png" alt="The Overview tab's items meter: plan name, items used this month, and when it resets" loading="lazy"></p>
+
+  <h2>12. Plans</h2>
+  <p>PostroomIQ has a Free plan and paid plans: <strong>Starter</strong>, <strong>Pro</strong>, and <strong>Business</strong>. Plans differ in how many items they include each month. Every plan reads the same files (see <a href="#files">What PostroomIQ reads</a>). Current plans and prices are shown in monday's plan selection. Paid plans include a 14-day free trial.</p>
+
+  <h2>13. Your data</h2>
+  <ul>
+    <li>PostroomIQ sees only the emails you send or forward to its addresses. It never connects to your mailbox.</li>
+    <li>Emails are received by our email provider, read by Anthropic's Claude AI models, and processed on monday.com's own hosting in the United States. Your data is not used to train AI models.</li>
+    <li>We store the values read from each email and a record of how it was processed, not a copy of the email. Processing records are deleted after 12 months.</li>
+    <li>Bank account and routing numbers are never extracted, and tax ID numbers are kept to their last 4 digits.</li>
+    <li>Uninstalling PostroomIQ deletes what we store for your account. Items already on your boards stay.</li>
+  </ul>
+  <p>Full details are in our Privacy Policy and Terms of Service, linked from PostroomIQ's page in the monday apps marketplace.</p>
+
+  <h2>Need help?</h2>
+  <div class="contact-block">
+    <p>Email <a href="mailto:support@alpenglowsoftware.com">support@alpenglowsoftware.com</a>. We respond within 2 business days.</p>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2026 Alpenglow Software LLC. All rights reserved.</p>
+</footer>
+</body>
+</html>
