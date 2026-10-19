@@ -10,7 +10,7 @@
 <main>
   <h1>Privacy Policy</h1>
   <p class="app-name">ClearSignal: Bot Traffic Detection for Shopify</p>
-  <p class="effective-date">Effective date: September 24, 2026</p>
+  <p class="effective-date">Effective date: October 18, 2026</p>
 
   <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of ClearSignal ("the App") collects, uses, stores, and protects information when you install and use the App through the Shopify platform. ClearSignal detects bot traffic that may be polluting your store's analytics by combining client-side fingerprinting, order-level signal analysis, and server-side signal correlation. A Shopify Web Pixel extension additionally captures storefront checkout and funnel events (such as checkout started, checkout completed, and add-to-cart) as bot-detection, order-integrity, and conversion-funnel signals. See Section 1 for details.</p>
 
@@ -64,7 +64,7 @@
     <li><strong>Pre-consent tracker observations</strong>: to help you verify that your store's consent banner is working, the extension observes the network destinations your storefront page contacts (such as requests to Google Analytics, Meta, or TikTok) and recognizes a fixed list of known third-party tracking services. Where a visitor has <strong>not</strong> granted analytics consent and a known tracker fires anyway, the extension reports which tracker it was (a short label such as "ga4" or "meta"), how it was detected, the page path, and the visitor's consent state at page load. The App stores only per-day counts by tracker label and consent state for your store; it does not store the visitor identifier or the tracker's request contents. See Section 9 for details.</li>
   </ul>
   <p>This data is transmitted to the App's server via a Shopify app proxy endpoint, which verifies request authenticity using HMAC signature validation.</p>
-  <p>ClearSignal's storefront component also sends a direct request to the App's server. From that request the App observes the visitor's network (IP) address and reduces it immediately to a truncated network block (a /24 block for IPv4 or a /48 block for IPv6; the rest of the address is discarded). This truncated block is used only to detect automated (bot) traffic, and is processed for all storefront sessions &mdash; including visitors who declined analytics consent &mdash; on the basis of the App's and the merchant's legitimate interest in fraud and bot detection, not on consent. It is never combined or compared across merchants, and is never used to identify an individual visitor.</p>
+  <p>ClearSignal's storefront component also sends a direct request to the App's server. From that request the App observes the visitor's network (IP) address and reduces it immediately to a truncated network block (a /24 block for IPv4 or a /48 block for IPv6; the rest of the address is discarded). This truncated block is used to detect automated (bot) traffic and, at country level only, to show your store's bot traffic sources by country. The country is looked up on the App's own servers; no third party receives the address. The block is processed for all storefront sessions &mdash; including visitors who declined analytics consent &mdash; on the basis of the App's and the merchant's legitimate interest in fraud and bot detection, not on consent. It is never combined or compared across merchants, and is never used to identify an individual visitor.</p>
 
   <h3>Data from server-side processing</h3>
   <p>When a storefront session is scored, the App processes and stores:</p>
