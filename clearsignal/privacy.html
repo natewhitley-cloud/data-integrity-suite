@@ -116,7 +116,8 @@
     <li><strong>Product improvement and support</strong>: we use your feedback and in-app usage records (see Section 1) to improve the App and to follow up with you if you asked us to. This never involves your storefront visitors' data.</li>
     <li><strong>Subscription management</strong>: we store your current billing plan to gate features appropriately.</li>
     <li><strong>App functionality</strong>: we use your shop domain and session data to authenticate requests and deliver the App within the Shopify Admin.</li>
-    <li><strong>AI/ML</strong>: We do not use artificial intelligence or machine learning to process your data. Your data and your visitors' data are not used to train AI or machine learning models.</li>
+    <li><strong>Shopify Sidekick (optional)</strong>: if you ask Shopify Sidekick, Shopify's AI assistant in your Shopify Admin, a question it decides ClearSignal can help answer (for example, about your store's traffic quality or AI-assisted revenue), Sidekick asks ClearSignal for a summary and ClearSignal returns it. Sidekick can specify only a period (7, 30, or 90 days); ClearSignal identifies your store from your Shopify Admin session and reads only your store's data. ClearSignal offers two read-only summaries. The <strong>traffic quality summary</strong> (every plan) contains the period covered, the total number of scored storefront sessions, the bad-bot rate, and, for each of ClearSignal's four traffic labels (Human, Bad bot, Good agent, and Unclassified), the label, its one-line description, its session count, and its share of sessions. The periods available are those within your plan's reporting window (see Section 6): 7 days on Free; 7 or 30 days on Essentials; and 7, 30, or 90 days on Growth. The <strong>AI-assisted revenue summary</strong> (Growth plan only) contains, for the period, the number of orders ClearSignal ties to an AI assistant, the combined order totals of those orders, how many of them carried no order total, the currency and whether the orders mix currencies, and, for each AI assistant (for example, ChatGPT or Perplexity), its order count and combined order totals (up to 20 assistants, with a note if there are more), together with a short note that these figures are a minimum. Each summary also includes a link to the matching ClearSignal page. If your plan does not include the summary or period requested, ClearSignal returns only a short statement that it is not available on your current plan and, for the traffic quality summary, which periods are. If there is no data for the period, or the data cannot be read, it returns a short message saying so. The summaries contain aggregate figures and fixed descriptive text only: no session records or session identifiers, no visitor identifiers (such as Shopify's <code>clientId</code> or the durable visitor identifier), no IP addresses or network blocks, no storefront page URLs, query strings, or referrers, no order identifiers or order-level details (where an AI assistant referred only one order in the period, its figures are that order's total), and no customer names, email addresses, or other customer details. ClearSignal does not receive your questions or Sidekick's replies, and it does not store the summaries it returns; a request can at most trigger the routine subscription plan check described under "Subscription management" above (which can update your stored plan and, after an upgrade from the Free plan, set a one-time in-app notice) and error or diagnostic records (see "Operational logs" in Section 1). Sidekick is operated by Shopify, which processes your conversations, including these summaries, under its own terms and privacy policy.</li>
+    <li><strong>AI/ML</strong>: ClearSignal does not use artificial intelligence or machine learning to process your data, and we do not use your data or your visitors' data to train AI or machine-learning models. If you choose to use Shopify Sidekick (see "Shopify Sidekick" above), the summaries ClearSignal returns to it are processed by Shopify's AI assistant under Shopify's terms, not by us. We do not control how long Shopify keeps these summaries or how Shopify uses them.</li>
   </ul>
   <p>For the purposes of applicable data protection laws, you (the merchant) are the data controller for storefront visitor data collected through the App. Alpenglow Software LLC acts as a data processor, processing this data solely on your behalf and as described in this policy. For data we collect directly about you and your use of the App (such as support communications, feedback you submit, and in-app usage records), we act as an independent data controller.</p>
 
@@ -144,7 +145,7 @@
   </ul>
 
   <h2>5. Third-Party Services</h2>
-  <p>The App uses the following third-party services to operate:</p>
+  <p>The App uses, or sends data to, the following third-party services:</p>
 
   <table>
     <thead>
@@ -155,6 +156,11 @@
         <td>Shopify Admin API</td>
         <td>Authentication, order attribution data, order risk assessment</td>
         <td>Session tokens, GraphQL order queries</td>
+      </tr>
+      <tr>
+        <td>Shopify Sidekick (Shopify's AI assistant, only if you use it)</td>
+        <td>Answering questions you ask Sidekick about your store's traffic quality and AI-assisted revenue inside the Shopify Admin. ClearSignal sends a summary to Shopify only when Sidekick requests one while answering a question you ask it; Shopify processes it under its own terms</td>
+        <td>The summaries described under "Shopify Sidekick" in Section 2: session counts and shares by traffic label and the bad-bot rate (every plan), and AI-assisted order counts and order totals by AI assistant (Growth plan). No session or visitor identifiers, IP addresses, order identifiers, or customer details. These summaries are aggregate figures about your store; Sidekick is not a service that processes your storefront visitors' personal data</td>
       </tr>
       <tr>
         <td>FingerprintJS BotD</td>
