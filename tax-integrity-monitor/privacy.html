@@ -10,7 +10,7 @@
 <main>
   <h1>Privacy Policy</h1>
   <p class="app-name">TaxDelta: Shopify Tax Discrepancy Scanner</p>
-  <p class="effective-date">Effective date: October 18, 2026</p>
+  <p class="effective-date">Effective date: October 19, 2026</p>
 
   <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of TaxDelta (formerly Tax Integrity Monitor) ("the App") collects, uses, stores, and protects information when you install and use the App through the Shopify platform.</p>
 
@@ -62,7 +62,7 @@
     <li>Storefront visitor analytics or behavior data</li>
     <li>Marketing or advertising data</li>
   </ul>
-  <p>We do not use AI or machine learning to process your data.</p>
+  <p>We do not use artificial intelligence or machine learning to process your data, and your data is not used to train AI or machine-learning models. If you choose to use Shopify Sidekick (see "Shopify Sidekick" in Section 2), the answers TaxDelta returns to it are processed by Shopify's AI assistant under Shopify's terms, not by us.</p>
 
   <h2>2. How We Use Your Information</h2>
   <p>We use the data we collect solely to provide and improve the App's services:</p>
@@ -73,7 +73,9 @@
     <li><strong>App functionality</strong> — We use your shop domain and session data to authenticate requests and deliver the App within the Shopify Admin.</li>
     <li><strong>Feedback</strong>: we use feedback only to improve the App and, if you gave an email address, to reply to you.</li>
     <li><strong>Usage records</strong>: we use records of your use of the App's pages, prompts, and setup steps to operate and improve the App.</li>
-    <li><strong>Operator notifications</strong>: we email ourselves (the App's operator, never you or your customers) a notification when feedback is submitted, a daily operational summary, and an alert if a shop data erasure request fails. The feedback notification contains your rating and free-text answers and says only whether you left a contact email, not the address itself. The daily summary contains activity counts and setup progress per store (installs, plan, scans, amounts found, prompt activity), feedback ratings and the number of submissions with a contact email, and error codes. These emails identify your store only by an internal ID, never by your store domain, and never include the feedback contact email address.</li>
+    <li><strong>Monitoring summary emails</strong>: if you turn on summary emails, we email your store's Shopify account email after each monitoring scan with the number of orders checked, the tax errors found and their amounts, your running total, and links into the App. We read that address from Shopify each time we send and do not store it. Every email has an unsubscribe link, and you can turn the emails off in the App's Settings at any time. Uninstalling the App turns them off.</li>
+    <li><strong>Shopify Sidekick (optional)</strong>: if you ask Shopify Sidekick, Shopify's AI assistant in your Shopify Admin, about your tax scans, Sidekick asks TaxDelta for a summary and TaxDelta returns it. On every plan, the summary contains when your latest scan ran and which order dates it covered, the dollar total of tax refunded or charged by mistake and the number of items to review, how many findings each check found or why it did not run, how many tax exempt, non-USD and edited orders were found, how many refunds and orders TaxDelta could not check, the states you told TaxDelta you are registered in, and on the Standard plan your monitoring setting. On the Standard plan it also contains up to five findings with the largest dollar amounts from your latest scan, each with its order name (for example, #1042), finding type, amount and severity, the value of orders marked tax exempt, and the states (state names only) where tax was collected without a registration or below the state rate. It contains no customer names, contact details or identifiers, no Shopify order IDs, no county or city names, and no order line or refund details. TaxDelta does not receive your questions or Sidekick's replies and does not store the summaries it returns; if a summary fails, we record an error with the failure type and your store's internal ID only. Sidekick is operated by Shopify, which processes your conversations, including these summaries, under its own terms and privacy policy.</li>
+    <li><strong>Operator notifications</strong>: we email ourselves (the App's operator, never your customers) a notification when feedback is submitted, a daily operational summary, and an alert if a shop data erasure request fails. The feedback notification contains your rating and free-text answers and says only whether you left a contact email, not the address itself. The daily summary contains activity counts and setup progress per store (installs, plan, scans, amounts found, prompt activity), feedback ratings and the number of submissions with a contact email, and error codes. These emails identify your store only by an internal ID, never by your store domain, and never include the feedback contact email address.</li>
   </ul>
   <p>For the purposes of applicable data protection laws, you (the merchant) are the data controller for the order and business data you make available through the App. Alpenglow Software LLC acts as a data processor, processing this data solely on your behalf and as described in this policy. For any data we collect directly from you (such as support communications, feedback, or nexus configuration you provide), we act as an independent data controller.</p>
 
@@ -120,8 +122,13 @@
       </tr>
       <tr>
         <td><a href="https://resend.com/legal/privacy-policy">Resend</a> (Resend, Inc.)</td>
-        <td>Transactional email: notifications to the operator (feedback notifications, the daily operational summary, and operational alerts)</td>
-        <td>Your feedback rating and free-text answers, and the daily summary content described in Section 2. Your store is identified only by an internal ID. Not your store domain, and not the feedback contact email you give us</td>
+        <td>Transactional email: notifications to the operator (feedback notifications, the daily operational summary, and operational alerts), and monitoring summary emails to you, if you turn them on</td>
+        <td>Your feedback rating and free-text answers, and the daily summary content described in Section 2. Your store is identified only by an internal ID. Not your store domain, and not the feedback contact email you give us. For summary emails: your store's Shopify account email address, your store name, and the counts and amounts in the email</td>
+      </tr>
+      <tr>
+        <td>Shopify Sidekick (Shopify's AI assistant, only if you use it)</td>
+        <td>Answering questions you ask Sidekick about your TaxDelta scans inside the Shopify Admin. TaxDelta sends a summary to Shopify only when you ask Sidekick.</td>
+        <td>The scan summary described under "Shopify Sidekick" in Section 2: totals, counts, state names, and (Standard plan) the order name, finding type, amount and severity of up to five findings. No customer data or order IDs.</td>
       </tr>
     </tbody>
   </table>
@@ -136,8 +143,8 @@
     <li><strong>Usage records and technical error reports</strong>: deleted after 90 days, or earlier when you uninstall the App or your shop data is erased.</li>
     <li><strong>On uninstall</strong>: your sessions are deleted immediately, along with your feedback and usage records, and any pending or in-progress scans are cancelled. Your shop is marked as uninstalled. Your scans, findings, nexus configuration, and shop record are kept until Shopify sends a shop data erasure (<code>shop/redact</code>) request, which Shopify sends 48 hours after you uninstall. If you reinstall before then, your existing data is still available.</li>
     <li><strong>Shop data erasure</strong>: when we receive the <code>shop/redact</code> request, we permanently delete all data associated with your shop, including scans, findings, nexus configuration, feedback, usage records, and your shop record.</li>
-    <li><strong>Email copies</strong>: feedback notifications, daily operational summaries, and operational alerts already delivered to our inbox are not part of the App's database and are not removed by this automated deletion. They identify your store only by an internal ID, which can no longer be linked to your store once your shop record is deleted. Contact us to have them deleted.</li>
-    <li><strong>Aggregate statistics</strong>: we keep a separate log of App events: installs, scans started, completed, or failed, plan changes, and uninstalls. Each entry stores the event type, its date, your plan at the time (and, for a plan change, the previous plan), the scan type, whether the scan was an automatic re-check, and, for completed scans, the number of findings and the total discrepancy amount found. Entries do not contain your store domain. Instead, each carries a one-way hash of your store domain combined with a random value stored on your shop record. When your shop data is erased, that random value is deleted with your shop record, so these entries can no longer be linked to your store. These entries are not deleted on uninstall or shop data erasure and are kept indefinitely so we can measure how the App is used across all stores.</li>
+    <li><strong>Email copies</strong>: feedback notifications, daily operational summaries, and operational alerts already delivered to our inbox are not part of the App's database and are not removed by this automated deletion. They identify your store only by an internal ID, which can no longer be linked to your store once your shop record is deleted. Contact us to have them deleted. Monitoring summary emails already delivered to your inbox are yours; your summary-email setting and unsubscribe link are deleted with your shop record.</li>
+    <li><strong>Aggregate statistics</strong>: we keep a separate log of App events: installs, scans started, completed, or failed, plan changes, CSV exports, and uninstalls. Each entry stores the event type, its date, your plan at the time (and, for a plan change, the previous plan), the scan type, whether the scan was an automatic re-check, and, for completed scans and CSV exports, the number of findings and the total discrepancy amount found. Entries do not contain your store domain. Instead, each carries a one-way hash of your store domain combined with a random value stored on your shop record. When your shop data is erased, that random value is deleted with your shop record, so these entries can no longer be linked to your store. These entries are not deleted on uninstall or shop data erasure and are kept indefinitely so we can measure how the App is used across all stores.</li>
   </ul>
 
   <h2>7. Your Rights</h2>
