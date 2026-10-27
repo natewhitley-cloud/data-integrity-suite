@@ -75,7 +75,8 @@
 
   <h3>Information you provide</h3>
   <ul>
-    <li><strong>Feedback</strong>: if you choose to use the in-app feedback form, we collect a satisfaction rating (1 to 5), your answers to up to three optional free-text questions, and an optional contact email address.</li>
+    <li><strong>Help messages and feedback</strong>: if you send a message from the in-app Help page, we collect the topic you choose (for example, a problem, a how-to question, feedback, or billing), your message, and, for feedback only, an optional satisfaction rating (1 to 5). You may also give a contact email address. We store it only if you also tick the box allowing us to email you about that request, and we record when you sent the message with that box ticked. Messages sent through the earlier feedback form may include a contact email you left there for follow-up, without that box, because the earlier form did not have one. When you report a problem, we automatically attach your plan and the ID of your latest scan so you do not have to look them up. Those earlier messages also included answers to up to three optional free-text questions.</li>
+    <li><strong>How you found the App</strong>: once your scan results are showing, the App asks how you found it, until you answer or skip the question. If you answer, we store your choice from a fixed list (for example, App Store search, Shopify Sidekick, an AI assistant, or a search engine) and, if you choose "Other", the short text you type. You can skip the question.</li>
     <li><strong>App name suggestions</strong>: if you suggest which app an unrecognized script belongs to, we store your suggestion for review.</li>
     <li><strong>Ignored findings</strong>: if you choose to ignore a finding, we store that choice and any optional note you add.</li>
     <li><strong>Email preference</strong>: whether the summary email is turned on or off for your store, and when we told you about it in the App or you turned it on yourself.</li>
@@ -87,7 +88,7 @@
   <ul>
     <li>A page visit record (your shop domain and the App page you opened) each time an App page is loaded.</li>
     <li>The last time your store opened the App.</li>
-    <li>Whether in-app prompts (for example, the feedback prompt or an upgrade preview) were shown to you, clicked, dismissed, or completed.</li>
+    <li>Whether in-app prompts (for example, the feedback prompt, the "how did you find us" question, or an upgrade preview) were shown to you, clicked, dismissed, skipped, or completed.</li>
     <li>Technical error reports when an App page fails in your browser: the error message, a short code location trace, the App page path (without any query string), the HTTP status of a failed request, and your browser family (for example, Chrome). We strip query strings, tokens, and email addresses from these reports before storing them, and delete them after 30 days.</li>
     <li>Server error records when a request to the App fails on our server, including a request from Shopify Sidekick: an error code, the time, and your shop domain, and for some errors the App page path or a short error description. They never contain your theme's code or information about your visitors or customers.</li>
   </ul>
@@ -113,7 +114,8 @@
     <li><strong>Storefront script tags</strong>: for each scan we store the web addresses of the scripts that Shopify loads on your storefront for your apps, with query strings and fragments removed, kept in a short excerpt of up to 300 characters per app, along with the app we identify for each one. These addresses belong to third-party apps and may contain identifiers those apps use for your store. Your store's file ID in addresses on Shopify's CDN (cdn.shopify.com) is removed. We use them to warn you about apps that will stop working when Shopify stops running script tags on March 1, 2027. This data is deleted with the rest of your shop data as described in Section 6.</li>
     <li><strong>Known malicious code on your live store</strong>: if your homepage uses a domain on our list of known malicious domains, we store a finding with that domain, the web address host as it appeared on the page (no path or query string), and how the page used it (for example, loaded by a script tag an app added). If a store speed test's browser requests an address on such a domain, we store that domain with the test's summary. We use these only to warn you in the App. Homepage findings are part of your scan results, so they also count toward the summary email's finding counts and can be listed in the Sidekick scan summary (see below). This data is deleted with the rest of your shop data as described in Section 6.</li>
     <li><strong>Scan diagnostics</strong>: for each scan we keep an internal record of how the scan ran: timings, file counts and sizes, how many findings each check produced and, for some checks we are still testing, the theme file names and line numbers where a pattern was found, with your theme's name. It contains no theme code, no menu content, and no personal data. We use it only to measure and improve the App's checks. It is deleted with the rest of your shop data as described in Section 6.</li>
-    <li><strong>Feedback</strong>: we use feedback only to improve the App and, if you gave an email address, to reply to you.</li>
+    <li><strong>Help messages and feedback</strong>: we use your messages to answer you, fix problems, and improve the App. We email you about a message only if you gave an email address and agreed to be contacted about it.</li>
+    <li><strong>How you found the App</strong>: we use your answer, combined with other merchants' answers, to understand which channels bring merchants to the App and where to spend our marketing effort.</li>
     <li><strong>Usage records</strong>: we use records of your use of the App's pages and prompts to operate and improve the App.</li>
     <li><strong>App removal records</strong>: Shopify does not tell us which apps you install or remove. When an app was active in your store at one scan (its app embed was switched on in your theme, or it loaded through a storefront script tag) and is no longer active at the next scan of the same theme, while its code is still in your theme, we infer that the app is no longer active and record what it left behind. For each removal we detect, we store your shop ID, the theme ID, the app's name, the IDs of the scan that detected it and of the previous scan, the number of leftover items, its status (removed, cleaned up, or reinstalled), and when it was detected and last updated. Later scans update the status. These records contain no code and no personal data. We use them to show these apps in the App and in the summary email. Because this is an inference, it can miss a removal (for example, an app that left no code behind, or an app we cannot see as active) or, rarely, report one that did not happen (for example, if you only switched an app's embed off).</li>
     <li><strong>Active apps at scan time</strong>: each scan stores the names of the apps it saw as active in your store (apps whose app embed was switched on, and apps loading through storefront script tags). We use this only to detect apps that are no longer active, as described above.</li>
@@ -185,8 +187,13 @@
       </tr>
       <tr>
         <td><a href="https://resend.com/legal/privacy-policy">Resend</a></td>
-        <td>Transactional email: notifications to the operator (feedback notifications, operational alerts), the summary email, and checkout guard alert emails to your store owner</td>
-        <td>For operator notifications: feedback rating and answers you submit, and your shop domain (not the feedback contact email you give us). For the summary email and checkout guard alert emails: your store owner's email address and the email content described in Section 2</td>
+        <td>Transactional email: help message notifications to our support inbox, operational alerts to the operator, the summary email, and checkout guard alert emails to your store owner</td>
+        <td>For help message notifications: your shop domain, the topic, your message, any rating, the plan and latest scan ID attached to problem reports, and your contact email only if you agreed to be contacted (so our reply goes to you). For operational alerts: your shop domain and technical details. For the summary email and checkout guard alert emails: your store owner's email address and the email content described in Section 2</td>
+      </tr>
+      <tr>
+        <td>Northwest Registered Agent</td>
+        <td>Hosting for our support mailbox (support@alpenglowsoftware.com), where help message notifications arrive and from which we reply</td>
+        <td>The help message notifications described above, and any email you exchange with us</td>
       </tr>
       <tr>
         <td>Shopify Sidekick (Shopify's AI assistant, only if you use it)</td>
@@ -206,14 +213,14 @@
     <li><strong>Technical error reports</strong>: deleted after 30 days.</li>
     <li><strong>Server error records</strong>: kept until your shop data is deleted.</li>
     <li><strong>Scan diagnostics records</strong>: kept until your shop data is deleted.</li>
-    <li><strong>Feedback</strong>: kept until your shop data is deleted.</li>
+    <li><strong>Help messages, feedback, and how you found the App</strong>: kept until your shop data is deleted.</li>
     <li><strong>App removal records</strong>: kept until your shop data is deleted. A record is not deleted if the app is reinstalled; its status changes instead.</li>
     <li><strong>Store speed reports</strong>, including the free speed test and when it was used: kept until your shop data is deleted.</li>
     <li><strong>Summary email records and your stored store owner email address and store name</strong>: kept until your shop data is deleted.</li>
     <li><strong>Checkout guard data</strong>: a resolved alert is deleted 30 days after it was resolved; a learned script host the guard has not seen for 30 days is dropped. Records of each checkout guard email are kept until your shop data is deleted, except the per-incident records, which are deleted 90 days after the email was sent. The rest is kept until your shop data is deleted.</li>
     <li><strong>On uninstall</strong>: your sessions and Shopify access tokens are deleted immediately, and your shop is marked as uninstalled. The rest of your data is kept until Shopify sends a shop data erasure (<code>shop/redact</code>) request, which Shopify sends 48 hours after you uninstall. If you reinstall before then, your existing data is still available.</li>
-    <li><strong>Shop data erasure</strong>: when we receive the <code>shop/redact</code> request, we permanently delete all data associated with your shop, including scans, findings, script domain records, scan diagnostics records, feedback, usage records, app removal records, store speed reports, checkout guard data, summary and checkout guard email records, and your shop record (including the stored store owner email address, store name, and unsubscribe code).</li>
-    <li><strong>Email copies</strong>: feedback notifications and operational alerts already delivered to our inbox are not part of the App's database and are not removed by this automated deletion. Contact us to have them deleted.</li>
+    <li><strong>Shop data erasure</strong>: when we receive the <code>shop/redact</code> request, we permanently delete all data associated with your shop, including scans, findings, script domain records, scan diagnostics records, help messages and feedback, your answer about how you found the App, usage records, app removal records, store speed reports, checkout guard data, summary and checkout guard email records, and your shop record (including the stored store owner email address, store name, and unsubscribe code).</li>
+    <li><strong>Email copies</strong>: help message notifications, our email replies to you, and operational alerts already delivered to our inboxes are not part of the App's database and are not removed by this automated deletion. Contact us to have them deleted.</li>
     <li><strong>Emails you received</strong>: summary and checkout guard emails already delivered to your store owner's inbox are outside our control and are not removed by this automated deletion.</li>
     <li><strong>Aggregate statistics</strong>: summary counts that do not identify your store (for example, total scans across all stores) may be kept after your data is deleted.</li>
   </ul>
