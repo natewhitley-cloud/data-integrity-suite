@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy: IntakePilot</title>
+  <link rel="stylesheet" href="https://alpenglowsoftware.com/assets/site.css">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="ag-skip" href="#main">Skip to content</a>
+<header class="ag-header">
+  <div class="ag-header-inner">
+    <a class="ag-logo" href="https://alpenglowsoftware.com/"><img src="https://alpenglowsoftware.com/assets/icons/alpenglow.png" alt="" width="28" height="28"><span>Alpenglow Software</span></a>
+    <nav class="ag-nav" aria-label="Main">
+      <ul>
+        <li><a href="https://alpenglowsoftware.com/shopify/">Shopify apps</a></li>
+        <li><a href="https://alpenglowsoftware.com/monday/">monday.com apps</a></li>
+        <li><a href="https://alpenglowsoftware.com/guides/">Guides</a></li>
+        <li><a href="https://alpenglowsoftware.com/support/">Support</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <h1>Privacy Policy</h1>
+  <p class="app-name">IntakePilot: Purchase orders to Shopify draft orders</p>
+  <p class="effective-date">Effective date: November 3, 2026</p>
+    <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of IntakePilot ("the App"), collects, uses, stores, and protects information when you install and use the App through the Shopify platform. IntakePilot turns wholesale purchase orders (POs) into Shopify draft orders. Your team forwards a PO email to the App's forwarding address, or uploads a PO file or pastes an order's text in the App. An AI model reads the document, the App matches the buyer and the products to your Shopify records, and it creates a draft order. A member of your staff reviews every draft and approves it before it becomes an order. The App never contacts your buyers. See Section 1 for details.</p>
+
+    <p>The short version: POs contain personal data about the people who send them and the businesses they buy for (for example a contact's name, email address, phone number, and shipping and billing addresses). To do its job, the App stores each PO and processes it through Resend (which receives forwarded email), Anthropic (whose Claude AI models read the document), Railway (which hosts our server and database) and Shopify (where your drafts and orders live). We delete the original document, the PO's line text and the AI's reading of it 90 days after the document arrives (180 days at most if an order is still being worked on), and we delete everything we hold for your store when Shopify sends its deletion request after you uninstall. We do not sell your data, we do not use it for advertising, and we do not use it to train AI models.</p>
+
+  <h2>1. Information We Collect</h2>
+
+  <h3>Data from Shopify APIs</h3>
+  <p>The App requests the following Shopify access scopes:</p>  <ul>
+        <li><strong><code>read_customers</code></strong>: used to find the buyer a PO is from. Each time the App reads a document, it reads your B2B companies (company name, its contacts' names and email addresses, and its locations' names, shipping addresses and payment terms) and your customers (each customer's name and email address). These are used to match the PO's sender and buyer to your records while the document is processed, and are not stored in our database; the App keeps only the identifier and name of the company or customer it matched, the identifier and name of the location, and the identifier of the contact.</li>
+        <li><strong><code>write_customers</code></strong>: used only when a member of your staff presses "Add customer in Shopify" for a PO whose buyer is not in your store. The App creates a Shopify customer with the name and email address your staff member checked and edited on the PO page, and the note "Added from PO [number] by IntakePilot." It adds no address, no marketing consent and no account invitation, so Shopify sends the buyer nothing. Nothing is sent to Shopify until your staff member presses the button.</li>
+        <li><strong><code>write_draft_orders</code></strong>: used to create and update draft orders from POs, to find drafts the App created, and to complete a draft into an order when a member of your staff approves it. A draft carries the buyer (company location and contact, or customer), the matched products and quantities, the PO number, payment terms, the shipping address of the company location as it is in Shopify, a note with the requested date and a link back to the App, and the tags <code>agent-intake</code>, <code>intake-[id]</code>, and, when needed, <code>needs-review</code> or <code>po-cancelled</code>. Drafts are created as not visible to the customer. The App never sends an invoice or any other message to your buyer.</li>
+        <li><strong><code>read_orders</code></strong>: used to check a PO against the buyer's orders from the last 60 days (to recognize reorders and duplicates) and to read the total of an order a draft became. Orders read for these checks are not stored, except the identifier of an earlier draft or order a PO changes or repeats; the App stores the order total of an approved PO.</li>
+        <li><strong><code>read_products</code></strong>: used to match the items on a PO to your products and variants, and to read their prices. Product data is not stored, except the identifier of the variant matched to each PO line.</li>
+        <li><strong><code>read_payment_terms</code></strong> and <strong><code>write_payment_terms</code></strong>: used to put a B2B company location's payment terms on its draft order.</li>
+  </ul>
+    <p>Each time it reads a document, the App also reads your store's name, its store and contact email addresses (so it can recognize a PO forwarded by your own staff), its currency, and its primary domain. These are not stored.</p>
+
+  <h3>Protected Customer Data (Level 2)</h3>
+    <p>The App uses Shopify Protected Customer Data at <strong>Level 2</strong>: customer and company contact <strong>names</strong> and <strong>email addresses</strong> (to match the buyer, and when your staff adds a new customer), company location <strong>addresses</strong> (the shipping address on a draft), and the <strong>shipping address and phone number</strong> on drafts the App created (read back to keep the draft and the App in step). Shopify data read for matching is used while a document is processed and is not stored, as described above. Personal data the App does store comes from the POs themselves (see "Purchase orders" below).</p>
+
+  <h3>Purchase orders (documents you send to the App)</h3>
+    <p>A document reaches the App in one of three ways: an email sent or forwarded to your store's forwarding address (by your staff, or directly by a buyer or anyone else who has the address), a file a member of your staff uploads in the App, or order text a member of your staff pastes in the App. For each document the App stores:</p>
+  <ul>
+        <li><strong>The original document</strong>, encrypted: for an email, its sender's name and address, recipients, date, subject, message identifiers, text and HTML body, and every attachment; for an upload, the file; for pasted text, the text. POs commonly contain the names, email addresses, phone numbers and business addresses of the buyer's staff.</li>
+        <li><strong>A record of the document</strong>: how it arrived, the sender's email address as delivered, the subject, when it arrived, its processing status, a fingerprint (hash) of its contents used to spot repeats, and, for email, the results of the sender's email authentication checks (SPF, DKIM, and DMARC) as reported by Resend.</li>
+        <li><strong>The AI's reading of the document</strong>: the fields the AI model read from it (for example the buyer's name, PO number, requested date, ship-to address, and each line's item number, description, quantity, unit and price), which AI model was used, and how much it was used (tokens, cost, time).</li>
+        <li><strong>The proposed order</strong> for each PO: the matched company or customer (its identifier and name), location and contact, the PO number, requested date, the ship-to address as written on the PO, the text of each PO line with the product matched to it, any review flags (which can quote the buyer's name or a file name), the estimated and approved order totals, and the identifier of the Shopify draft. For a PO that changes or cancels an earlier one, the change the App proposed or applied.</li>
+  </ul>
+
+  <h3>Data collected through the Shopify session</h3>
+    <p>Shopify provides the following data as part of the standard app authentication process:</p>
+  <ul>
+    <li>Shop domain</li>
+    <li>The access scopes granted to the App</li>
+    <li>Access tokens and refresh tokens, and when they expire</li>
+  </ul>
+    <p>This session data is managed by Shopify's official session storage library and is required for the App to function within the Shopify Admin. The App does not store your staff members' names or email addresses from the session. When a member of your staff takes an action on a PO's review page (for example confirming a flagged detail, choosing a product, or applying a change), the App records their Shopify staff <strong>user identifier</strong> and the time with that action.</p>
+
+  <h3>Data we generate and store</h3>
+  <ul>
+        <li><strong>Learned item numbers</strong>: when a member of your staff chooses which of your products a buyer's own item number means, the App remembers that choice for that buyer (the company, or the customer's identifier), with the staff user identifier, and uses it for that buyer's next PO.</li>
+        <li><strong>Forwarding address and email records</strong>: your store's forwarding address (a random address at po.alpenglowsoftware.com; replacing it retires the old one), and for each email it receives, Resend's email identifier, a status (for example stored, dropped, or not on your plan) and times. These records contain no sender or content.</li>
+        <li><strong>Redaction markers</strong>: after a customer data deletion request (Section 7), a one-way code made from your store and the customer's email address with a secret key, and the time, so that an email from that address received before the request is never stored afterwards. The marker can't be turned back into the address.</li>
+        <li><strong>Accuracy record</strong>: for each PO, events such as "approved", "flagged for review before approval" or "reported wrong by you", with record identifiers and flag codes only, so the App can show how often its reading needed a correction.</li>
+        <li><strong>Usage and setup records</strong>: for your store (not per staff member), when the App was installed and last opened, when your first PO, draft and approved order arrived, which setup steps were shown, completed or skipped, how many orders have been approved (in steps: 10, 25, 50, 100, 250), the results of the setup guide's store check (kinds and counts of gaps, never buyer data), and product events such as "PO received" or "draft created", which carry counts, statuses and codes only, never PO content.</li>
+        <li><strong>Error records</strong>: when something fails, an error record with a code, a message and context. Email addresses, tokens and similar values are removed from it before it is stored.</li>
+        <li><strong>Help messages and feedback</strong>: if you send a message from the in-app Help page, we store the topic you choose, your message, and, for feedback only, an optional satisfaction rating. You may also give a contact email address; we store it only if you also tick the box allowing us to email you about that request, and we record when you sent the message with that box ticked. When you report a problem, we automatically attach the identifier and status of your store's most recent document so you do not have to look them up.</li>
+  </ul>
+
+  <h3>Data we do NOT collect</h3>
+  <ul>
+        <li>Access to your mailbox: the App sees only the emails sent or forwarded to its forwarding address</li>
+        <li>Your Shopify customer list: it is read to match buyers and is not stored</li>
+        <li>Payment card or banking information from Shopify (billing is handled by Shopify; any such details written in a PO are stored as part of the document, so ask buyers not to include them)</li>
+        <li>Your staff members' names or email addresses from Shopify (when your staff forward an email, the sender address of the forward is stored with the document, as described above; a Help-message contact email is stored only with your consent)</li>
+        <li>Storefront visitor, web-analytics, marketing or advertising data</li>
+  </ul>
+
+  <h2>2. How We Use Your Information</h2>
+  <p>We use the data we collect solely to provide and improve the App's services:</p>
+  <ul>
+        <li><strong>Reading POs</strong>: an AI model reads each document and returns the fields of the PO. The model has no tools: it cannot follow links, send messages, or change anything in your store. Its answer is checked in code; the App, not the model, decides which products, quantities and prices go on a draft.</li>
+        <li><strong>Matching</strong>: the App matches the PO's buyer to your companies and customers, and each line to your products, using your Shopify records and the item numbers your staff taught it. When a name or a line could match more than one record, the App can ask the AI model to choose among up to five candidates it offers.</li>
+        <li><strong>Drafting and approval</strong>: the App creates or updates the Shopify draft order and shows the PO and the draft side by side for review. A draft becomes an order only when a member of your staff approves it in the App, which refuses approval while any flag on it is unresolved, or completes the draft themselves in Shopify.</li>
+        <li><strong>Protecting your store</strong>: every document is treated as potentially hostile. File types are checked from their contents, macro-enabled documents are refused, size and rate limits apply, and an email whose sender fails email authentication (DMARC), or a document with text that looks like instructions to the AI, is held for a person before any draft is made.</li>
+        <li><strong>Shopify Sidekick (optional)</strong>: if you ask Shopify Sidekick, Shopify's AI assistant in your Shopify Admin, about POs waiting for review, Sidekick asks the App and the App returns how many POs are waiting, how many need review, and up to five waiting drafts with their draft name, PO number, buyer name, total, and whether they need review. The App does not receive your questions or Sidekick's replies and does not store the summaries. Sidekick is operated by Shopify, which processes your conversations under its own terms and privacy policy.</li>
+        <li><strong>Help and support</strong>: we use your help messages and feedback to answer you, fix problems, and improve the App. We email you about a message only if you gave an email address and agreed to be contacted about it.</li>
+        <li><strong>Service monitoring and improvement</strong>: we use usage and setup records, the accuracy record and error records (never PO content) to keep the App working, to spot and fix problems, and to see where the AI's reading needs work.</li>
+  </ul>
+    <p>We do <strong>not</strong> sell your data (including "selling" or "sharing" personal information as US state privacy laws define those terms), and we do <strong>not</strong> use it for advertising, marketing, or profiling. The App makes no automated decision with legal or similarly significant effects about any person: a member of your staff decides every order.</p>
+    <p><strong>AI.</strong> The App uses Anthropic's Claude models to read documents. We do not use your documents, the AI's readings, or your store data to train AI or machine-learning models, and Anthropic does not use data sent through its commercial API to train its models.</p>
+    <p><strong>Who can see PO content.</strong> Our staff do not access the content of your documents or the AI's readings, except with your permission for a specific support case, to fulfil a data request, to investigate a security incident or abuse of a forwarding address, or where required by law.</p>
+    <p>PO numbers, company identifiers, document fingerprints (hashes) and business email domains are kept as business records of your orders; they are not used to identify any person.</p>
+    <p>For the purposes of applicable data protection laws, you (the merchant) are the <strong>data controller</strong> for the documents your team and your buyers send to the App and for your store's customer data, including personal data about the people named in POs. Alpenglow Software LLC acts as a <strong>data processor</strong> (a "service provider" under US state privacy laws), processing that data solely on your behalf and as described in this policy. For data we collect directly from you (such as help messages and support email) and for usage, setup and error records, we act as an independent data controller.</p>
+
+  <h2>3. How We Process a Purchase Order</h2>
+  <ol>
+        <li>An email to your forwarding address reaches Resend, which notifies our server with the email's identifiers only. If your plan includes forwarding and the address is active, the App fetches the email and its attachments from Resend. Email to a retired address, to a store that has uninstalled the App, or to a store whose plan does not include forwarding is not fetched or stored by the App.</li>
+        <li>An uploaded file or pasted text is received directly by our server from your Shopify Admin session.</li>
+        <li>The document is checked against the App's file and size limits. An email is not stored if it was received more than 40 days earlier, or if its sender's email address was the subject of a customer data deletion request after it was received.</li>
+        <li>The App stores the document, encrypted, with its record.</li>
+        <li>The App sends the document to Anthropic's AI model to read it, matches the buyer and products against your Shopify records, and, where a choice is unclear, sends the model the PO's wording with up to five candidate names (no email addresses) or product names to choose from.</li>
+        <li>The App creates or updates a draft order in Shopify and tags it for review when something needs a person (for example a price that differs from Shopify's), or holds the PO without a draft (for example an unknown buyer, an unverified sender, or text that looks like instructions to the AI).</li>
+        <li>A member of your staff reviews the PO and the draft, resolves any flags, and approves it; the App then completes the draft into an order in Shopify. (Your staff can also complete a draft themselves in Shopify.)</li>
+  </ol>
+
+  <h2>4. Data Storage and Security</h2>
+  <ul>
+        <li>All data is stored in a PostgreSQL database hosted on Railway (United States).</li>
+        <li>Original documents (emails, attachments, uploaded files and pasted text) are encrypted with AES-256-GCM before they are stored. Each one is bound to its own record and your store, so it can't be read if it is copied to another record or store. The key is kept in our hosting provider's secret store, never in the database.</li>
+        <li>Shopify access and refresh tokens are encrypted at rest using AES-256-GCM encryption.</li>
+        <li>Other stored records (for example a document's sender address and subject, the AI's reading, and the proposed order) are protected by our hosting provider's database security and access controls, not by the App's own encryption.</li>
+        <li>The database is backed up daily. Backups are encrypted and kept for about a week; data deleted from the App (including after a customer or shop deletion request) stays in a backup until that backup expires, and is never restored into the App except to recover from a failure.</li>
+        <li>All connections the App makes use HTTPS/TLS encryption in transit. (Delivery of an email from the sender's mail server to Resend uses standard email protocols, where encryption depends on the sender's server.)</li>
+        <li>Our server logs record identifiers, counts, statuses, timings and error codes needed to operate the App. Logs name an error by a fixed code, never by its message, so they do not carry document content or personal data from a document.</li>
+        <li>We do not sell your data. We do not share your data with third parties for marketing, advertising, or profiling purposes.</li>
+        <li>In the event of a data breach affecting your data, we will notify Shopify within 24 hours of discovery, as Shopify's Partner Program Agreement requires, and notify you without undue delay and within 72 hours of discovery, in accordance with applicable law.</li>
+  </ul>
+
+  <h2>5. Third-Party Services</h2>
+  <p>The App uses the following third-party services to operate:</p>
+
+  <table>
+    <thead>
+      <tr><th>Service</th><th>Purpose</th><th>Data shared</th></tr>
+    </thead>
+    <tbody>
+      <tr>        <td>Shopify Admin API</td>
+        <td>Authentication; reading your companies, customers, products and recent orders; creating and completing draft orders; creating a customer when your staff asks</td>
+        <td>Session tokens; GraphQL queries and the drafts, tags and customers described in Section 1</td>
+      </tr>
+      <tr>        <td>Shopify Sidekick (Shopify's AI assistant, only if you use it)</td>
+        <td>Answering questions you ask Sidekick about POs waiting for review</td>
+        <td>The summary described under "Shopify Sidekick" in Section 2: counts, and up to five drafts' name, PO number, buyer name, total and review status</td>
+      </tr>
+      <tr>        <td>Anthropic (Anthropic, PBC, United States)</td>
+        <td>AI reading of each document, and choosing among candidate buyers or products the App offers</td>
+        <td>The document: its sender, recipients, date and subject, its text and its attachments; the PO's buyer name and line text with up to five candidate company, customer or product names (no email addresses). Anthropic does not train its models on this data. It keeps API inputs and outputs for a limited period under its commercial terms, and longer if they are flagged under its Usage Policy; we do not have a zero-retention agreement with Anthropic.</td>
+      </tr>
+      <tr>        <td>Resend (Resend, Inc., United States)</td>
+        <td>Receiving email sent to your forwarding address (at po.alpenglowsoftware.com) and notifying our server</td>
+        <td>The full email, including attachments. Resend keeps each received email for 30 days, and we cannot shorten this. This includes email sent to a retired forwarding address or after you uninstall, which the App does not fetch.</td>
+      </tr>
+      <tr>        <td>Resend (sending)</td>
+        <td>Error alerts sent only to us, and help message notifications to our support inbox</td>
+        <td>Alerts (sent only to us): your shop domain, record identifiers, counts and error codes. Alerts name an error by a fixed code, never by its message, so they carry no document content. Help message notifications (sent only to our support inbox): your shop domain, the topic, your message, any rating, the context attached to problem reports, and your contact email only if you agreed to be contacted (so our reply goes to you).</td>
+      </tr>
+      <tr>        <td>Railway</td>
+        <td>Application and database hosting</td>
+        <td>All stored data, described in Section 1</td>
+      </tr>
+      <tr>        <td>Inngest</td>
+        <td>Background job scheduling</td>
+        <td>Job parameters and short job results: your shop domain, record identifiers, the staff user identifier of a review action, statuses and counts, and the error code of a failed job. No document content is placed in job payloads or results. Inngest keeps this job history for a limited period set by our plan.</td>
+      </tr>
+      <tr>        <td>Northwest Registered Agent</td>
+        <td>Hosting for our support mailbox (support@alpenglowsoftware.com), where help message notifications arrive and from which we reply</td>
+        <td>The help message notifications described above, and any email you exchange with us</td>
+      </tr>
+    </tbody>
+  </table>
+
+    <p>If we add or replace a sub-processor in a way that materially affects how your data is processed, we will update this Privacy Policy and notify you through the App.</p>
+
+  <h2>6. Data Retention</h2>
+  <ul>
+        <li><strong>Documents and their reading</strong>: 90 days after a document arrives, the App deletes the original document (the email and its attachments, the uploaded file or the pasted text), the PO text of each line, the buyer's item numbers on those lines, and the AI's reading of it. If a PO that uses the document is still being worked on (for example not yet approved, cancelled or closed), this waits until it is done, and happens 180 days after arrival at the latest. Deletion runs daily in batches, so it can complete a few days after these marks.</li>
+        <li><strong>While installed</strong>: at the same time the App also removes the document's subject, the ship-to address as written on the PO, the wording of its flags and failure notes, and any other text taken from the PO. After that it keeps the record of each document (how it arrived, its sender address and dates) and of each proposed order (the buyer as named in your Shopify store, PO number, requested date when it is a plain date, flag types, totals and the Shopify draft and order identifiers), so your PO history and totals stay complete. These records, learned item numbers, your forwarding address, the accuracy record, usage and setup records, and help messages are kept for as long as the App is installed, and are deleted with your shop data. Error records are deleted after 90 days.</li>
+        <li><strong>Email records and redaction markers</strong>: the App's record of each received email (identifiers and a status) is deleted after 90 days; redaction markers after 45 days.</li>
+        <li><strong>Resend's copy</strong>: Resend keeps each email it received for your forwarding address for 30 days.</li>
+        <li><strong>Data in Shopify</strong>: drafts, orders, tags, notes and customers the App created in your store are part of your Shopify records, not data we hold. They stay after you uninstall the App or after a deletion request, and you can change or delete them in the Shopify Admin.</li>
+        <li><strong>On uninstall</strong>: when you uninstall the App, its access to your store ends, the App stops fetching email for your forwarding address, and Shopify sends a shop-redact request (typically 48 hours after uninstall). On receiving it, all data associated with your shop is permanently deleted, including documents, readings, proposed orders, learned item numbers, email records, redaction markers, the accuracy record, usage, setup and error records, help messages, sessions and your shop record.</li>
+        <li><strong>GDPR / privacy shop-redact</strong>: if Shopify sends a shop data erasure request, all shop data is deleted within 30 days (and in practice promptly on receipt).</li>
+        <li><strong>Support email</strong>: help message notifications and our email replies already delivered to our support inbox are not part of the App's database and are not removed by the automated deletion; contact us to have them deleted.</li>
+  </ul>
+
+  <h2>7. Your Rights</h2>
+  <p>You have the right to:</p>
+  <ul>
+        <li><strong>Access</strong>: view each PO's details, the PO text of each line (until it is deleted under Section 6) and the proposed order in the App, or contact us for a copy of an original document while it is still stored.</li>
+        <li><strong>Deletion</strong>: uninstalling the App deletes all your data (see Section 6). You may also contact us to request deletion without uninstalling.</li>
+        <li><strong>Data portability</strong>: contact us to request an export of your stored data in a machine-readable format.</li>
+        <li><strong>Correction</strong>: correct a PO's details on its review page or on the draft in Shopify, or contact us if you believe other stored data is inaccurate.</li>
+  </ul>
+    <p><strong>Regarding your customers.</strong> POs name your buyers and their staff. The App honors Shopify's customer privacy webhooks for this data:</p>
+  <ul>
+        <li>A <strong><code>customers/data_request</code></strong> identifies the documents and proposed orders we hold for the customer: documents sent from the customer's email address, and documents your staff uploaded, pasted or forwarded that the App matched to that customer or that name the customer's email address as the buyer, together with the customer's learned item numbers. We compile the data and provide it to you within 30 days.</li>
+        <li>A <strong><code>customers/redact</code></strong> request deletes those documents and everything the App read from them (the original, the AI's reading, the proposed orders and their lines), removes what they contributed to any other PO, and deletes the customer's learned item numbers and the App's error records that refer to them. When one document also holds POs for other buyers, the App deletes that customer's proposed orders, the original document and the AI's reading of it, and keeps the other buyers' proposed orders. A PO that loses content this way is flagged so a member of your staff checks it before approving.</li>
+        <li>A <strong><code>shop/redact</code></strong> request deletes all data for your shop.</li>
+  </ul>
+    <p>These requests delete the data the App holds. They do not change drafts, orders or customers in your Shopify store, which you control as the merchant, and they do not remove Resend's 30-day copy of an email (it expires on its own).</p>
+    <p>If a person named in a PO contacts us, we will refer them to you, as the controller, and assist you in responding. We respond to all data requests within 30 days.</p>
+
+  <h2>8. International Data Transfers</h2>
+    <p>Your data is processed and stored on servers located in the United States. Our sub-processors may also process data in other countries where they operate. By using the App, you consent to the transfer of your data to the United States for processing.</p>
+
+  <h2>9. Cookies and Tracking</h2>
+    <p>The App does not use cookies, tracking pixels, or any third-party analytics or advertising technologies. Apart from the basic first-party usage records described in Section 1, it does not track your behavior within the Shopify Admin. IntakePilot has no storefront component: it adds nothing to your storefront and collects nothing from your store's visitors.</p>
+
+  <h2>10. Children's Privacy</h2>
+  <p>The App is designed for use by Shopify merchants (business users) and is not directed at children under 13. We do not knowingly collect personal data from children.</p>
+
+  <h2>11. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. If we make material changes, we will update the effective date at the top of this page. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
+
+  <h2>12. Contact Us</h2>
+  <div class="contact-block">
+    <p>If you have questions about this Privacy Policy or want to exercise your data rights, contact us at:</p>
+    <p><strong>Email:</strong> <a href="mailto:support@alpenglowsoftware.com">support@alpenglowsoftware.com</a></p>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2026 Alpenglow Software LLC. All rights reserved.</p>
+</footer>
+</body>
+</html>
