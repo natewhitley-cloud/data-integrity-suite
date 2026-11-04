@@ -26,7 +26,7 @@
 <main id="main">
   <h1>Privacy Policy</h1>
   <p class="app-name">ClearSignal: Bot Traffic Detection for Shopify</p>
-  <p class="effective-date">Effective date: October 27, 2026</p>
+  <p class="effective-date">Effective date: November 3, 2026</p>
 
   <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of ClearSignal ("the App") collects, uses, stores, and protects information when you install and use the App through the Shopify platform. ClearSignal detects bot traffic that may be polluting your store's analytics by combining client-side fingerprinting, order-level signal analysis, and server-side signal correlation. A Shopify Web Pixel extension additionally captures storefront checkout and funnel events (such as checkout started, checkout completed, and add-to-cart) as bot-detection, order-integrity, and conversion-funnel signals. See Section 1 for details.</p>
 
@@ -38,6 +38,7 @@
     <li><strong><code>read_orders</code></strong>: used to attribute orders to AI-agent-driven traffic and to surface Shopify's own order-level risk assessment. For each order, the App reads and stores the order ID, order total and currency, sales channel and referrer information, and Shopify's risk recommendation, risk level, and risk assessment details. The App does <strong>not</strong> access or store customer names, addresses, email addresses, or payment information through this scope.</li>
     <li><strong><code>read_products</code></strong>: used to resolve product titles and handles for the storefront pages your visitors and AI agents view, so reports display product names rather than raw identifiers. The App reads product title and handle only. It does not create, modify, or delete products.</li>
     <li><strong><code>write_pixels</code></strong> and <strong><code>read_customer_events</code></strong>: used to register and operate a Shopify Web Pixel that receives storefront checkout and funnel events. See "Data from the Web Pixel extension" below for exactly what these events contain.</li>
+    <li><strong><code>write_analytics_annotations</code></strong> (optional; requested only if you turn on "Mark bot spikes in Shopify Analytics", off by default): used to add a marker to your Shopify Analytics charts on days the App detects a bot spike. Each marker contains only a date range and aggregate counts for your own store (the number and share of sessions flagged as bad bots). It contains no visitor-level data. The App keeps its own record of each marker it created (Shopify's marker ID, the date range, and the count) so it can update or remove it. Turning the setting off removes the markers the App created while the permission is still granted; markers that remain after you revoke the permission or uninstall the App stay in your Shopify Analytics.</li>
   </ul>
 
   <h3>Data from the Web Pixel extension (storefront events)</h3>
