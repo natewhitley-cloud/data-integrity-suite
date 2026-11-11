@@ -26,7 +26,7 @@
 <main id="main">
   <h1>Privacy Policy</h1>
   <p class="app-name">GhostCode — Shopify Theme Audit App</p>
-  <p class="effective-date">Effective date: November 5, 2026</p>
+  <p class="effective-date">Effective date: November 11, 2026</p>
 
   <p>This Privacy Policy explains how Alpenglow Software LLC ("we," "us," "our"), operator of GhostCode ("the App") collects, uses, stores, and protects information when you install and use the App through the Shopify platform.</p>
 
@@ -35,11 +35,11 @@
   <h3>Data from Shopify APIs</h3>
   <p>When you install the App, we access the following through the Shopify Admin API using the <code>read_themes</code> scope:</p>
   <ul>
-    <li><strong>Theme files</strong> — Liquid templates, sections, snippets, and layout files from your published theme. We access these files in read-only mode to scan for orphaned code left by previously uninstalled apps.</li>
+    <li><strong>Theme files</strong> — Liquid templates, sections, snippets, and layout files from your published theme. With this scope, we only read these files, to scan for orphaned code left by previously uninstalled apps.</li>
     <li><strong>Theme metadata</strong> — Theme name, ID, and role (whether it is your published theme) to identify which theme was scanned; the theme's name, version and author as listed in the theme's own settings file, and whether it is an Online Store 2.0 theme; and how many unpublished themes your store has, shown in the App's theme health checklist.</li>
     <li><strong>Store domain</strong>: your store's primary domain and myshopify.com domain, used to find your public storefront homepage (see below).</li>
   </ul>
-  <p>We do not request write access to your themes. We do not modify any theme files.</p>
+  <p>By default, we do not request write access to your themes and we do not modify any theme files. The only exception is Clean copy, an optional feature described below that you choose to use.</p>
 
   <h3>Optional scopes</h3>
   <p>You can grant additional read-only scopes from the Permissions card on the App's Settings page, or from the optional link on the App's home page before your first scan. Each one is requested through Shopify's consent screen, and the App does not access that data until you approve it. You can revoke these scopes at any time in your Shopify admin.</p>
@@ -51,6 +51,16 @@
     <li><strong><code>read_online_store_navigation</code></strong>: your URL redirects, and your navigation menus (each menu's name and each menu item's title and link), used to find orphaned redirects left by uninstalled apps and to check your menu labels and links for injected code.</li>
   </ul>
   <p>If you do not grant a scope, the App skips the checks that depend on it.</p>
+
+  <h3>Optional write access for Clean copy</h3>
+  <p>Clean copy is an optional feature on the Professional plan. It needs the <code>write_themes</code> scope, which is Shopify's permission to change themes. The App requests this scope through Shopify's consent screen only the first time you use Clean copy, and does not have it until you approve. If you never use Clean copy, the App never requests it. You can revoke it at any time in your Shopify admin.</p>
+  <p>The App uses this scope only for Clean copy. When you use Clean copy, the App:</p>
+  <ul>
+    <li>makes an unpublished copy of your published theme;</li>
+    <li>removes from that copy only the code you selected from the findings GhostCode flagged: external app script and stylesheet tags, connection hints to app domains, and render or include lines for app snippets;</li>
+    <li>never edits or publishes your live (published) theme, never deletes theme files, and never edits theme settings or JSON files.</li>
+  </ul>
+  <p>You preview the copy and decide whether to publish it in your Shopify admin. Your original theme stays as it was.</p>
 
   <h3>Your public storefront homepage</h3>
   <p>When the App scans your published theme, our server loads your store's public homepage once per scan (again only if that step is retried after an error), the same page any visitor sees. If your homepage redirects, the App follows up to 3 redirects, and only to your primary domain or your myshopify.com domain. If it redirects anywhere else, the App skips this check. We use the page only for six things: to find the list of script addresses that Shopify adds for your installed apps ("script tags"); to find "missing snippet" Liquid error messages that Shopify has printed on the page (for example "Liquid error (layout/theme line 309): Could not find asset snippets/example.liquid"), which we report only when your theme files confirm the snippet is missing; to check whether the page loads code from a domain on our list of known malicious domains (in its script and link tags, the scripts Shopify adds for your apps, web addresses written inside the page's scripts, and web addresses in JavaScript attached to page elements, such as an image's <code>onerror</code> attribute); to see which of your apps load through a Shopify app extension (we read only the app extension names in the addresses of the page's script and link tags), which tells us an app no longer depends on its script tag; to see which apps have blocks shown on the page (we read only the app names in the markers Shopify adds around app blocks), so we can check our app detection against what the page actually shows; and to confirm it is a Shopify page that is not password-protected. We do not use or keep any other text on the page. Our requests identify themselves with the User-Agent <code>GhostCode/1.0 (+https://alpenglowsoftware.com)</code>. We do not log in, submit forms, or send cookies. We do not collect information about your visitors or customers. If your storefront is password-protected, the App does not try to get past the password page and skips this check. Before a store speed report, the App also loads your homepage once in the same way, only to check whether it is password-protected.</p>
@@ -108,7 +118,8 @@
   <p>We use the data we collect solely to provide and improve the App's services:</p>
   <ul>
     <li><strong>Theme scanning</strong> — We analyze your theme files in memory to detect orphaned code patterns (ghost scripts, stylesheets, snippets, and sections) left by previously uninstalled apps.</li>
-    <li><strong>Scan results</strong> — We store findings (file name, line number, a short code snippet of up to 300 characters, severity, and the identified app name) so you can review results in the App.</li>
+    <li><strong>Scan results</strong> — We store findings (file name, line number, a short code snippet of up to 300 characters, severity, and the identified app name) so you can review results in the App. For some findings, we also store the finding's position in its file and a fingerprint (hash) of the flagged code, not the code itself. We use these to make Clean copy possible.</li>
+    <li><strong>Clean copy records</strong>: each time you use Clean copy, we store the copy's theme ID and name, the scan it came from, the names of the files changed, the position and a fingerprint (hash) of each piece of code removed, a checksum of each changed file before and after the change, and the result. We do not store theme code from the copy. We use these records to show you what Clean copy changed and to confirm each change. They are deleted with the rest of your shop data as described in Section 6.</li>
     <li><strong>Optional-scope findings</strong>: for checks that use an optional scope, findings store short excerpts (up to 300 characters) and identifiers such as tag names, product or page handles, metafield keys with short value excerpts, and redirect paths. When a menu item's label or link contains code (for example a script, or a link to a domain on our list of known malicious domains), we store a finding with the menu and menu item IDs, the item's place in the menu (the menu's name and the titles of the item and the items above it, each cut to 80 characters), an excerpt of up to 200 characters of the label or link around the code, and a fingerprint (hash) of the full label and link so we can tell when the item changes. We use it only to warn you in the App and in the Sidekick scan summary. Full product, page, translation, menu, and redirect data is not stored.</li>
     <li><strong>Third-party script domains</strong>: for each scan we store the third-party domains your theme references and any unrecognized script URLs, with the file name, line number, and a short code snippet. We may analyze this data in aggregate across stores to improve how the App recognizes apps. This data is never sold, and it is deleted with the rest of your shop data as described in Section 6.</li>
     <li><strong>Storefront script tags</strong>: for each scan we store the web addresses of the scripts that Shopify loads on your storefront for your apps, with query strings and fragments removed, kept in a short excerpt of up to 300 characters per app, along with the app we identify for each one. These addresses belong to third-party apps and may contain identifiers those apps use for your store. Your store's file ID in addresses on Shopify's CDN (cdn.shopify.com) is removed. We use them to warn you about apps that will stop working when Shopify stops running script tags on March 1, 2027. This data is deleted with the rest of your shop data as described in Section 6.</li>
@@ -138,6 +149,7 @@
     <li>Only the scan findings (metadata and short code snippets) are stored in our database.</li>
     <li>Data accessed through optional scopes is processed the same way: only findings are stored.</li>
     <li>Full theme file contents are <strong>not stored</strong> — they are discarded after processing.</li>
+    <li>When you use Clean copy, the files of the copy that the App changes are processed the same way: read and changed in memory, then written back to the copy in your store through the Shopify Admin API. Only the Clean copy records described in Section 2 are stored.</li>
     <li>Your public storefront homepage is fetched directly from your store over HTTPS and processed in memory. Only four things are kept: the list of script addresses (without query strings or fragments); for each confirmed Liquid error, the theme file path, line number and snippet name from the error message; for each known malicious domain the page uses, that domain, the matched host (no path or query string) and how the page used it; and the short app names of the app blocks and app extensions on the page, in the scan diagnostics record (see Section 2). The page itself is not stored.</li>
     <li>The homepage and cart page read by each checkout guard check are processed in memory the same way. Only host names, fixed descriptions, and timestamps are kept, as described in Section 2. The pages themselves are not stored.</li>
     <li>The list of web addresses requested during each store speed test, which comes back from Google PageSpeed Insights with the test result, is checked in memory against our list of known malicious domains. Only the matched domains are kept, with the test's summary.</li>
@@ -162,8 +174,8 @@
     <tbody>
       <tr>
         <td><a href="https://www.shopify.com/legal/privacy">Shopify Admin API</a></td>
-        <td>Theme file access and authentication</td>
-        <td>Session tokens, theme queries</td>
+        <td>Theme file access and authentication, and, if you use Clean copy, making and changing the copy</td>
+        <td>Session tokens, theme queries, and, for Clean copy, the changed files of the copy, written back to your store</td>
       </tr>
       <tr>
         <td>Your Shopify storefront</td>
@@ -217,9 +229,11 @@
     <li><strong>App removal records</strong>: kept until your shop data is deleted. A record is not deleted if the app is reinstalled; its status changes instead.</li>
     <li><strong>Store speed reports</strong>, including the free speed test and when it was used: kept until your shop data is deleted.</li>
     <li><strong>Summary email records and your stored store owner email address and store name</strong>: kept until your shop data is deleted.</li>
+    <li><strong>Clean copy records</strong>: we keep records of the 20 most recent clean copies for your store. Older records are deleted automatically. All are deleted with the rest of your shop data.</li>
+    <li><strong>Theme copies in your store</strong>: a copy made by Clean copy is a theme in your store, not data in our database. Revoking the permission, uninstalling the App, or erasing your shop data does not delete it. Each copy counts toward your store's theme limit in Shopify, and you can delete it in your Shopify admin.</li>
     <li><strong>Checkout guard data</strong>: a resolved alert is deleted 30 days after it was resolved; a learned script host the guard has not seen for 30 days is dropped. Records of each checkout guard email are kept until your shop data is deleted, except the per-incident records, which are deleted 90 days after the email was sent. The rest is kept until your shop data is deleted.</li>
     <li><strong>On uninstall</strong>: your sessions and Shopify access tokens are deleted immediately, and your shop is marked as uninstalled. The rest of your data is kept until Shopify sends a shop data erasure (<code>shop/redact</code>) request, which Shopify sends 48 hours after you uninstall. If you reinstall before then, your existing data is still available.</li>
-    <li><strong>Shop data erasure</strong>: when we receive the <code>shop/redact</code> request, we permanently delete all data associated with your shop, including scans, findings, script domain records, scan diagnostics records, help messages and feedback, your answer about how you found the App, usage records, app removal records, store speed reports, checkout guard data, summary and checkout guard email records, and your shop record (including the stored store owner email address, store name, and unsubscribe code).</li>
+    <li><strong>Shop data erasure</strong>: when we receive the <code>shop/redact</code> request, we permanently delete all data associated with your shop, including scans, findings, script domain records, scan diagnostics records, help messages and feedback, your answer about how you found the App, usage records, app removal records, store speed reports, Clean copy records, checkout guard data, summary and checkout guard email records, and your shop record (including the stored store owner email address, store name, and unsubscribe code).</li>
     <li><strong>Email copies</strong>: help message notifications, our email replies to you, and operational alerts already delivered to our inboxes are not part of the App's database and are not removed by this automated deletion. Contact us to have them deleted.</li>
     <li><strong>Emails you received</strong>: summary and checkout guard emails already delivered to your store owner's inbox are outside our control and are not removed by this automated deletion.</li>
     <li><strong>Aggregate statistics</strong>: summary counts that do not identify your store (for example, total scans across all stores) may be kept after your data is deleted.</li>
